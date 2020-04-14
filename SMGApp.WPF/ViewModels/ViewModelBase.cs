@@ -1,6 +1,8 @@
-﻿namespace SMGApp.WPF.ViewModels
+﻿using SMGApp.WPF.Models;
+
+namespace SMGApp.WPF.ViewModels
 {
-    public class ViewModelBase
+    public class ViewModelBase : ObservableObject
     {
 
     }
