@@ -2,7 +2,7 @@
 
 namespace SMGApp.Domain.Models
 {
-    internal class Customer
+    public class Customer
     {
         public int ID { get; set; }
         public string LastName { get; set; }

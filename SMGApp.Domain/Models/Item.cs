@@ -1,6 +1,6 @@
 ﻿namespace SMGApp.Domain.Models
 {
-    internal class Item
+    public class Item
     {
         public int ID { get; set; }
         public string PartSerial { get; set; }
@@ -9,7 +9,7 @@
         public StockCategory Category { get; set; }
     }
 
-    internal enum StockCategory
+    public enum StockCategory
     {
         Category1,
         Category2,

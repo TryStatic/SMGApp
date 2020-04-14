@@ -1,6 +1,6 @@
 ﻿namespace SMGApp.Domain.Models
 {
-    internal class ServiceItem
+    public class ServiceItem
     {
         public int ID { get; set; }
         public Customer Customer { get; set; }
@@ -8,7 +8,7 @@
         public ServiceState State { get; set; }
     }
 
-    internal enum ServiceState
+    public enum ServiceState
     {
         Stored,
         Fixed,
