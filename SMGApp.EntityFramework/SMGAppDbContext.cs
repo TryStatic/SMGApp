@@ -9,9 +9,14 @@ namespace SMGApp.EntityFramework
         public DbSet<Item> Items { get; set; }
         public DbSet<ServiceItem> ServiceItems { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=SMGData.dat;Version=3;");
+            optionsBuilder.UseSqlite("Data Source=SMGData.dat;");
             base.OnConfiguring(optionsBuilder);
         }
     }
