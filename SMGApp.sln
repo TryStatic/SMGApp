@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMGApp.Domain", "SMGApp.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMGApp.EntityFramework", "SMGApp.EntityFramework\SMGApp.EntityFramework.csproj", "{BE23F00C-2269-48A8-84F6-CBE2E6F54A0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMGApp.WPF", "SMGApp.WPF\SMGApp.WPF.csproj", "{0C0DE939-C50B-40A1-A9E2-818838FD0CA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{BE23F00C-2269-48A8-84F6-CBE2E6F54A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE23F00C-2269-48A8-84F6-CBE2E6F54A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE23F00C-2269-48A8-84F6-CBE2E6F54A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C0DE939-C50B-40A1-A9E2-818838FD0CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0DE939-C50B-40A1-A9E2-818838FD0CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0DE939-C50B-40A1-A9E2-818838FD0CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0DE939-C50B-40A1-A9E2-818838FD0CA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
