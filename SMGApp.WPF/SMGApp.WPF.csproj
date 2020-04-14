@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <Folder Include="Controls\" />
     <Folder Include="Views\" />
   </ItemGroup>
 
