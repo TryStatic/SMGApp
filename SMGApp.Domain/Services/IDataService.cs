@@ -9,6 +9,6 @@ namespace SMGApp.Domain.Services
         Task<T> Get(int id);
         Task<T> Create(T entity);
         Task<T> Update(int id, T entity);
-        bool Delete(int id);
+        Task<bool> Delete(int id);
     }
 }

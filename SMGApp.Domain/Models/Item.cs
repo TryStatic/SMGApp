@@ -2,9 +2,8 @@
 
 namespace SMGApp.Domain.Models
 {
-    public class Item
+    public class Item : DomainObject
     {
-        public int ID { get; set; }
         public string PartSerial { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }

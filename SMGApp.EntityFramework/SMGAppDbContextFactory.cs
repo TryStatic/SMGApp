@@ -8,7 +8,7 @@ namespace SMGApp.EntityFramework
 {
     public class SMGAppDbContextFactory : IDesignTimeDbContextFactory<SMGAppDbContext>
     {
-        public SMGAppDbContext CreateDbContext(string[] args)
+        public SMGAppDbContext CreateDbContext(string[] args = null)
         {
             DbContextOptionsBuilder<SMGAppDbContext> options = new DbContextOptionsBuilder<SMGAppDbContext>();
             options.UseSqlite("Data Source=SMGData.dat;");

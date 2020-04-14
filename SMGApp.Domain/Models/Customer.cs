@@ -2,9 +2,8 @@
 
 namespace SMGApp.Domain.Models
 {
-    public class Customer
+    public class Customer : DomainObject
     {
-        public int ID { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Address { get; set; }

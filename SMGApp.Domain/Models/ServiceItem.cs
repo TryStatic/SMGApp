@@ -2,9 +2,8 @@
 
 namespace SMGApp.Domain.Models
 {
-    public class ServiceItem
+    public class ServiceItem : DomainObject
     {
-        public int ID { get; set; }
         public Customer Customer { get; set; }
         public string DamageDescription { get; set; }
         public DateTime DateAdded { get; set; }
