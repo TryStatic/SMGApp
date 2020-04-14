@@ -4,10 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SMGApp.WPF.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="CUSTOMER" />
 
-</Grid>
+        <DataGrid
+              Margin="0 8 0 0"
+              ItemsSource="{Binding Customers}"
+              CanUserSortColumns="True"
+              CanUserAddRows="False"
+              AutoGenerateColumns="False"
+              materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+              materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+              HeadersVisibility="All">
+            <DataGrid.Columns>
+
+                <materialDesign:DataGridTextColumn
+                  Binding="{Binding LastName}"
+                  Header="Last Name"
+                  MinWidth="120"
+                  MaxLength="255"
+                  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:DataGridTextColumn
+                    Binding="{Binding FirstName}"
+                    Header="First Name"
+                    MinWidth="120"
+                    MaxLength="255"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:DataGridTextColumn
+                    Binding="{Binding Address}"
+                    Header="Address"
+                    MinWidth="180"
+                    MaxLength="255"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:DataGridTextColumn
+                    Binding="{Binding PhoneNumber}"
+                    Header="Phone Number"
+                    MaxLength="255"
+                    MinWidth="120"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:DataGridTextColumn
+                    Binding="{Binding DateAdded}"
+                    Header="Date Added"
+                    MinWidth="120"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+
+    </Grid>
 </UserControl>
