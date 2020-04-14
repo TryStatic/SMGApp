@@ -1,6 +1,8 @@
 ﻿<Application x:Class="SMGApp.WPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="clr-namespace:SMGApp.WPF.ViewModels"
+             xmlns:views="clr-namespace:SMGApp.WPF.Views"
              xmlns:local="clr-namespace:SMGApp.WPF">
     
     <Application.Resources>
@@ -8,6 +10,19 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/Common.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewmodels:CustomerViewModel}">
+                <views:CustomerView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:ServiceViewModel}">
+                <views:ServiceView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:InventoryViewModel}">
+                <views:InventoryView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:BackupViewModel}">
+                <views:BackupView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

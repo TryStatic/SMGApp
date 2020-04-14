@@ -11,8 +11,4 @@
     <ProjectReference Include="..\SMGApp.EntityFramework\SMGApp.EntityFramework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>
