@@ -7,7 +7,7 @@ namespace SMGApp.Domain.Models
         public string PartSerial { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        public DateTime DateAdded { get; set; }
+        public DateTime DateAdded { get; set; } = DateTime.Now;
         public StockCategory Category { get; set; }
     }
 
