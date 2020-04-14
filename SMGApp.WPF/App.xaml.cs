@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using SMGApp.WPF.ViewModels;
 
 namespace SMGApp.WPF
 {
@@ -16,6 +17,7 @@ namespace SMGApp.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             Window window = new MainWindow();
+            window.DataContext = new MainViewModel();
             window.Show();
 
             base.OnStartup(e);
