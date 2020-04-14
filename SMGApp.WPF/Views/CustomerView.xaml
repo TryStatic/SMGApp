@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SMGApp.WPF.Views.CustomerView"
+<UserControl x:Class="SMGApp.WPF.Views.CustomerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -113,11 +113,15 @@
                     Header="Date Added"
                     MinWidth="120"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:DataGridTextColumn
+                    Binding="{Binding Notes}"
+                    Header="Notes"
+                    MaxLength="600"
+                    MinWidth="120"
+                    MaxWidth="360"
+                    ElementStyle="{StaticResource WrapText}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
             </DataGrid.Columns>
         </DataGrid>
-
-
-
-
     </Grid>
 </UserControl>

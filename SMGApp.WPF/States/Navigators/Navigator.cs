@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Models;
