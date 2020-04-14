@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SMGApp.Domain.Services
 {
-    internal interface IDataService<T>
+    public interface IDataService<T>
     {
         Task<IEnumerable<T>> GetAll();
         Task<T> Get(int id);
