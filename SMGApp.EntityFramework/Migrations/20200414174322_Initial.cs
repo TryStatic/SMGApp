@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SMGApp.EntityFramework.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,6 +33,7 @@ namespace SMGApp.EntityFramework.Migrations
                     PartSerial = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     Quantity = table.Column<int>(nullable: false),
+                    DateAdded = table.Column<DateTime>(nullable: false),
                     Category = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -48,6 +49,8 @@ namespace SMGApp.EntityFramework.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     CustomerID = table.Column<int>(nullable: true),
                     DamageDescription = table.Column<string>(nullable: true),
+                    DateAdded = table.Column<DateTime>(nullable: false),
+                    DateUpdated = table.Column<DateTime>(nullable: false),
                     State = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

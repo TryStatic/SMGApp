@@ -9,8 +9,8 @@ using SMGApp.EntityFramework;
 namespace SMGApp.EntityFramework.Migrations
 {
     [DbContext(typeof(SMGAppDbContext))]
-    [Migration("20200414173720_AddedDates")]
-    partial class AddedDates
+    [Migration("20200414174322_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
