@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
+using SMGApp.Domain.Models;
+using SMGApp.EntityFramework;
+using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.States.Navigators;
 using SMGApp.WPF.ViewModels;
 
@@ -28,7 +32,7 @@ namespace SMGApp.WPF.Commands
             switch (viewType)
             {
                 case ViewType.Customer:
-                    _navigator.CurrentViewModel = new CustomerViewModel();
+                    _navigator.CurrentViewModel = new CustomerViewModel(new GenericDataServices<Customer>(new SMGAppDbContextFactory()));
                     break;
                 case ViewType.Service:
                     _navigator.CurrentViewModel = new ServiceViewModel();

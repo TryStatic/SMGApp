@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SMGApp.Domain.Models;
+using SMGApp.Domain.Services;
 using SMGApp.EntityFramework;
 using SMGApp.EntityFramework.Services;
 
@@ -9,10 +11,12 @@ namespace SMGApp.WPF.ViewModels
 {
     public class CustomerViewModel : ViewModelBase
     {
-        private List<Customer> _customers;
+        private readonly IDataService<Customer> _customerDataService;
+
+        private IEnumerable<Customer> _customers;
         private string _searchBox;
 
-        public List<Customer> Customers
+        public IEnumerable<Customer> Customers
         {
             get => _customers;
             set
@@ -33,26 +37,24 @@ namespace SMGApp.WPF.ViewModels
             }
         }
 
+        public CustomerViewModel(IDataService<Customer> customerDataService)
+        {
+            this._customerDataService = customerDataService;
+            Task.Run(async () => await LoadCustomers());
+        }
+
+        private async Task LoadCustomers()
+        {
+            Customers = await _customerDataService.GetAll();
+        }
+
+
         private async void SearchBoxChanged(string value)
         {
             if(Customers == null) return;
-            GenericDataServices<Customer> service = new GenericDataServices<Customer>(new SMGAppDbContextFactory());
-            IEnumerable<Customer> x = await service.GetAll();
-            List<Customer> cust = x.ToList();
-            Customers = cust.Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
+            Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
         }
 
-        public CustomerViewModel()
-        {
-            LoadCustomers();
-        }
 
-        private async void LoadCustomers()
-        {
-            GenericDataServices<Customer> service = new GenericDataServices<Customer>(new SMGAppDbContextFactory());
-            IEnumerable<Customer> x = await service.GetAll();
-            Customers = x.ToList();
-
-        }
     }
 }  
