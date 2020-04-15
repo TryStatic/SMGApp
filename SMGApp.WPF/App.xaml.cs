@@ -16,7 +16,7 @@ namespace SMGApp.WPF
 
             Window window = new MainWindow();
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.Height = 720;
+            window.Height = 800;
             window.Width = 1280;
             window.DataContext = new MainViewModel();
             window.Show();

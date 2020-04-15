@@ -19,12 +19,9 @@
             materialDesign:ShadowAssist.ShadowDepth="Depth4"
             materialDesign:ShadowAssist.ShadowEdges="Bottom"
             Padding="0">
-            <TextBlock
-                Text="Service Mobile Computer"
-                Style="{StaticResource MaterialDesignHeadline4TextBlock}"
-                Background="{StaticResource BrushPrimary1}"
-                Padding="2 10"
-            />
+
+            <Image Source="/Controls/SMG.png" Width="300" Margin="10"/>
+
         </materialDesign:Card>
 
 

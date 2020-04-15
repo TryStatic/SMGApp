@@ -54,7 +54,5 @@ namespace SMGApp.WPF.ViewModels
             if(Customers == null) return;
             Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
         }
-
-
     }
 }  
