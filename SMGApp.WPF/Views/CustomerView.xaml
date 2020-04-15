@@ -1,16 +1,16 @@
 ﻿<UserControl x:Class="SMGApp.WPF.Views.CustomerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SMGApp.WPF.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}" x:Key="WrapText">
-            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextWrapping" Value="Wrap" />
         </Style>
     </UserControl.Resources>
 
@@ -22,6 +22,11 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
         <materialDesign:Card
             Grid.Row="0"
@@ -63,42 +68,57 @@
                                 Opacity=".56" />
                         </Button>
                         <TextBox
-                            Text="{Binding SearchBox, Mode=TwoWay}"
+                            Text="{Binding SearchBox, UpdateSourceTrigger=PropertyChanged}"
                             Grid.Column="1"
                             Margin="8 0 0 0"
                             materialDesign:HintAssist.Hint="Search"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             BorderThickness="0"
                             MinWidth="200"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center">
+                        </TextBox>
                     </Grid>
                 </materialDesign:ColorZone>
             </Grid>
         </materialDesign:Card>
 
-        <DataGrid 
+        <DataGrid
             SelectionMode="Single"
-            Grid.Row="1" Grid.Column="1"
+            Grid.Row="1" Grid.Column="0"
             VerticalScrollBarVisibility="Auto"
             MaxHeight="720"
-              Margin="0 8 0 0"
-              ItemsSource="{Binding Customers}"
+            Margin="0 8 0 0"
+            ItemsSource="{Binding Customers}"
             CanUserSortColumns="True"
-              CanUserAddRows="False"
-              CanUserDeleteRows="false"
-              CanUserResizeRows="True"
-              AutoGenerateColumns="False"
-              materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-              materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-              HeadersVisibility="All">
+            CanUserAddRows="False"
+            CanUserDeleteRows="false"
+            CanUserResizeRows="True"
+            AutoGenerateColumns="False"
+            materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+            materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+            HeadersVisibility="All">
+            <DataGrid.Resources>
+                <ContextMenu x:Key="CustomerContextMenu">
+                    <ContextMenu.Items>
+                        <MenuItem
+                            Header="Delete"
+                            Command="{Binding DataContext.ViewTicketInBrowser_Command, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                            CommandParameter="{Binding DataContext.LastName, RelativeSource={RelativeSource Mode=Self}}"/>
+                    </ContextMenu.Items>
+                </ContextMenu>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
+                    <Setter Property="ContextMenu" Value="{StaticResource CustomerContextMenu}" />
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
-
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding LastName}"
-                  Header="Last Name"
-                  MinWidth="120"
-                  MaxLength="255"
-                  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    Header="Last Name"
+                    MinWidth="120"
+                    MaxLength="255"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding FirstName}"
                     Header="First Name"
