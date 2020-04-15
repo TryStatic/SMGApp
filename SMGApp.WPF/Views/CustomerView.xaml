@@ -42,6 +42,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button
+                    Command="{Binding AddNewCustomerCommand}"
                     Grid.Column="0"
                     Style="{DynamicResource MaterialDesignRaisedButton}">
                     CREATE
