@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using SMGApp.Domain.Models;
 using SMGApp.Domain.Services;
 using SMGApp.EntityFramework;
 using SMGApp.EntityFramework.Services;
-using SMGApp.WPF.Commands;
 
 namespace SMGApp.WPF.ViewModels
 {
@@ -17,7 +15,6 @@ namespace SMGApp.WPF.ViewModels
 
         private IEnumerable<Customer> _customers;
         private string _searchBox;
-        private ICommand _addNewCustomerCommand;
 
         public IEnumerable<Customer> Customers
         {
@@ -39,9 +36,6 @@ namespace SMGApp.WPF.ViewModels
                 SearchBoxChanged(value);
             }
         }
-
-        public ICommand AddNewCustomerCommand => _addNewCustomerCommand ??= new AddNewCustomerCommand();
-
 
         public CustomerViewModel(IDataService<Customer> customerDataService)
         {

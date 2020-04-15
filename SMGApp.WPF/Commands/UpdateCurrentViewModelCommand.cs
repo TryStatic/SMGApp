@@ -13,7 +13,7 @@ namespace SMGApp.WPF.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private readonly INavigator _navigator;
+        private INavigator _navigator;
 
         public UpdateCurrentViewModelCommand(INavigator navigator)
         {
