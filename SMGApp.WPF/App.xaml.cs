@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Threading;
+using System.Windows;
+using System.Windows.Markup;
 using SMGApp.EntityFramework;
 using SMGApp.WPF.ViewModels;
 
@@ -11,6 +14,13 @@ namespace SMGApp.WPF
     {
         protected override async void OnStartup(StartupEventArgs e)
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("el-GR");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("el-GR");
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement), 
+                new FrameworkPropertyMetadata(
+                    XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+
 
             await SMGAppDbContextFactory.MigrateIfNeeded();
 
