@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Microsoft.EntityFrameworkCore;
+﻿using System.Windows;
 using SMGApp.EntityFramework;
 using SMGApp.WPF.ViewModels;
 
@@ -22,6 +15,9 @@ namespace SMGApp.WPF
             await SMGAppDbContextFactory.MigrateIfNeeded();
 
             Window window = new MainWindow();
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.Height = 720;
+            window.Width = 1280;
             window.DataContext = new MainViewModel();
             window.Show();
 
