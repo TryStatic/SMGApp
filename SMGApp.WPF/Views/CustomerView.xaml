@@ -29,7 +29,7 @@
         </Grid.ColumnDefinitions>
 
         <materialDesign:Card
-            Grid.Row="0"
+            Grid.Row="0" Grid.Column="0"
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="15">
             <Grid>
@@ -82,11 +82,15 @@
             </Grid>
         </materialDesign:Card>
 
-        <DataGrid
-            SelectionMode="Single"
+        <materialDesign:Card
+            materialDesign:ShadowAssist.ShadowDepth="Depth2"
+            Padding="10"
             Grid.Row="1" Grid.Column="0"
+            >
+            <DataGrid
+            SelectionMode="Single"
             VerticalScrollBarVisibility="Auto"
-            MaxHeight="720"
+            MaxHeight="450"
             Margin="0 8 0 0"
             ItemsSource="{Binding Customers}"
             CanUserSortColumns="True"
@@ -117,17 +121,20 @@
                     Binding="{Binding LastName}"
                     Header="Last Name"
                     MinWidth="120"
+                    MaxWidth="120"
                     MaxLength="255"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding FirstName}"
                     Header="First Name"
                     MinWidth="120"
+                    MaxWidth="120"
                     MaxLength="255"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding Address}"
                     Header="Address"
+                    MaxWidth="180"
                     MinWidth="180"
                     MaxLength="255"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
@@ -136,21 +143,26 @@
                     Header="Phone Number"
                     MaxLength="255"
                     MinWidth="120"
+                    MaxWidth="120"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding DateAdded}"
                     Header="Date Added"
-                    MinWidth="120"
+                    MinWidth="180"
+                    MaxWidth="180"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding Notes}"
                     Header="Notes"
                     MaxLength="600"
-                    MinWidth="120"
-                    MaxWidth="360"
+                    MinWidth="400"
+                    MaxWidth="400"
                     ElementStyle="{StaticResource WrapText}"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
             </DataGrid.Columns>
         </DataGrid>
+        </materialDesign:Card>
+
+
     </Grid>
 </UserControl>
