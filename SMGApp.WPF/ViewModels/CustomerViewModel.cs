@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
@@ -87,12 +88,12 @@ namespace SMGApp.WPF.ViewModels
                 {
                     Customer newCustomer = new Customer()
                     {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        Address = model.Address,
+                        FirstName = model.FirstName.ToUpperΝοintonation(),
+                        LastName = model.LastName.ToUpperΝοintonation(),
+                        Address = model.Address.ToUpperΝοintonation(),
                         DateAdded = DateTime.Now,
-                        Notes = model.Note,
-                        PhoneNumber = model.PhoneNumber
+                        Notes = model.Note.ToUpperΝοintonation(),
+                        PhoneNumber = model.PhoneNumber.ToUpperΝοintonation()
                     };
                     await _customerDataService.Create(newCustomer);
                 }
@@ -110,5 +111,23 @@ namespace SMGApp.WPF.ViewModels
 
         private async Task LoadCustomers() => Customers = await _customerDataService.GetAll();
         private async void SearchBoxChanged(string value) => Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
+    }
+
+    public static class Extensions
+    {
+        public static string ToUpperΝοintonation(this string str)
+        {
+            if (string.IsNullOrEmpty(str)) return null;
+
+            //α, ε, η, ι, υ, ο, ω.
+            str = str.ToUpper();
+            str = str.Replace('Ά', 'Α');
+            str = str.Replace('Έ', 'Ε');
+            str = str.Replace('Ή', 'Η');
+            str = str.Replace('Ί', 'Ι');
+            str = str.Replace('Ό', 'Ο');
+            str = str.Replace('Ώ', 'Ω');
+            return str;
+        }
     }
 }  
