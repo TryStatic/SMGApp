@@ -34,7 +34,7 @@ namespace SMGApp.WPF
 
             IServiceProvider serviceProvider = CreateServiceProvider();
 
-            Window window = new MainWindow();
+            Window window = serviceProvider.GetRequiredService<MainWindow>();
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.Height = 800;
             window.Width = 1280;
@@ -44,7 +44,7 @@ namespace SMGApp.WPF
             base.OnStartup(e);
         }
 
-        private IServiceProvider CreateServiceProvider()
+        private static IServiceProvider CreateServiceProvider()
         {
             IServiceCollection services = new ServiceCollection();
             
@@ -60,6 +60,8 @@ namespace SMGApp.WPF
             services.AddScoped<INavigator, Navigator>();
 
             services.AddScoped<MainViewModel>();
+
+            services.AddScoped<MainWindow>(provider => new MainWindow(provider.GetRequiredService<MainViewModel>()));
 
             return services.BuildServiceProvider();
         }
