@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,7 +57,7 @@ namespace SMGApp.WPF.ViewModels
 
             //show the dialog
             object result = await DialogHost.Show(view, "RootDialog", OnCreateNewUserDialogOpen, OnCreateNewUserDialogClose);
-
+            
             //check the result...
             Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
@@ -67,21 +67,43 @@ namespace SMGApp.WPF.ViewModels
             Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
         }
 
-        private void OnCreateNewUserDialogClose(object sender, DialogClosingEventArgs eventArgs)
+        private async void OnCreateNewUserDialogClose(object sender, DialogClosingEventArgs eventArgs)
         {
             if ((bool)eventArgs.Parameter == false) return;
 
             //OK, lets cancel the close...
             eventArgs.Cancel();
 
-            //...now, lets update the "session" with some new content!
-            eventArgs.Session.UpdateContent(new ProgressDialog());
-            //note, you can also grab the session when the dialog opens via the DialogOpenedEventHandler
+            // Get user details
+            if (eventArgs.Session.Content is AddNewUserDialogView addNewUserDialogView && addNewUserDialogView.DataContext is AddNewUserViewModel model)
+            {
+                eventArgs.Session.UpdateContent(new ProgressDialog());
 
+                if (string.IsNullOrEmpty(model.FirstName) || string.IsNullOrEmpty(model.LastName) || string.IsNullOrWhiteSpace(model.FirstName) || string.IsNullOrWhiteSpace(model.LastName))
+                {
+                    // show error
+                }
+                else
+                {
+                    Customer newCustomer = new Customer()
+                    {
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Address = model.Address,
+                        DateAdded = DateTime.Now,
+                        Notes = model.Note,
+                        PhoneNumber = model.PhoneNumber
+                    };
+                    await _customerDataService.Create(newCustomer);
+                }
+            }
+            else
+            {
+                // show error
+            }
+            await LoadCustomers();
             //lets run a fake operation for 3 seconds then close this baby.
-            Task.Delay(TimeSpan.FromSeconds(3))
-                .ContinueWith((t, _) => eventArgs.Session.Close(false), null,
-                    TaskScheduler.FromCurrentSynchronizationContext());
+            Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
         #endregion
 

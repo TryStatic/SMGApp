@@ -8,16 +8,42 @@ namespace SMGApp.WPF.Dialogs
 {
     public class AddNewUserViewModel : INotifyPropertyChanged
     {
-        private string _name;
-
-        public string Name
+        private string _firstName;
+        public string FirstName
         {
-            get => _name;
-            set => this.MutateVerbose(ref _name, value, RaisePropertyChanged());
+            get => _firstName;
+            set => this.MutateVerbose(ref _firstName, value, RaisePropertyChanged());
+        }
+
+        private string _lastName;
+        public string LastName
+        {
+            get => _lastName;
+            set => this.MutateVerbose(ref _lastName, value, RaisePropertyChanged());
+        }
+
+        private string _address;
+        public string Address
+        {
+            get => _address;
+            set => this.MutateVerbose(ref _address, value, RaisePropertyChanged());
+        }
+
+        private string _phoneNumber;
+        public string PhoneNumber
+        {
+            get => _phoneNumber;
+            set => this.MutateVerbose(ref _phoneNumber, value, RaisePropertyChanged());
+        }
+
+        private string _note;
+        public string Note
+        {
+            get => _note;
+            set => this.MutateVerbose(ref _note, value, RaisePropertyChanged());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         private Action<PropertyChangedEventArgs> RaisePropertyChanged() => args => PropertyChanged?.Invoke(this, args);
     }
 
