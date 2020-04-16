@@ -123,48 +123,51 @@
                     MinWidth="55"
                     MaxWidth="70"
                     MaxLength="255"
+                    IsReadOnly="true"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                     Binding="{Binding LastName}"
                     Header="Last Name"
                     MinWidth="120"
-                    MaxWidth="120"
+                    MaxWidth="250"
                     MaxLength="255"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding FirstName}"
                     Header="First Name"
                     MinWidth="120"
-                    MaxWidth="120"
+                    MaxWidth="250"
                     MaxLength="255"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding Address}"
                     Header="Address"
-                    MaxWidth="180"
+                    MaxWidth="400"
                     MinWidth="180"
-                    MaxLength="255"
+                    MaxLength="600"
+                    ElementStyle="{StaticResource WrapText}"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding PhoneNumber}"
                     Header="Phone Number"
-                    MaxLength="255"
+                    MaxLength="20"
                     MinWidth="120"
-                    MaxWidth="120"
+                    MaxWidth="150"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
-                    Binding="{Binding DateAdded}"
+                    Binding="{Binding DateAdded, StringFormat=dd-MM-yyyy hh:mm}"
                     Header="Date Added"
                     IsReadOnly="true"
-                    MinWidth="180"
-                    MaxWidth="180"
+                    MinWidth="130"
+                    MaxWidth="150"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 <materialDesign:DataGridTextColumn
                     Binding="{Binding Notes}"
                     Header="Notes"
                     MaxLength="600"
-                    MinWidth="400"
-                    MaxWidth="400"
+                    MinWidth="200"
+                    Width="300"
+                    MaxWidth="600"
                     ElementStyle="{StaticResource WrapText}"
                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
             </DataGrid.Columns>
