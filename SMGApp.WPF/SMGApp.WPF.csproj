@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <None Remove="Controls\SMG.png" />
+    <None Remove="Controls\SMGTrans.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +22,7 @@
 
   <ItemGroup>
     <Resource Include="Controls\SMG.png" />
+    <Resource Include="Controls\SMGTrans.png" />
   </ItemGroup>
 
 </Project>

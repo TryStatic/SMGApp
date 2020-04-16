@@ -20,7 +20,7 @@
             materialDesign:ShadowAssist.ShadowEdges="Bottom"
             Padding="0">
 
-            <Image Source="/Controls/SMG.png" Width="300" Margin="10"/>
+            <Image Source="/Controls/SMGTrans.png" Width="450" Margin="10"/>
 
         </materialDesign:Card>
 
@@ -37,7 +37,9 @@
             <Button Grid.Column="0" 
                     Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Customer}"
                     Style="{StaticResource MaterialDesignRaisedButton}" 
-                    Width="100" 
+                    Width="100"
+                    Height="50"
+                    Margin="0 0 5 0"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Customers" />
 
@@ -45,7 +47,9 @@
             <Button Grid.Column="1" 
                     Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Service}"
                     Style="{StaticResource MaterialDesignRaisedButton}" 
-                    Width="100" 
+                    Width="100"
+                    Height="50"
+                    Margin="0 0 5 0"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Service" />
 
@@ -54,6 +58,8 @@
                     Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Inventory}"
                     Style="{StaticResource MaterialDesignRaisedButton}" 
                     Width="100" 
+                    Height="50"
+                    Margin="0 0 5 0"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Inventory" />
 
@@ -61,7 +67,9 @@
             <Button Grid.Column="3" 
                     Command="{Binding UpdateCurrentViewModelCommand}" CommandParameter="{x:Static nav:ViewType.Backup}"
                     Style="{StaticResource MaterialDesignRaisedButton}" 
-                    Width="100" 
+                    Width="100"
+                    Height="50"
+                    Margin="0 0 5 0"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Backup" />
         </Grid>

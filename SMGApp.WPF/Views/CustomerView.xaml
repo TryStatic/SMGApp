@@ -119,6 +119,13 @@
             </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <materialDesign:DataGridTextColumn
+                    Binding="{Binding ID}"
+                    Header="ID"
+                    MinWidth="55"
+                    MaxWidth="70"
+                    MaxLength="255"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
                     Binding="{Binding LastName}"
                     Header="Last Name"
                     MinWidth="120"
