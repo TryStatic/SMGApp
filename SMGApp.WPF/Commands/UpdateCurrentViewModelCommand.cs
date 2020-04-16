@@ -6,6 +6,7 @@ using SMGApp.EntityFramework;
 using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.States.Navigators;
 using SMGApp.WPF.ViewModels;
+using SMGApp.WPF.ViewModels.Factories;
 
 namespace SMGApp.WPF.Commands
 {
@@ -14,10 +15,12 @@ namespace SMGApp.WPF.Commands
         public event EventHandler CanExecuteChanged;
 
         private INavigator _navigator;
+        private readonly ISMGAppViewModelAbstractFactory _viewModelFactory;
 
-        public UpdateCurrentViewModelCommand(INavigator navigator)
+        public UpdateCurrentViewModelCommand(INavigator navigator, ISMGAppViewModelAbstractFactory viewModelFactory)
         {
             _navigator = navigator;
+            _viewModelFactory = viewModelFactory;
         }
 
         public bool CanExecute(object parameter)
@@ -28,24 +31,8 @@ namespace SMGApp.WPF.Commands
         public void Execute(object parameter)
         {
             if (!(parameter is ViewType viewType)) return;
-            
-            switch (viewType)
-            {
-                case ViewType.Customer:
-                    _navigator.CurrentViewModel = new CustomerViewModel(new GenericDataServices<Customer>(new SMGAppDbContextFactory()));
-                    break;
-                case ViewType.Service:
-                    _navigator.CurrentViewModel = new ServiceViewModel();
-                    break;
-                case ViewType.Inventory:
-                    _navigator.CurrentViewModel = new InventoryViewModel();
-                    break;
-                case ViewType.Backup:
-                    _navigator.CurrentViewModel = new BackupViewModel();
-                    break;
-                default:
-                    break;
-            }
+
+            _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(viewType);
         }
 
     }

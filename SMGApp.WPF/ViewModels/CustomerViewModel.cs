@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SMGApp.Domain.Models;
 using SMGApp.Domain.Services;
-using SMGApp.EntityFramework;
-using SMGApp.EntityFramework.Services;
 
 namespace SMGApp.WPF.ViewModels
 {

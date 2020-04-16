@@ -3,6 +3,7 @@ using System.Windows.Input;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Models;
 using SMGApp.WPF.ViewModels;
+using SMGApp.WPF.ViewModels.Factories;
 
 namespace SMGApp.WPF.States.Navigators
 {
@@ -20,6 +21,11 @@ namespace SMGApp.WPF.States.Navigators
             }
         }
 
-        public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this);
+        public ICommand UpdateCurrentViewModelCommand { get; set; }
+
+        public Navigator(ISMGAppViewModelAbstractFactory viewModelFactory)
+        {
+            UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(this, viewModelFactory);
+        }
     }
 }
