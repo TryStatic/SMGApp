@@ -5,7 +5,7 @@ using SMGApp.WPF.States.Navigators;
 
 namespace SMGApp.WPF.ViewModels.Factories
 {
-    public interface ISMGAppViewModelAbstractFactory
+    public interface IRootSMGAppViewModelAbstractFactory
     {
         ViewModelBase CreateViewModel(ViewType viewType);
     }

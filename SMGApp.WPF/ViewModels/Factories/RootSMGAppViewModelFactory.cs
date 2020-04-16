@@ -8,14 +8,14 @@ using SMGApp.WPF.States.Navigators;
 
 namespace SMGApp.WPF.ViewModels.Factories
 {
-    public class SMGAppViewModelAbstractFactory : ISMGAppViewModelAbstractFactory
+    public class RootSMGAppViewModelFactory : IRootSMGAppViewModelAbstractFactory
     {
         private readonly ISMGAppViewModelFactory<CustomerViewModel> _customerViewModelFactory;
         private readonly ISMGAppViewModelFactory<ServiceViewModel> _serviceViewModelFactory;
         private readonly ISMGAppViewModelFactory<InventoryViewModel> _inventoryViewModelFactory;
         private readonly ISMGAppViewModelFactory<BackupViewModel> _backupViewModelFactory;
 
-        public SMGAppViewModelAbstractFactory(
+        public RootSMGAppViewModelFactory(
             ISMGAppViewModelFactory<CustomerViewModel> customerViewModelFactory, 
             ISMGAppViewModelFactory<ServiceViewModel> serviceViewModelFactory, 
             ISMGAppViewModelFactory<InventoryViewModel> inventoryViewModelFactory, 

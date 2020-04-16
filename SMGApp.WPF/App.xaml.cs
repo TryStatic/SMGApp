@@ -51,7 +51,7 @@ namespace SMGApp.WPF
             services.AddSingleton<SMGAppDbContextFactory>();
             services.AddSingleton<IDataService<Customer>, GenericDataServices<Customer>>();
 
-            services.AddSingleton<ISMGAppViewModelAbstractFactory, SMGAppViewModelAbstractFactory>();
+            services.AddSingleton<IRootSMGAppViewModelAbstractFactory, RootSMGAppViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<CustomerViewModel>, CustomerViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<ServiceViewModel>, ServiceViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<InventoryViewModel>, InventoryViewModelFactory>();

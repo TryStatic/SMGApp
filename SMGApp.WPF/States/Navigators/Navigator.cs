@@ -23,7 +23,7 @@ namespace SMGApp.WPF.States.Navigators
 
         public ICommand UpdateCurrentViewModelCommand { get; set; }
 
-        public Navigator(ISMGAppViewModelAbstractFactory viewModelFactory)
+        public Navigator(IRootSMGAppViewModelAbstractFactory viewModelFactory)
         {
             UpdateCurrentViewModelCommand = new UpdateCurrentViewModelCommand(this, viewModelFactory);
         }
