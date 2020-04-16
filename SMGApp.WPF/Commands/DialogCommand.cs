@@ -19,41 +19,20 @@ namespace SMGApp.WPF.Commands
 
         public DialogCommand(Action<object> execute, Func<object, bool> canExecute)
         {
-            if (execute == null) throw new ArgumentNullException(nameof(execute));
-
-            _execute = execute;
-            _canExecute = canExecute;
-            if (_canExecute == null)
-            {
-                _canExecute = (x => true);
-            }
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+            _canExecute = canExecute ?? (x => true);
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute(parameter);
-        }
+        public bool CanExecute(object parameter) => _canExecute(parameter);
 
-        public void Execute(object parameter)
-        {
-            _execute(parameter);
-        }
+        public void Execute(object parameter) => _execute(parameter);
 
         public event EventHandler CanExecuteChanged
         {
-            add
-            {
-                CommandManager.RequerySuggested += value;
-            }
-            remove
-            {
-                CommandManager.RequerySuggested -= value;
-            }
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
 
-        public void Refresh()
-        {
-            CommandManager.InvalidateRequerySuggested();
-        }
+        public void Refresh() => CommandManager.InvalidateRequerySuggested();
     }
 }

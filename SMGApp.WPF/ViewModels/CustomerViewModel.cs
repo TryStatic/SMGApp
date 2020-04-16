@@ -50,24 +50,24 @@ namespace SMGApp.WPF.ViewModels
         private async void ExecuteRunExtendedDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            var view = new SampleDialog
+            AddNewUserDialogView view = new AddNewUserDialogView()
             {
-                DataContext = new SampleDialogViewModel()
+                DataContext = new AddNewUserViewModel()
             };
 
             //show the dialog
-            var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
+            object result = await DialogHost.Show(view, "RootDialog", OnCreateNewUserDialogOpen, OnCreateNewUserDialogClose);
 
             //check the result...
             Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
 
-        private void ExtendedOpenedEventHandler(object sender, DialogOpenedEventArgs eventargs)
+        private void OnCreateNewUserDialogOpen(object sender, DialogOpenedEventArgs eventargs)
         {
             Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
         }
 
-        private void ExtendedClosingEventHandler(object sender, DialogClosingEventArgs eventArgs)
+        private void OnCreateNewUserDialogClose(object sender, DialogClosingEventArgs eventArgs)
         {
             if ((bool)eventArgs.Parameter == false) return;
 
@@ -75,7 +75,7 @@ namespace SMGApp.WPF.ViewModels
             eventArgs.Cancel();
 
             //...now, lets update the "session" with some new content!
-            eventArgs.Session.UpdateContent(new SampleProgressDialog());
+            eventArgs.Session.UpdateContent(new ProgressDialog());
             //note, you can also grab the session when the dialog opens via the DialogOpenedEventHandler
 
             //lets run a fake operation for 3 seconds then close this baby.

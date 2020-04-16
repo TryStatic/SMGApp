@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace SMGApp.WPF.Dialogs
 {
     /// <summary>
-    /// Interaction logic for SampleDialog.xaml
+    /// Interaction logic for SampleProgressDialog.xaml
     /// </summary>
-    public partial class SampleDialog : UserControl
+    public partial class ProgressDialog : UserControl
     {
-        public SampleDialog()
+        public ProgressDialog()
         {
             InitializeComponent();
         }
