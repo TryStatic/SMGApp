@@ -127,6 +127,8 @@ namespace SMGApp.WPF.ViewModels
             str = str.Replace('Ί', 'Ι');
             str = str.Replace('Ό', 'Ο');
             str = str.Replace('Ώ', 'Ω');
+
+            str = str.Trim();
             return str;
         }
     }
