@@ -53,6 +53,7 @@ namespace SMGApp.EntityFramework.Services
             T entityToDelete = await context.Set<T>().FirstOrDefaultAsync(e => e.ID == id);
             if (entityToDelete == null) return false;
             context.Set<T>().Remove(entityToDelete);
+            await context.SaveChangesAsync();
             return true;
         }
     }
