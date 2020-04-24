@@ -49,8 +49,8 @@ namespace SMGApp.WPF
             IServiceCollection services = new ServiceCollection();
             
             services.AddSingleton<SMGAppDbContextFactory>();
-            services.AddSingleton<IDataService<Customer>, CustomersDataService>();
-            services.AddSingleton<IDataService<ServiceItem>, ServiceItemsDataService>();
+            services.AddSingleton<CustomersDataService, CustomersDataService>();
+            services.AddSingleton<ServiceItemsDataService, ServiceItemsDataService>();
 
             services.AddSingleton<IRootSMGAppViewModelAbstractFactory, RootSMGAppViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<CustomerViewModel>, CustomerViewModelFactory>();

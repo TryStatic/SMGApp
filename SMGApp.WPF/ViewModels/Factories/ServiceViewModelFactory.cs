@@ -1,13 +1,14 @@
 ﻿using SMGApp.Domain.Models;
 using SMGApp.Domain.Services;
+using SMGApp.EntityFramework.Services;
 
 namespace SMGApp.WPF.ViewModels.Factories
 {
     public class ServiceViewModelFactory : ISMGAppViewModelFactory<ServiceViewModel>
     {
-        private readonly IDataService<ServiceItem> _serviceItemService;
+        private readonly ServiceItemsDataService _serviceItemService;
 
-        public ServiceViewModelFactory(IDataService<ServiceItem> serviceItemService)
+        public ServiceViewModelFactory(ServiceItemsDataService serviceItemService)
         {
             _serviceItemService = serviceItemService;
         }

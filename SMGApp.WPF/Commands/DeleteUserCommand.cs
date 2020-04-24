@@ -25,8 +25,8 @@ namespace SMGApp.WPF.Commands
 
         public async void Execute(object parameter)
         {
-            if(!(parameter is int)) return;
-            if((int)parameter < 0) return;
+            if (!(parameter is int)) return;
+            if ((int)parameter < 0) return;
             await customerDataService.Delete((int)parameter);
             await _customerViewModel.LoadCustomers();
         }

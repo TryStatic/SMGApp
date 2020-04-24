@@ -26,4 +26,16 @@
     <Resource Include="Controls\SMGTrans.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Dialogs\DeleteDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Dialogs\DeleteDialogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>
