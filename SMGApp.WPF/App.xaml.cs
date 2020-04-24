@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel.Design;
 using System.Globalization;
 using System.Threading;
@@ -50,6 +50,7 @@ namespace SMGApp.WPF
             
             services.AddSingleton<SMGAppDbContextFactory>();
             services.AddSingleton<IDataService<Customer>, CustomersDataService>();
+            services.AddSingleton<IDataService<ServiceItem>, ServiceItemsDataService>();
 
             services.AddSingleton<IRootSMGAppViewModelAbstractFactory, RootSMGAppViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<CustomerViewModel>, CustomerViewModelFactory>();
