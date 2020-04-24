@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>smgtrans_GVa_icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
