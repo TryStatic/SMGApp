@@ -49,9 +49,94 @@ namespace SMGApp.WPF.ViewModels
 
         public ICommand DeleteUserCommand => new DeleteUserCommand(_customerDataService, this);
 
-        #region CREATENEWUSERDIALOG
-        public ICommand CreateNewUserCommand => new DialogCommand(ExecuteRunExtendedDialog);
-        private async void ExecuteRunExtendedDialog(object o)
+        #region EditUserDialog
+        public ICommand EditUserCommand => new DialogCommand(ExecuteUpdateUserDialog);
+
+        private async void ExecuteUpdateUserDialog(object idObject)
+        {
+            int id = (int)idObject;
+
+            Customer customer = await _customerDataService.Get(id);
+
+            if (customer == null)
+            {
+                // show error
+                return;
+            }
+
+
+
+            //let's set up a little MVVM, cos that's what the cool kids are doing:
+            AddNewUserDialogView view = new AddNewUserDialogView();
+
+            AddNewUserViewModel viewmodel = new AddNewUserViewModel();
+            viewmodel.FirstName = customer.FirstName;
+            viewmodel.LastName = customer.LastName;
+            viewmodel.Address = customer.Address;
+            viewmodel.Note = customer.Notes;
+            viewmodel.PhoneNumber = customer.PhoneNumber;
+
+            viewmodel.UpdateID = customer.ID;
+            viewmodel.UpdateDateAdded = customer.DateAdded;
+
+            view.DataContext = viewmodel;
+
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnUpdateUserDialogOpen, OnUpdateUserDialogClose);
+
+            //check the result...
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+
+        private void OnUpdateUserDialogOpen(object sender, DialogOpenedEventArgs eventargs)
+        {
+            Console.WriteLine("You could intercept the open and affect the dialog using eventArgs.Session.");
+        }
+
+        private async void OnUpdateUserDialogClose(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == false) return;
+
+            //OK, lets cancel the close...
+            eventArgs.Cancel();
+
+            // Get user details
+            if (eventArgs.Session.Content is AddNewUserDialogView addNewUserDialogView && addNewUserDialogView.DataContext is AddNewUserViewModel model)
+            {
+                eventArgs.Session.UpdateContent(new ProgressDialog());
+
+                if (string.IsNullOrEmpty(model.FirstName) || string.IsNullOrEmpty(model.LastName) || string.IsNullOrWhiteSpace(model.FirstName) || string.IsNullOrWhiteSpace(model.LastName))
+                {
+                    // show error
+                }
+                else
+                {
+                    Customer newCustomerDetails = new Customer()
+                    {
+                        FirstName = model.FirstName.ToUpperΝοintonation(),
+                        LastName = model.LastName.ToUpperΝοintonation(),
+                        Address = model.Address.ToUpperΝοintonation(),
+                        DateAdded = model.UpdateDateAdded,
+                        Notes = model.Note.ToUpperΝοintonation(),
+                        PhoneNumber = model.PhoneNumber.ToUpperΝοintonation()
+                    };
+                    await _customerDataService.Update(model.UpdateID, newCustomerDetails);
+                }
+            }
+            else
+            {
+                // show error
+            }
+            await LoadCustomers();
+            //lets run a fake operation for 3 seconds then close this baby.
+            Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
+
+        #region CreateUserDialog
+        public ICommand CreateNewUserCommand => new DialogCommand(ExecuteAddNewUserDialog);
+        private async void ExecuteAddNewUserDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             AddNewUserDialogView view = new AddNewUserDialogView()

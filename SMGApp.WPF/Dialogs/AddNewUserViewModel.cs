@@ -43,6 +43,9 @@ namespace SMGApp.WPF.Dialogs
             set => this.MutateVerbose(ref _note, value, RaisePropertyChanged());
         }
 
+        public int UpdateID { get; set; }
+        public DateTime UpdateDateAdded { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private Action<PropertyChangedEventArgs> RaisePropertyChanged() => args => PropertyChanged?.Invoke(this, args);
     }

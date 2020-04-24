@@ -122,11 +122,16 @@
                 AutoGenerateColumns="False"
                 materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                 materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-                HeadersVisibility="All">
+                HeadersVisibility="All"
+                IsReadOnly="true">
                 <DataGrid.Resources>
                     <ContextMenu
                         x:Key="CustomerContextMenu">
                         <ContextMenu.Items>
+                            <MenuItem
+                                Header="Edit"
+                                Command="{Binding DataContext.EditUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                             <MenuItem
                                 Header="Delete"
                                 Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
