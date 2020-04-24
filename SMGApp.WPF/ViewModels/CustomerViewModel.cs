@@ -67,9 +67,9 @@ namespace SMGApp.WPF.ViewModels
 
 
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            AddNewUserDialogView view = new AddNewUserDialogView();
+            UserDialogView view = new UserDialogView();
 
-            AddNewUserViewModel viewmodel = new AddNewUserViewModel();
+            UserViewModel viewmodel = new UserViewModel();
 
             viewmodel.OperationName = $"ΕΝΗΜΕΡΩΣΗ ΣΤΟΙΧΕΙΩΝ ΠΕΛΑΤΗ (ID: {id})";
             viewmodel.FirstName = customer.FirstName;
@@ -104,7 +104,7 @@ namespace SMGApp.WPF.ViewModels
             eventArgs.Cancel();
 
             // Get user details
-            if (eventArgs.Session.Content is AddNewUserDialogView addNewUserDialogView && addNewUserDialogView.DataContext is AddNewUserViewModel model)
+            if (eventArgs.Session.Content is UserDialogView addNewUserDialogView && addNewUserDialogView.DataContext is UserViewModel model)
             {
                 eventArgs.Session.UpdateContent(new ProgressDialog());
 
@@ -141,9 +141,9 @@ namespace SMGApp.WPF.ViewModels
         private async void ExecuteAddNewUserDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            AddNewUserDialogView view = new AddNewUserDialogView()
+            UserDialogView view = new UserDialogView()
             {
-                DataContext = new AddNewUserViewModel()
+                DataContext = new UserViewModel()
                 {
                     OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ ΠΕΛΑΤΗ"
                 }
@@ -169,7 +169,7 @@ namespace SMGApp.WPF.ViewModels
             eventArgs.Cancel();
 
             // Get user details
-            if (eventArgs.Session.Content is AddNewUserDialogView addNewUserDialogView && addNewUserDialogView.DataContext is AddNewUserViewModel model)
+            if (eventArgs.Session.Content is UserDialogView addNewUserDialogView && addNewUserDialogView.DataContext is UserViewModel model)
             {
                 eventArgs.Session.UpdateContent(new ProgressDialog());
 

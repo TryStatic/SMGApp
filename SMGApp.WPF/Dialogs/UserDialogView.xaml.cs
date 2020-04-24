@@ -16,9 +16,9 @@ namespace SMGApp.WPF.Dialogs
     /// <summary>
     /// Interaction logic for SampleDialog.xaml
     /// </summary>
-    public partial class AddNewUserDialogView : UserControl
+    public partial class UserDialogView : UserControl
     {
-        public AddNewUserDialogView()
+        public UserDialogView()
         {
             InitializeComponent();
         }

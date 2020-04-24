@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SMGApp.WPF.Dialogs
 {
-    public class AddNewUserViewModel : INotifyPropertyChanged
+    public class UserViewModel : INotifyPropertyChanged
     {
         public string OperationName { get; set; }
 
