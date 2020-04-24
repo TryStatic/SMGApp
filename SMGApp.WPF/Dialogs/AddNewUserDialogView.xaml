@@ -26,7 +26,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock>New Customer:</TextBlock>
+        <TextBlock Text="{Binding OperationName}"
+                   HorizontalAlignment="Center"/>
         <TextBox
             wpf:HintAssist.Hint="Last Name"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"

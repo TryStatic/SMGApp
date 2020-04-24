@@ -70,6 +70,8 @@ namespace SMGApp.WPF.ViewModels
             AddNewUserDialogView view = new AddNewUserDialogView();
 
             AddNewUserViewModel viewmodel = new AddNewUserViewModel();
+
+            viewmodel.OperationName = $"ΕΝΗΜΕΡΩΣΗ ΣΤΟΙΧΕΙΩΝ ΠΕΛΑΤΗ";
             viewmodel.FirstName = customer.FirstName;
             viewmodel.LastName = customer.LastName;
             viewmodel.Address = customer.Address;
@@ -142,6 +144,9 @@ namespace SMGApp.WPF.ViewModels
             AddNewUserDialogView view = new AddNewUserDialogView()
             {
                 DataContext = new AddNewUserViewModel()
+                {
+                    OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ ΠΕΛΑΤΗ"
+                }
             };
 
             //show the dialog

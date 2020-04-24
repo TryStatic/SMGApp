@@ -8,6 +8,8 @@ namespace SMGApp.WPF.Dialogs
 {
     public class AddNewUserViewModel : INotifyPropertyChanged
     {
+        public string OperationName { get; set; }
+
         private string _firstName;
         public string FirstName
         {
