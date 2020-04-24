@@ -16,7 +16,6 @@ namespace SMGApp.Domain.Models
         public bool CaseIncluded { get; set; }
         public DateTime DateAdded { get; set; } = DateTime.Now;
         public DateTime DateUpdated { get; set; }
-        
         public ServiceState State { get; set; }
         public string Notes { get; set; }
 

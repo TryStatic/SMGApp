@@ -107,7 +107,8 @@
         <materialDesign:Card
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="10"
-            MaxWidth="1500"
+            MinWidth="1900"
+            MaxWidth="1900"
             Grid.Row="1"
             Grid.Column="0">
             <DataGrid
@@ -277,7 +278,7 @@
                         MaxLength="200"
                         MinWidth="70"
                         MaxWidth="110"
-                        Width="95"
+                        Width="105"
                         ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                     <materialDesign:DataGridTextColumn
@@ -293,6 +294,14 @@
                         IsReadOnly="true"
                         MinWidth="130"
                         MaxWidth="150"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding Notes}"
+                        Header="ΣΧΟΛΙΑ"
+                        MinWidth="100"
+                        MaxWidth="250"
+                        MaxLength="600"
+                        ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 </DataGrid.Columns>
             </DataGrid>

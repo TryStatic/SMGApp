@@ -62,7 +62,7 @@
             Margin="5">
 
             <Button
-                Content="ACCEPT"
+                Content="ΟΚ"
                 IsDefault="True"
                 Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
@@ -99,7 +99,7 @@
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>
                 </Button.CommandParameter>
-                CANCEL
+                ΑΚΥΡΩΣΗ
             </Button>
         </StackPanel>
     </Grid>

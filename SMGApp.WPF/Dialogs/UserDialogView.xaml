@@ -29,12 +29,12 @@
         <TextBlock Text="{Binding OperationName}"
                    HorizontalAlignment="Center"/>
         <TextBox
-            wpf:HintAssist.Hint="Last Name"
+            wpf:HintAssist.Hint="ΕΠΩΝΥΜΟ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
             Grid.Row="1"
-            Name="LastName">
+            Name="ΕΠΩΝΥΜΟ">
             <TextBox.Text>
                 <Binding
                     Path="LastName"
@@ -47,12 +47,12 @@
             </TextBox.Text>
         </TextBox>
         <TextBox
-            wpf:HintAssist.Hint="First Name"
+            wpf:HintAssist.Hint="ΟΝΟΜΑ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
             Grid.Row="2"
-            Name="FirstName">
+            Name="ΟΝΟΜΑ">
             <TextBox.Text>
                 <Binding
                     Path="FirstName"
@@ -65,7 +65,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBox
-            wpf:HintAssist.Hint="Address"
+            wpf:HintAssist.Hint="ΔΙΕΥΘΥΝΣΗ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -74,12 +74,11 @@
                 <Binding
                     Path="Address"
                     UpdateSourceTrigger="PropertyChanged">
-
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <TextBox
-            wpf:HintAssist.Hint="Phone Number"
+            wpf:HintAssist.Hint="ΤΗΛΕΦΩΝΟ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -92,7 +91,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBox
-            wpf:HintAssist.Hint="Note"
+            wpf:HintAssist.Hint="ΣΧΟΛΙΑ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -111,7 +110,7 @@
 
 
             <Button
-                Content="ACCEPT"
+                Content="ΕΙΣΑΓΩΓΗ"
                 IsDefault="True"
                 Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
@@ -150,7 +149,7 @@
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>
                 </Button.CommandParameter>
-                CANCEL
+                ΑΚΥΡΩΣΗ
             </Button>
         </StackPanel>
     </Grid>
