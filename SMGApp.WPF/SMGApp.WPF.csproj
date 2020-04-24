@@ -10,6 +10,9 @@
   <ItemGroup>
     <None Remove="Controls\SMG.png" />
     <None Remove="Controls\SMGTrans.png" />
+    <None Remove="Views\bag.png" />
+    <None Remove="Views\case.png" />
+    <None Remove="Views\charger.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +27,9 @@
   <ItemGroup>
     <Resource Include="Controls\SMG.png" />
     <Resource Include="Controls\SMGTrans.png" />
+    <Resource Include="Img\charger.png" />
+    <Resource Include="Img\bag.png" />
+    <Resource Include="Img\case.png" />
   </ItemGroup>
 
   <ItemGroup>

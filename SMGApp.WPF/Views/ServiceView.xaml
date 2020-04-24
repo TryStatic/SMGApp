@@ -107,6 +107,7 @@
         <materialDesign:Card
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="10"
+            MaxWidth="1500"
             Grid.Row="1"
             Grid.Column="0">
             <DataGrid
@@ -159,39 +160,136 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding CustomerDetails}"
-                        Header="Customer"
-                        MinWidth="200"
+                        Header="ΠΕΛΑΤΗΣ"
+                        MinWidth="180"
                         MaxWidth="500"
                         MaxLength="255"
                         IsReadOnly="true"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
+                        Binding="{Binding DeviceDescription}"
+                        Header="ΣΥΣΚΕΥΗ"
+                        MinWidth="100"
+                        Width="100"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
                         Binding="{Binding DamageDescription}"
-                        Header="Damage Description"
+                        Header="ΒΛΑΒΗ"
                         MinWidth="120"
                         MaxWidth="250"
                         MaxLength="255"
                         ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
+                        Binding="{Binding DevicePassword}"
+                        Header="ΚΩΔ. ΣΥΣΚΕΥΗΣ"
+                        MinWidth="100"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" 
+                        />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding SimPassword}"
+                        Header="ΚΩΔ. SIM"
+                        MinWidth="90"
+                        Width="100"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding DeviceAccountUsername}"
+                        Header="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
+                        MinWidth="100"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding DeviceAccountPassword}"
+                        Header="PWD ΛΟΓΑΡΙΑΣΜΟΥ"
+                        MinWidth="120"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <DataGridCheckBoxColumn
+                        Binding="{Binding ChargerIncluded}"
+                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
+                        MaxWidth="80"
+                        MinWidth="80">
+                        <DataGridCheckBoxColumn.Header>
+                            <!--padding to allow hit test to pass thru for sorting -->
+                            <Border
+                                Background="Transparent"
+                                Padding="6 0 6 0"
+                                HorizontalAlignment="Center">
+                                <Image
+                                    Source="/Img/charger.png" 
+                                    Height="30"/>
+                            </Border>
+                        </DataGridCheckBoxColumn.Header>
+                    </DataGridCheckBoxColumn>
+                    <DataGridCheckBoxColumn
+                        Binding="{Binding BagIncluded}"
+                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
+                        MaxWidth="80"
+                        MinWidth="80">
+                        <DataGridCheckBoxColumn.Header>
+                            <!--padding to allow hit test to pass thru for sorting -->
+                            <Border
+                                Background="Transparent"
+                                Padding="6 0 6 0"
+                                HorizontalAlignment="Center">
+                                <Image
+                                    Source="/Img/bag.png"
+                                    Height="30" />
+                            </Border>
+                        </DataGridCheckBoxColumn.Header>
+                    </DataGridCheckBoxColumn>
+                    <DataGridCheckBoxColumn
+                        Binding="{Binding CaseIncluded}"
+                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
+                        MaxWidth="80"
+                        MinWidth="80">
+                        <DataGridCheckBoxColumn.Header>
+                            <!--padding to allow hit test to pass thru for sorting -->
+                            <Border
+                                Background="Transparent"
+                                Padding="6 0 6 0"
+                                HorizontalAlignment="Center">
+                                <Image
+                                    Source="/Img/case.png"
+                                    Height="30" />
+                            </Border>
+                        </DataGridCheckBoxColumn.Header>
+                    </DataGridCheckBoxColumn>
+                    <materialDesign:DataGridTextColumn
                         Binding="{Binding State}"
-                        Header="State"
+                        Header="ΚΑΤΑΣΤΑΣΗ"
                         MaxLength="200"
-                        MinWidth="60"
-                        MaxWidth="85"
-                        Width="60"
+                        MinWidth="70"
+                        MaxWidth="110"
+                        Width="95"
                         ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DateAdded, StringFormat=dd-MM-yyyy hh:mm}"
-                        Header="Date Added"
+                        Header="ΗΜ/ΝΙΑ ΕΙΣΑΓΩΓΗΣ"
                         IsReadOnly="true"
                         MinWidth="130"
                         MaxWidth="150"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DateUpdated, StringFormat=dd-MM-yyyy hh:mm}"
-                        Header="Date Updated"
+                        Header="ΗΝ/ΝΙΑ ΑΛΛΑΓΗΣ"
                         IsReadOnly="true"
                         MinWidth="130"
                         MaxWidth="150"
