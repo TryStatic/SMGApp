@@ -71,7 +71,7 @@ namespace SMGApp.WPF.ViewModels
 
             AddNewUserViewModel viewmodel = new AddNewUserViewModel();
 
-            viewmodel.OperationName = $"ΕΝΗΜΕΡΩΣΗ ΣΤΟΙΧΕΙΩΝ ΠΕΛΑΤΗ";
+            viewmodel.OperationName = $"ΕΝΗΜΕΡΩΣΗ ΣΤΟΙΧΕΙΩΝ ΠΕΛΑΤΗ (ID: {id})";
             viewmodel.FirstName = customer.FirstName;
             viewmodel.LastName = customer.LastName;
             viewmodel.Address = customer.Address;
