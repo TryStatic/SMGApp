@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -17,6 +18,13 @@ namespace SMGApp.EntityFramework.Services
         {
             await using SMGAppDbContext context = ContextFactory.CreateDbContext();
             IEnumerable<ServiceItem> entities = await context.Set<ServiceItem>().Include(b => b.Customer).ToListAsync();
+            return entities;
+        }
+
+        public async Task<IEnumerable<ServiceItem>> GetByCustomer(int customerID)
+        {
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            IEnumerable<ServiceItem> entities = await context.Set<ServiceItem>().Include(b => b.Customer).Where(c => c.Customer.ID == customerID).ToListAsync();
             return entities;
         }
 
