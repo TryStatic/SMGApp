@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -9,6 +9,7 @@ using SMGApp.Domain.Models;
 using SMGApp.Domain.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
+using SMGApp.WPF.ViewModels.Util;
 
 namespace SMGApp.WPF.ViewModels
 {
@@ -46,7 +47,7 @@ namespace SMGApp.WPF.ViewModels
             Task.Run(async () => await LoadCustomers());
         }
 
-        public ICommand DeleteUserCommand => new DeleteUserCommand(_customerDataService);
+        public ICommand DeleteUserCommand => new DeleteUserCommand(_customerDataService, this);
 
         #region CREATENEWUSERDIALOG
         public ICommand CreateNewUserCommand => new DialogCommand(ExecuteRunExtendedDialog);
@@ -111,7 +112,7 @@ namespace SMGApp.WPF.ViewModels
         #endregion
 
 
-        private async Task LoadCustomers() => Customers = await _customerDataService.GetAll();
+        public async Task LoadCustomers() => Customers = await _customerDataService.GetAll();
         private async void SearchBoxChanged(string value) => Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
     }
 }  
