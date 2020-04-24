@@ -166,6 +166,7 @@
                         MaxWidth="500"
                         MaxLength="255"
                         IsReadOnly="true"
+                        ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DeviceDescription}"
@@ -301,6 +302,15 @@
                         MinWidth="100"
                         MaxWidth="250"
                         MaxLength="600"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding GetCost}"
+                        Header="ΚΟΣΤΟΣ"
+                        MinWidth="90"
+                        Width="100"
+                        MaxWidth="250"
+                        MaxLength="255"
                         ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                 </DataGrid.Columns>

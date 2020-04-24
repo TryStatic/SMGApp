@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace SMGApp.Domain.Models
 {
@@ -18,7 +19,10 @@ namespace SMGApp.Domain.Models
         public DateTime DateUpdated { get; set; }
         public ServiceState State { get; set; }
         public string Notes { get; set; }
+        public double Price { get; set; }
 
+
+        public string GetCost => Price.ToString("C", CultureInfo.CurrentCulture);
         public string CustomerDetails => Customer != null ? $"{Customer.LastName} {Customer.FirstName}" : "";
     }
 
