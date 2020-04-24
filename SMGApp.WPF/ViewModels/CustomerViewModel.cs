@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -113,25 +113,5 @@ namespace SMGApp.WPF.ViewModels
 
         private async Task LoadCustomers() => Customers = await _customerDataService.GetAll();
         private async void SearchBoxChanged(string value) => Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
-    }
-
-    public static class Extensions
-    {
-        public static string ToUpperΝοintonation(this string str)
-        {
-            if (string.IsNullOrEmpty(str)) return null;
-
-            //α, ε, η, ι, υ, ο, ω.
-            str = str.ToUpper();
-            str = str.Replace('Ά', 'Α');
-            str = str.Replace('Έ', 'Ε');
-            str = str.Replace('Ή', 'Η');
-            str = str.Replace('Ί', 'Ι');
-            str = str.Replace('Ό', 'Ο');
-            str = str.Replace('Ώ', 'Ω');
-
-            str = str.Trim();
-            return str;
-        }
     }
 }  
