@@ -36,8 +36,8 @@ namespace SMGApp.WPF
 
             Window window = serviceProvider.GetRequiredService<MainWindow>();
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.Height = 800;
-            window.Width = 1280;
+            window.Height = SystemParameters.PrimaryScreenHeight * 0.95;
+            window.Width = SystemParameters.PrimaryScreenWidth * 0.95;
             window.DataContext = serviceProvider.GetRequiredService<MainViewModel>();
             window.Show();
 
