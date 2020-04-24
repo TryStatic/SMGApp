@@ -1,45 +1,63 @@
-<UserControl x:Class="SMGApp.WPF.Views.CustomerView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:SMGApp.WPF.Views"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+<UserControl
+    x:Class="SMGApp.WPF.Views.CustomerView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SMGApp.WPF.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    d:DesignHeight="450"
+    d:DesignWidth="800">
 
     <UserControl.Resources>
-        <Style TargetType="{x:Type TextBlock}" x:Key="WrapText">
-            <Setter Property="TextWrapping" Value="Wrap" />
+        <Style
+            TargetType="{x:Type TextBlock}"
+            x:Key="WrapText">
+            <Setter
+                Property="TextWrapping"
+                Value="Wrap" />
         </Style>
     </UserControl.Resources>
 
-    <Grid Margin="10">
+    <Grid
+        Margin="10">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition
+                Height="auto"></RowDefinition>
+            <RowDefinition
+                Height="auto"></RowDefinition>
+            <RowDefinition
+                Height="auto"></RowDefinition>
+            <RowDefinition
+                Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition
+                Width="auto"></ColumnDefinition>
+            <ColumnDefinition
+                Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <materialDesign:Card
-            Grid.Row="0" Grid.Column="0"
+            Grid.Row="0"
+            Grid.Column="0"
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="15">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition
+                        Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button
                     Command="{Binding CreateNewUserCommand}"
@@ -58,9 +76,12 @@
                     materialDesign:ShadowAssist.ShadowDepth="Depth1">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
                         </Grid.ColumnDefinitions>
                         <Button
                             Style="{DynamicResource MaterialDesignToolButton}">
@@ -86,93 +107,98 @@
         <materialDesign:Card
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="10"
-            Grid.Row="1" Grid.Column="0"
-            >
+            Grid.Row="1"
+            Grid.Column="0">
             <DataGrid
-            SelectionMode="Single"
-            VerticalScrollBarVisibility="Auto"
-            MaxHeight="450"
-            Margin="0 8 0 0"
-            ItemsSource="{Binding Customers}"
-            CanUserSortColumns="True"
-            CanUserAddRows="False"
-            CanUserDeleteRows="false"
-            CanUserResizeRows="True"
-            AutoGenerateColumns="False"
-            materialDesign:DataGridAssist.CellPadding="13 8 8 8"
-            materialDesign:DataGridAssist.ColumnHeaderPadding="8"
-            HeadersVisibility="All">
-            <DataGrid.Resources>
-                <ContextMenu x:Key="CustomerContextMenu">
-                    <ContextMenu.Items>
-                        <MenuItem
-                            Header="Delete"
-                            Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                            CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}"/>
-                    </ContextMenu.Items>
-                </ContextMenu>
-            </DataGrid.Resources>
-            <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow" BasedOn="{StaticResource {x:Type DataGridRow}}">
-                    <Setter Property="ContextMenu" Value="{StaticResource CustomerContextMenu}" />
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                <materialDesign:DataGridTextColumn
-                    Binding="{Binding ID}"
-                    Header="ID"
-                    MinWidth="55"
-                    MaxWidth="70"
-                    MaxLength="255"
-                    IsReadOnly="true"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                SelectionMode="Single"
+                VerticalScrollBarVisibility="Auto"
+                MaxHeight="450"
+                Margin="0 8 0 0"
+                ItemsSource="{Binding Customers}"
+                CanUserSortColumns="True"
+                CanUserAddRows="False"
+                CanUserDeleteRows="false"
+                CanUserResizeRows="True"
+                AutoGenerateColumns="False"
+                materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+                HeadersVisibility="All">
+                <DataGrid.Resources>
+                    <ContextMenu
+                        x:Key="CustomerContextMenu">
+                        <ContextMenu.Items>
+                            <MenuItem
+                                Header="Delete"
+                                Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
+                        </ContextMenu.Items>
+                    </ContextMenu>
+                </DataGrid.Resources>
+                <DataGrid.RowStyle>
+                    <Style
+                        TargetType="DataGridRow"
+                        BasedOn="{StaticResource {x:Type DataGridRow}}">
+                        <Setter
+                            Property="ContextMenu"
+                            Value="{StaticResource CustomerContextMenu}" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
                     <materialDesign:DataGridTextColumn
-                    Binding="{Binding LastName}"
-                    Header="Last Name"
-                    MinWidth="120"
-                    MaxWidth="250"
-                    MaxLength="255"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                <materialDesign:DataGridTextColumn
-                    Binding="{Binding FirstName}"
-                    Header="First Name"
-                    MinWidth="120"
-                    MaxWidth="250"
-                    MaxLength="255"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                <materialDesign:DataGridTextColumn
-                    Binding="{Binding Address}"
-                    Header="Address"
-                    MaxWidth="400"
-                    MinWidth="180"
-                    MaxLength="600"
-                    ElementStyle="{StaticResource WrapText}"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                <materialDesign:DataGridTextColumn
-                    Binding="{Binding PhoneNumber}"
-                    Header="Phone Number"
-                    MaxLength="20"
-                    MinWidth="120"
-                    MaxWidth="150"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                <materialDesign:DataGridTextColumn
-                    Binding="{Binding DateAdded, StringFormat=dd-MM-yyyy hh:mm}"
-                    Header="Date Added"
-                    IsReadOnly="true"
-                    MinWidth="130"
-                    MaxWidth="150"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
-                <materialDesign:DataGridTextColumn
-                    Binding="{Binding Notes}"
-                    Header="Notes"
-                    MaxLength="600"
-                    MinWidth="200"
-                    Width="300"
-                    MaxWidth="600"
-                    ElementStyle="{StaticResource WrapText}"
-                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-            </DataGrid.Columns>
-        </DataGrid>
+                        Binding="{Binding ID}"
+                        Header="ID"
+                        MinWidth="55"
+                        MaxWidth="70"
+                        MaxLength="255"
+                        IsReadOnly="true"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding LastName}"
+                        Header="Last Name"
+                        MinWidth="120"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding FirstName}"
+                        Header="First Name"
+                        MinWidth="120"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding Address}"
+                        Header="Address"
+                        MaxWidth="400"
+                        MinWidth="180"
+                        MaxLength="600"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding PhoneNumber}"
+                        Header="Phone Number"
+                        MaxLength="20"
+                        MinWidth="120"
+                        MaxWidth="150"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding DateAdded, StringFormat=dd-MM-yyyy hh:mm}"
+                        Header="Date Added"
+                        IsReadOnly="true"
+                        MinWidth="130"
+                        MaxWidth="150"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
+                        Binding="{Binding Notes}"
+                        Header="Notes"
+                        MaxLength="600"
+                        MinWidth="200"
+                        Width="300"
+                        MaxWidth="600"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </materialDesign:Card>
 
 
