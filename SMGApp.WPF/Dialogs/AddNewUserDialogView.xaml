@@ -7,6 +7,7 @@
     xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:dialogs="clr-namespace:SMGApp.WPF.Dialogs"
+    xmlns:validationRules="clr-namespace:SMGApp.WPF.Dialogs.ValidationRules"
     mc:Ignorable="d"
     d:DesignHeight="500"
     d:DesignWidth="400">
@@ -38,7 +39,7 @@
                     Path="LastName"
                     UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <dialogs:NotEmptyValidationRule
+                        <validationRules:NotEmptyValidationRule
                             ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
@@ -56,7 +57,7 @@
                     Path="FirstName"
                     UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <dialogs:NotEmptyValidationRule
+                        <validationRules:NotEmptyValidationRule
                             ValidatesOnTargetUpdated="True" />
                     </Binding.ValidationRules>
                 </Binding>
