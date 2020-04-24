@@ -15,7 +15,7 @@
             <RowDefinition
                 Height="Auto" />
             <RowDefinition
-                Height="Auto" />
+                Height="55" />
         </Grid.RowDefinitions>
 
         <materialDesign:Card
@@ -54,8 +54,8 @@
                 CommandParameter="{x:Static nav:ViewType.Customer}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Width="100"
-                Height="50"
-                Margin="0 0 5 0"
+                Height="40"
+                Margin="5,0,8,0"
                 ToolTip="Resource name: MaterialDesignRaisedButton"
                 Content="Customers" />
 
@@ -66,8 +66,8 @@
                 CommandParameter="{x:Static nav:ViewType.Service}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Width="100"
-                Height="50"
-                Margin="0 0 5 0"
+                Height="40"
+                Margin="0,0,8,0"
                 ToolTip="Resource name: MaterialDesignRaisedButton"
                 Content="Service" />
 
@@ -78,8 +78,8 @@
                 CommandParameter="{x:Static nav:ViewType.Inventory}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Width="100"
-                Height="50"
-                Margin="0 0 5 0"
+                Height="40"
+                Margin="0,0,8,0"
                 ToolTip="Resource name: MaterialDesignRaisedButton"
                 Content="Inventory" />
 
@@ -90,8 +90,8 @@
                 CommandParameter="{x:Static nav:ViewType.Backup}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 Width="100"
-                Height="50"
-                Margin="0 0 5 0"
+                Height="40"
+                Margin="0,0,8,0"
                 ToolTip="Resource name: MaterialDesignRaisedButton"
                 Content="Backup" />
         </Grid>
