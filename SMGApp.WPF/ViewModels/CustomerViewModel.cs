@@ -46,6 +46,8 @@ namespace SMGApp.WPF.ViewModels
             Task.Run(async () => await LoadCustomers());
         }
 
+        public ICommand DeleteUserCommand => new DeleteUserCommand(_customerDataService);
+
         #region CREATENEWUSERDIALOG
         public ICommand CreateNewUserCommand => new DialogCommand(ExecuteRunExtendedDialog);
         private async void ExecuteRunExtendedDialog(object o)

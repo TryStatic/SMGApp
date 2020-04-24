@@ -107,8 +107,8 @@
                     <ContextMenu.Items>
                         <MenuItem
                             Header="Delete"
-                            Command="{Binding DataContext.ViewTicketInBrowser_Command, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
-                            CommandParameter="{Binding DataContext.LastName, RelativeSource={RelativeSource Mode=Self}}"/>
+                            Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                            CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}"/>
                     </ContextMenu.Items>
                 </ContextMenu>
             </DataGrid.Resources>
