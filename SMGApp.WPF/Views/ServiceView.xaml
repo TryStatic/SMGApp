@@ -63,7 +63,7 @@
                     Command="{Binding CreateNewUserCommand}"
                     Grid.Column="0"
                     Style="{DynamicResource MaterialDesignRaisedButton}">
-                    CREATE
+                    ΕΙΣΑΓΩΓΗ
                 </Button>
 
                 <materialDesign:ColorZone
