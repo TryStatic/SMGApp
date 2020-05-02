@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 using SMGApp.Domain.Models;
 
-namespace SMGApp.WPF.Dialogs
+namespace SMGApp.WPF.Dialogs.CustomerDialogs
 {
     public class DeleteViewModel : INotifyPropertyChanged
     {

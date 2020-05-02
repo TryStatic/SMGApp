@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using SMGApp.Domain.Models;
-using SMGApp.Domain.Services;
 using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
+using SMGApp.WPF.Dialogs.CustomerDialogs;
 using SMGApp.WPF.ViewModels.Util;
 
 namespace SMGApp.WPF.ViewModels

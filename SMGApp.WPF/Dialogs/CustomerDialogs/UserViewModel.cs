@@ -1,8 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Text;
 
-namespace SMGApp.WPF.Dialogs
+namespace SMGApp.WPF.Dialogs.CustomerDialogs
 {
     public class UserViewModel : INotifyPropertyChanged
     {
