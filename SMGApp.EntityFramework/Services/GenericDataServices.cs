@@ -28,9 +28,11 @@ namespace SMGApp.EntityFramework.Services
             return entities;
         }
 
-        public override Task<ServiceItem> Get(int id)
+        public override async Task<ServiceItem> Get(int id)
         {
-            return base.Get(id);
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            ServiceItem entity = await context.Set<ServiceItem>().Include(c => c.Customer).FirstOrDefaultAsync(e => e.ID == id);
+            return entity;
         }
 
         public override Task<ServiceItem> Create(ServiceItem entity)
