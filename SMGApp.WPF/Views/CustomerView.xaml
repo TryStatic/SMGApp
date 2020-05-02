@@ -105,7 +105,6 @@
         </materialDesign:Card>
 
         <materialDesign:Card
-            MinWidth="1900"
             MaxWidth="1900"
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="10"
