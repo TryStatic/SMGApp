@@ -33,13 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Dialogs\DeleteDialogView.xaml.cs">
+    <Compile Update="Dialogs\CustomerDialogs\DeleteDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Dialogs\DeleteDialogView.xaml">
+    <Page Update="Dialogs\CustomerDialogs\DeleteDialogView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
