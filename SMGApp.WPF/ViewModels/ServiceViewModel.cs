@@ -59,7 +59,7 @@ namespace SMGApp.WPF.ViewModels
             }
             else
             { 
-                ServiceItems = serviceItems.Where(c => c.CustomerDetails.ToLower().Contains(value.ToLower())).ToList();
+                ServiceItems = serviceItems.Where(c => c.CustomerDetails.ToUpper().Contains(value.ToUpper())).ToList();
             }
         }
 

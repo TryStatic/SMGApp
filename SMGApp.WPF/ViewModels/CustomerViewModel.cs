@@ -276,7 +276,7 @@ namespace SMGApp.WPF.ViewModels
             }
             else
             {
-                Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
+                Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToUpper().Contains(value.ToUpper()) || c.FirstName.ToUpper().Contains(value.ToUpper())).ToList();
             }
         }
     }
