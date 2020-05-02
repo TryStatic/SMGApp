@@ -82,11 +82,18 @@
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
-            Grid.Row="4">
+            Grid.Row="4"
+            Name="ΤΗΛΕΦΩΝΟ">
             <TextBox.Text>
                 <Binding
                     Path="PhoneNumber"
                     UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:OnlyNumbersValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                        <validationRules:AtLeastTenCharactersValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
@@ -122,14 +129,21 @@
                         BasedOn="{StaticResource {x:Type Button}}">
                         <Style.Triggers>
                             <DataTrigger
-                                Binding="{Binding Path=(Validation.HasError), ElementName=LastName}"
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΕΠΩΝΥΜΟ}"
                                 Value="True">
                                 <Setter
                                     Property="IsEnabled"
                                     Value="False" />
                             </DataTrigger>
                             <DataTrigger
-                                Binding="{Binding Path=(Validation.HasError), ElementName=FirstName}"
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΟΝΟΜΑ}"
+                                Value="True">
+                                <Setter
+                                    Property="IsEnabled"
+                                    Value="False" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΤΗΛΕΦΩΝΟ}"
                                 Value="True">
                                 <Setter
                                     Property="IsEnabled"
