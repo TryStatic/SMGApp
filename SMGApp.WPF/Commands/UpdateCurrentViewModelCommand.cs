@@ -14,7 +14,7 @@ namespace SMGApp.WPF.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private INavigator _navigator;
+        private readonly INavigator _navigator;
         private readonly IRootSMGAppViewModelAbstractFactory _viewModelFactory;
 
         public UpdateCurrentViewModelCommand(INavigator navigator, IRootSMGAppViewModelAbstractFactory viewModelFactory)
@@ -34,6 +34,5 @@ namespace SMGApp.WPF.Commands
 
             _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(viewType);
         }
-
     }
 }
