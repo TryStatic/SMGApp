@@ -36,16 +36,18 @@
     <Compile Update="Dialogs\CustomerDialogs\DeleteDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Dialogs\ServiceDialogs\DeleteServiceItemDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <Page Update="Dialogs\CustomerDialogs\DeleteDialogView.xaml">
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Dialogs\ServiceDialogs\" />
+    <Page Update="Dialogs\ServiceDialogs\DeleteServiceItemDialogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

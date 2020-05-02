@@ -1,0 +1,109 @@
+﻿<UserControl
+    x:Class="SMGApp.WPF.Dialogs.ServiceDialogs.DeleteServiceItemDialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:dialogs="clr-namespace:SMGApp.WPF.Dialogs.ServiceDialogs"
+    xmlns:validationRules="clr-namespace:SMGApp.WPF.Dialogs.ValidationRules"
+    mc:Ignorable="d"
+    d:DesignHeight="90"
+    d:DesignWidth="200">
+
+    <Grid
+        Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <GroupBox
+            Header="ΔΙΑΓΡΑΦΗ"
+            Margin="16"
+            Width="300">
+            <StackPanel
+                Margin="3 3 3 3">
+                <TextBlock
+                    Margin="0 10 0 0"
+                    TextWrapping="Wrap"
+                    Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                    Text="ΔΙΑΓΡΑΦΗ ΕΙΣΑΓΩΓΗΣ SERVICE" />
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                    Margin="20 3 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding
+                            StringFormat="{}{0} (ServiceID:{1})">
+                            <Binding
+                                Path="ProductName" />
+                            <Binding
+                                Path="ServiceEntryID" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock
+                    Margin="0 10 0 0"
+                    TextWrapping="Wrap"
+                    Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
+                    Text="ΠΕΛΑΤΗΣ:" />
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                    Margin="20 3 0 0"
+                    Text="{Binding RelatedCustomer}" />
+            </StackPanel>
+        </GroupBox>
+
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="1"
+            Margin="5">
+
+            <Button
+                Content="ΟΚ"
+                IsDefault="True"
+                Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+                <Button.Style>
+                    <Style
+                        TargetType="Button"
+                        BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Path=(Validation.HasError), ElementName=LastName}"
+                                Value="True">
+                                <Setter
+                                    Property="IsEnabled"
+                                    Value="False" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Path=(Validation.HasError), ElementName=FirstName}"
+                                Value="True">
+                                <Setter
+                                    Property="IsEnabled"
+                                    Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button
+                IsCancel="True"
+                Margin="8 0 0 0"
+                Style="{DynamicResource MaterialDesignFlatButton}"
+                Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>False</system:Boolean>
+                </Button.CommandParameter>
+                ΑΚΥΡΩΣΗ
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
