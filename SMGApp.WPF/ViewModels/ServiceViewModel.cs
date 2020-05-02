@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using SMGApp.Domain.Models;
@@ -45,7 +46,16 @@ namespace SMGApp.WPF.ViewModels
 
         private async void SearchBoxChanged(string value)
         {
-            // Implement
+            List<ServiceItem> serviceItems = (await _serviceItemsDataService.GetAll()).ToList();
+
+            if (int.TryParse(value, out int id))
+            {
+                ServiceItems = serviceItems.Where(si => si.ID == id);
+            }
+            else
+            { 
+                ServiceItems = serviceItems.Where(c => c.CustomerDetails.ToLower().Contains(value.ToLower())).ToList();
+            }
         }
     }
 }
