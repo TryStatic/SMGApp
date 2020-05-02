@@ -19,6 +19,10 @@ namespace SMGApp.WPF.ViewModels
 
         private IEnumerable<ServiceItem> _serviceItems;
         private string _searchBox;
+        private bool _arrivedCheckbox = true;
+        private bool _fixedCheckbox = true;
+        private bool _deliveredCheckbox = true;
+        private bool _issueCheckbox = true;
 
         public IEnumerable<ServiceItem> ServiceItems
         {
@@ -41,17 +45,109 @@ namespace SMGApp.WPF.ViewModels
             }
         }
 
+        public bool ArrivedCheckbox
+        {
+            get => _arrivedCheckbox;
+            set
+            {
+                _arrivedCheckbox = value;
+                this.OnPropertyChanged(nameof(ArrivedCheckbox));
+                SearchBoxChanged(SearchBox);
+            }
+        }
+
+        public bool FixedCheckbox
+        {
+            get => _fixedCheckbox;
+            set
+            {
+                _fixedCheckbox = value;
+                this.OnPropertyChanged(nameof(FixedCheckbox));
+                SearchBoxChanged(SearchBox);
+            }
+        }
+
+        public bool DeliveredCheckbox
+        {
+            get => _deliveredCheckbox;
+            set
+            {
+                _deliveredCheckbox = value;
+                this.OnPropertyChanged(nameof(DeliveredCheckbox));
+                SearchBoxChanged(SearchBox);
+            }
+        }
+
+        public bool IssueCheckbox
+        {
+            get => _issueCheckbox;
+            set
+            {
+                _issueCheckbox = value;
+                this.OnPropertyChanged(nameof(IssueCheckbox));
+                SearchBoxChanged(SearchBox);
+            }
+        }
+
+        public ICommand ResetFiltersCommand => new GenericCommand(o =>
+        {
+            ArrivedCheckbox = true;
+            FixedCheckbox = true;
+            DeliveredCheckbox = true;
+            IssueCheckbox = true;
+        });
+
         public ServiceViewModel(IDataService<ServiceItem> serviceItemsDataService)
         {
             this._serviceItemsDataService = serviceItemsDataService;
             Task.Run(async () => await LoadServiceItems());
         }
 
-        public async Task LoadServiceItems() => ServiceItems = await _serviceItemsDataService.GetAll();
+        public async Task LoadServiceItems()
+        {
+            ServiceItems = await GetFilteredServiceItems();
+        }
+
+        private async Task<IEnumerable<ServiceItem>> GetFilteredServiceItems()
+        {
+            List<ServiceItem> allItems = (await _serviceItemsDataService.GetAll()).ToList();
+            List<ServiceItem> itemsShown = new List<ServiceItem>();
+
+            if (ArrivedCheckbox && FixedCheckbox && DeliveredCheckbox && IssueCheckbox) return allItems;
+
+            if (ArrivedCheckbox)
+            {
+                IEnumerable<ServiceItem> items = allItems.Where(it => it.State == ServiceState.Arrived);
+                itemsShown.AddRange(items);
+            }
+            if (FixedCheckbox)
+            {
+                IEnumerable<ServiceItem> items = allItems.Where(it => it.State == ServiceState.Fixed);
+                itemsShown.AddRange(items);
+            }
+            if (DeliveredCheckbox)
+            {
+                IEnumerable<ServiceItem> items = allItems.Where(it => it.State == ServiceState.Delivered);
+                itemsShown.AddRange(items);
+            }
+            if (IssueCheckbox)
+            {
+                IEnumerable<ServiceItem> items = allItems.Where(it => it.State == ServiceState.Issue);
+                itemsShown.AddRange(items);
+            }
+
+            return itemsShown;
+        }
 
         private async void SearchBoxChanged(string value)
         {
-            List<ServiceItem> serviceItems = (await _serviceItemsDataService.GetAll()).ToList();
+            List<ServiceItem> serviceItems = (await GetFilteredServiceItems()).ToList();
+
+            if (value == null)
+            {
+                ServiceItems = serviceItems;
+                return;
+            }
 
             if (int.TryParse(value, out int id))
             {

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace SMGApp.WPF.Commands
 {
-    /// <summary>
-    /// No WPF project is complete without it's own version of this.
-    /// </summary>
     public class DialogCommand : ICommand
     {
         private readonly Action<object> _execute;
