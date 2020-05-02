@@ -206,13 +206,12 @@ namespace SMGApp.WPF.ViewModels
         private async void ExecuteAddNewUserDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            UserDialogView view = new UserDialogView()
-            {
-                DataContext = new UserViewModel()
-                {
-                    OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ ΠΕΛΑΤΗ"
-                }
-            };
+            UserDialogView view = new UserDialogView();
+            UserViewModel model = new UserViewModel();
+
+            model.OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ ΠΕΛΑΤΗ";
+            
+            view.DataContext = model;
 
             //show the dialog
             object result = await DialogHost.Show(view, "RootDialog", OnCreateNewUserDialogOpen, OnCreateNewUserDialogClose);
