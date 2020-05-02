@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using SMGApp.Domain.Models;
@@ -96,6 +97,30 @@ namespace SMGApp.WPF.ViewModels
             DeliveredCheckbox = true;
             IssueCheckbox = true;
         });
+
+        private Visibility _hideDateColumns = Visibility.Hidden;
+        public Visibility HideDateColumns
+        {
+            get => _hideDateColumns;
+            set
+            {
+                _hideDateColumns = value;
+                this.OnPropertyChanged(nameof(HideDateColumns));
+            }
+        }   
+
+        private bool _hideDateColumnsBool = true;
+        public bool HideDateColumnsBool
+        {
+            get => _hideDateColumnsBool;
+            set
+            {
+                HideDateColumns = value ? Visibility.Hidden : Visibility.Visible;
+                _hideDateColumnsBool = value;
+                this.OnPropertyChanged(nameof(HideDateColumnsBool));
+            }
+        }
+
 
         public ServiceViewModel(IDataService<ServiceItem> serviceItemsDataService)
         {

@@ -156,8 +156,17 @@
                     ToolTip="ΕΠΑΝΑΦΟΡΑ ΦΙΛΤΡΩΝ">
                     ΕΠΑΝΑΦΟΡΑ
                 </Button>
+                <CheckBox
+                    IsChecked="{Binding HideDateColumnsBool, Mode=TwoWay}"
+                    Margin="20 0 10 0"
+                    Grid.Column="8"
+                    Style="{StaticResource MaterialDesignCheckBox}">
+                    ΑΠΟΚΡΥΨΗ ΣΤΗΛΩΝ
+                </CheckBox>
             </Grid>
         </materialDesign:Card>
+
+        <FrameworkElement Grid.Row="0" Grid.Column="0" x:Name="HideDates" />
 
         <materialDesign:Card
             MinWidth="1600"
@@ -242,6 +251,7 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DevicePassword}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="ΚΩΔ. ΣΥΣΚΕΥΗΣ"
                         MinWidth="100"
                         MaxWidth="250"
@@ -251,6 +261,7 @@
                         />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding SimPassword}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="ΚΩΔ. SIM"
                         MinWidth="90"
                         Width="100"
@@ -260,6 +271,7 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DeviceAccountUsername}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
                         MinWidth="100"
                         MaxWidth="250"
@@ -268,6 +280,7 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DeviceAccountPassword}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="PWD ΛΟΓΑΡΙΑΣΜΟΥ"
                         MinWidth="120"
                         MaxWidth="250"
@@ -330,6 +343,7 @@
                     </DataGridCheckBoxColumn>
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding State}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="ΚΑΤΑΣΤΑΣΗ"
                         MaxLength="200"
                         MinWidth="70"
@@ -339,6 +353,7 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DateAdded, StringFormat=dd-MM-yyyy hh:mm}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="ΗΜ/ΝΙΑ ΕΙΣΑΓΩΓΗΣ"
                         IsReadOnly="true"
                         MinWidth="130"
@@ -346,6 +361,7 @@
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
                         Binding="{Binding DateUpdated, StringFormat=dd-MM-yyyy hh:mm}"
+                        Visibility="{Binding DataContext.HideDateColumns, Source={x:Reference HideDates}}"
                         Header="ΗΝ/ΝΙΑ ΑΛΛΑΓΗΣ"
                         IsReadOnly="true"
                         MinWidth="130"
