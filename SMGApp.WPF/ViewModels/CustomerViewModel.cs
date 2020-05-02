@@ -50,8 +50,6 @@ namespace SMGApp.WPF.ViewModels
             Task.Run(async () => await LoadCustomers());
         }
 
-        public ICommand DeleteUserCommand2 => new DeleteUserCommand(_customerDataService, this);
-
         public ICommand DeleteUserCommand => new DialogCommand(ExecuteDeleteUserDialog);
         private async void ExecuteDeleteUserDialog(object idObject)
         {
