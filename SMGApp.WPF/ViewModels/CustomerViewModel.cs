@@ -113,9 +113,7 @@ namespace SMGApp.WPF.ViewModels
             {
                 // show error
             }
-            await LoadCustomers();
-            //lets run a fake operation for 3 seconds then close this baby.
-            Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+            await LoadCustomers().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         #region EditUserDialog
@@ -199,9 +197,7 @@ namespace SMGApp.WPF.ViewModels
             {
                 // show error
             }
-            await LoadCustomers();
-            //lets run a fake operation for 3 seconds then close this baby.
-            Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+            await LoadCustomers().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
         #endregion
 
@@ -264,9 +260,7 @@ namespace SMGApp.WPF.ViewModels
             {
                 // show error
             }
-            await LoadCustomers();
-            //lets run a fake operation for 3 seconds then close this baby.
-            Task.Delay(TimeSpan.FromSeconds(1)).ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+            await LoadCustomers().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
         #endregion
 
