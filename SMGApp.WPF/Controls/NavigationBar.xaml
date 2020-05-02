@@ -56,7 +56,7 @@
                 Width="100"
                 Height="40"
                 Margin="5,0,8,0"
-                ToolTip="Resource name: MaterialDesignRaisedButton"
+                ToolTip="ΚΑΡΤΕΛΑ ΠΕΛΑΤΩΝ"
                 Content="ΠΕΛΑΤΕΣ" />
 
 
@@ -68,7 +68,7 @@
                 Width="100"
                 Height="40"
                 Margin="0,0,8,0"
-                ToolTip="Resource name: MaterialDesignRaisedButton"
+                ToolTip="ΚΑΡΤΕΛΑ SERVICE"
                 Content="SERVICE" />
 
 
@@ -80,7 +80,7 @@
                 Width="100"
                 Height="40"
                 Margin="0,0,8,0"
-                ToolTip="Resource name: MaterialDesignRaisedButton"
+                ToolTip="ΚΑΡΤΕΛΑ ΑΠΟΘΗΚΗΣ"
                 Content="ΑΠΟΘΗΚΗ" />
 
 
@@ -92,7 +92,7 @@
                 Width="100"
                 Height="40"
                 Margin="0,0,8,0"
-                ToolTip="Resource name: MaterialDesignRaisedButton"
+                ToolTip="ΕΠΙΛΟΓΕΣ BACKUP"
                 Content="BACKUP" />
         </Grid>
     </Grid>
