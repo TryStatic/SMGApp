@@ -131,12 +131,12 @@
                         x:Key="CustomerContextMenu">
                         <ContextMenu.Items>
                             <MenuItem
-                                Header="Edit"
+                                Header="ΕΠΕΞΕΡΓΑΣΙΑ"
                                 Command="{Binding DataContext.EditUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                             <MenuItem
-                                Header="Delete"
-                                Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                Header="ΔΙΑΓΡΑΦΗ"
+                                Command="{Binding DataContext.DeleteServiceEntryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                         </ContextMenu.Items>
                     </ContextMenu>
