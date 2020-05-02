@@ -266,6 +266,18 @@ namespace SMGApp.WPF.ViewModels
 
 
         public async Task LoadCustomers() => Customers = await _customerDataService.GetAll();
-        private async void SearchBoxChanged(string value) => Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
+        private async void SearchBoxChanged(string value)
+        {
+            List<Customer> allCustomers = (await _customerDataService.GetAll()).ToList();
+
+            if (int.TryParse(value, out int id))
+            {
+                Customers = allCustomers.Where(c => c.ID == id);
+            }
+            else
+            {
+                Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToLower().Contains(value.ToLower()) || c.FirstName.ToLower().Contains(value.ToLower())).ToList();
+            }
+        }
     }
 }  

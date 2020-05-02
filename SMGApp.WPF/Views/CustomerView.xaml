@@ -93,7 +93,7 @@
                             Text="{Binding SearchBox, UpdateSourceTrigger=PropertyChanged}"
                             Grid.Column="1"
                             Margin="8 0 0 0"
-                            materialDesign:HintAssist.Hint="Search"
+                            materialDesign:HintAssist.Hint="ΑΝΑΖΗΤΗΣΗ"
                             materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                             BorderThickness="0"
                             MinWidth="200"
