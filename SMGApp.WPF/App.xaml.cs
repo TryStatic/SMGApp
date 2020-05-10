@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -24,6 +25,16 @@ namespace SMGApp.WPF
     {
         protected override async void OnStartup(StartupEventArgs e)
         {
+            string procName = Process.GetCurrentProcess().ProcessName;
+            Process[] processes = Process.GetProcessesByName(procName);
+
+            if (processes.Length > 1)
+            {
+                MessageBox.Show($"{procName} already running", "Error");
+                Current.Shutdown();
+                return;
+            }
+
             Thread.CurrentThread.CurrentCulture = new CultureInfo("el-GR");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("el-GR");
             FrameworkElement.LanguageProperty.OverrideMetadata(
