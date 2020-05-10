@@ -23,7 +23,7 @@ namespace SMGApp.Domain.Models
 
 
         public string GetCost => Price.ToString("C", CultureInfo.CurrentCulture);
-        public string CustomerDetails => Customer != null ? $"{Customer.LastName} {Customer.FirstName}" : "";
+        public string CustomerDetails => Customer != null ? $"{Customer.LastName} {Customer.FirstName} (ID: {Customer.ID})" : "";
     }
 
     public enum ServiceState

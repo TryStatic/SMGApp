@@ -12,6 +12,6 @@ namespace SMGApp.Domain.Models
         public string Notes { get; set; }
 
 
-        public string CustomerDetails => $"{LastName} {FirstName}";
+        public string CustomerDetails => $"{LastName} {FirstName} (ID: {this.ID})";
     }
 }

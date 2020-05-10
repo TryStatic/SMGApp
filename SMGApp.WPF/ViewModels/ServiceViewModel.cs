@@ -241,9 +241,35 @@ namespace SMGApp.WPF.ViewModels
         {
             int id = (int) idObject;
 
+            ServiceItem serviceItem = await (_serviceItemsDataService.Get(id));
+            if (serviceItem == null)
+            {
+                // Show Error
+                return;
+            }
+
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             ServiceDialogView view = new ServiceDialogView();
             ServiceDialogViewModel model = new ServiceDialogViewModel((await _customerServiceDataService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
+
+            model.UpdateID = id;
+            
+            model.CustomerBeforeEdit = serviceItem.Customer;
+            model.CustomerName = serviceItem.CustomerDetails;
+
+            model.Device = serviceItem.DeviceDescription;
+            model.DamageDescription = serviceItem.DamageDescription;
+            model.Notes = serviceItem.Notes;
+            model.DevicePassword = serviceItem.DevicePassword;
+            model.SimCode = serviceItem.SimPassword;
+            model.AccountUsername = serviceItem.DeviceAccountUsername;
+            model.AccountPassword = serviceItem.DeviceAccountPassword;
+            model.ChargerIncluded = serviceItem.ChargerIncluded;
+            model.BagIncluded = serviceItem.BagIncluded;
+            model.CaseIncluded = serviceItem.CaseIncluded;
+            model.ServiceState = serviceItem.State;
+            model.CustomerBeforeEdit = serviceItem.Customer;
+
 
             model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ SERVICE (ID: {id})";
 
@@ -272,8 +298,36 @@ namespace SMGApp.WPF.ViewModels
 
                 eventArgs.Session.UpdateContent(new ProgressDialog());
 
-                // PERFORM EDIT
+                ServiceItem updatedDetails = new ServiceItem();
 
+                if (model.CustomerBeforeEdit.CustomerDetails == model.CustomerName)
+                {
+                    updatedDetails.Customer = model.CustomerBeforeEdit;
+                }
+                else
+                {
+                    Customer customer = (await _customerServiceDataService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
+                    if (customer == null)
+                    {
+                        // show error
+                        eventArgs.Session.Close(false);
+                        return;
+                    }
+                    updatedDetails.Customer = customer;
+                }
+                updatedDetails.DeviceDescription = model.Device;
+                updatedDetails.DamageDescription = model.DamageDescription;
+                updatedDetails.Notes = model.Notes;
+                updatedDetails.DevicePassword = model.DevicePassword;
+                updatedDetails.SimPassword = model.SimCode;
+                updatedDetails.DeviceAccountUsername = model.AccountUsername;
+                updatedDetails.DeviceAccountPassword = model.AccountPassword;
+                updatedDetails.ChargerIncluded = model.ChargerIncluded;
+                updatedDetails.BagIncluded = model.BagIncluded;
+                updatedDetails.CaseIncluded = model.CaseIncluded;
+                updatedDetails.State = model.ServiceState;
+
+                await _serviceItemsDataService.Update(model.UpdateID, updatedDetails);
 
                 await LoadServiceItems();
             }

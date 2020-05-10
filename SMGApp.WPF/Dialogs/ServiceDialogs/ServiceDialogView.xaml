@@ -8,10 +8,14 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
     xmlns:dialogs="clr-namespace:SMGApp.WPF.Dialogs"
     xmlns:validationRules="clr-namespace:SMGApp.WPF.Dialogs.ValidationRules"
+    xmlns:util="clr-namespace:SMGApp.WPF.Util"
     mc:Ignorable="d"
     d:DesignHeight="500"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <util:EnumMatchToBooleanConverter x:Key="enumConverter" />
+    </UserControl.Resources>
 
     <Grid
         Margin="16"
@@ -94,7 +98,7 @@
             Grid.Row="4">
             <TextBox.Text>
                 <Binding
-                    Path="Note"
+                    Path="Notes"
                     UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
@@ -107,7 +111,7 @@
             Grid.Row="5">
             <TextBox.Text>
                 <Binding
-                    Path="Note"
+                    Path="DevicePassword"
                     UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
@@ -120,7 +124,7 @@
             Grid.Row="6">
             <TextBox.Text>
                 <Binding
-                    Path="Note"
+                    Path="SimCode"
                     UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
@@ -134,7 +138,7 @@
             Grid.Row="7">
             <TextBox.Text>
                 <Binding
-                    Path="Note"
+                    Path="AccountUsername"
                     UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
@@ -147,7 +151,7 @@
             Grid.Row="8">
             <TextBox.Text>
                 <Binding
-                    Path="Note"
+                    Path="AccountPassword"
                     UpdateSourceTrigger="PropertyChanged">
                 </Binding>
             </TextBox.Text>
@@ -161,6 +165,7 @@
 
             <CheckBox
                 Margin="10 0 0 0"
+                IsChecked="{Binding Path=ChargerIncluded, Mode=TwoWay}"
                 Style="{StaticResource MaterialDesignCheckBox}">
                 <Image
                     Source="/Img/charger.png"
@@ -168,6 +173,7 @@
             </CheckBox>
             <CheckBox
                 Margin="10 0 10 0"
+                IsChecked="{Binding Path=BagIncluded, Mode=TwoWay}"
                 Style="{StaticResource MaterialDesignCheckBox}">
                 <Image
                     Source="/Img/bag.png"
@@ -175,6 +181,7 @@
             </CheckBox>
             <CheckBox
                 Margin="10 0 10 0"
+                IsChecked="{Binding Path=CaseIncluded, Mode=TwoWay}"
                 Style="{StaticResource MaterialDesignCheckBox}">
                 <Image
                     Source="/Img/case.png"
@@ -191,23 +198,36 @@
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                IsChecked="True"
-                Content="ΠΑΡΑΛΗΦΘΗΚΕ" />
+                Content="ΠΑΡΑΛΗΦΘΗΚΕ"
+                GroupName="Arrived"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Arrived}" 
+                />
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                IsChecked="False"
-                Content="ΔΙΟΡΘΩΘΗΚΕ" />
+                Content="ΔΙΟΡΘΩΘΗΚΕ"
+                GroupName="Fixed"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Fixed}" />
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                IsChecked="False"
-                Content="ΠΑΡΑΔΟΘΗΚΕ" />
+                Content="ΠΑΡΑΔΟΘΗΚΕ"
+                GroupName="Delivered"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Delivered}" />
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                IsChecked="False"
-                Content="ΠΡΟΒΛΗΜΑ" />
+                Content="ΠΡΟΒΛΗΜΑ"
+                GroupName="Issue"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Issue}" />
         </StackPanel>
 
         <StackPanel
