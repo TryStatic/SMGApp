@@ -143,6 +143,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+
         <TextBox
             wpf:HintAssist.Hint="PASSWORD ΛΟΓΑΡΙΑΣΜΟΥ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
@@ -230,9 +231,22 @@
                                  ConverterParameter=Issue}" />
         </StackPanel>
 
+
+        <TextBox
+            wpf:HintAssist.Hint="ΚΟΣΤΟΣ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="11"
+            Text="{Binding Path=Cost, 
+                        Mode=TwoWay, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        StringFormat=N2}">
+        </TextBox>
+
         <StackPanel
             Orientation="Horizontal"
-            Grid.Row="11"
+            Grid.Row="12"
             Margin="0 16 0 0">
             <Button
                 Content="ΕΙΣΑΓΩΓΗ"

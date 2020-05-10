@@ -241,6 +241,7 @@ namespace SMGApp.WPF.ViewModels
                 newDetails.BagIncluded = model.BagIncluded;
                 newDetails.CaseIncluded = model.CaseIncluded;
                 newDetails.State = model.ServiceState;
+                newDetails.Price = model.Cost;
                 newDetails.DateUpdated = DateTime.Now;
                 newDetails.DateAdded = DateTime.Now;
 
@@ -291,6 +292,7 @@ namespace SMGApp.WPF.ViewModels
             model.CaseIncluded = serviceItem.CaseIncluded;
             model.ServiceState = serviceItem.State;
             model.CustomerBeforeEdit = serviceItem.Customer;
+            model.Cost = serviceItem.Price;
 
 
             model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ SERVICE (ID: {id})";
@@ -348,6 +350,7 @@ namespace SMGApp.WPF.ViewModels
                 updatedDetails.BagIncluded = model.BagIncluded;
                 updatedDetails.CaseIncluded = model.CaseIncluded;
                 updatedDetails.State = model.ServiceState;
+                updatedDetails.Price = model.Cost;
                 updatedDetails.DateUpdated = DateTime.Now;
 
                 await _serviceItemsDataService.Update(model.UpdateID, updatedDetails);

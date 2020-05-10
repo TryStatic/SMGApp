@@ -61,6 +61,7 @@ namespace SMGApp.WPF.Dialogs.ServiceDialogs
         private bool _bagIncluded;
         private bool _caseIncluded;
         private ServiceState _serviceState;
+        private double _cost;
 
         public string Device
         {
@@ -132,6 +133,12 @@ namespace SMGApp.WPF.Dialogs.ServiceDialogs
         {
             get => _serviceState;
             set => this.MutateVerbose(ref _serviceState, value, RaisePropertyChanged());
+        }
+
+        public double Cost
+        {
+            get => _cost;
+            set => this.MutateVerbose(ref _cost, value, RaisePropertyChanged());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
