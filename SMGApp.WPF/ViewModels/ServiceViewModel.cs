@@ -241,6 +241,8 @@ namespace SMGApp.WPF.ViewModels
                 newDetails.BagIncluded = model.BagIncluded;
                 newDetails.CaseIncluded = model.CaseIncluded;
                 newDetails.State = model.ServiceState;
+                newDetails.DateUpdated = DateTime.Now;
+                newDetails.DateAdded = DateTime.Now;
 
                 await _serviceItemsDataService.Create(newDetails);
                 await LoadServiceItems();
@@ -346,6 +348,7 @@ namespace SMGApp.WPF.ViewModels
                 updatedDetails.BagIncluded = model.BagIncluded;
                 updatedDetails.CaseIncluded = model.CaseIncluded;
                 updatedDetails.State = model.ServiceState;
+                updatedDetails.DateUpdated = DateTime.Now;
 
                 await _serviceItemsDataService.Update(model.UpdateID, updatedDetails);
 
