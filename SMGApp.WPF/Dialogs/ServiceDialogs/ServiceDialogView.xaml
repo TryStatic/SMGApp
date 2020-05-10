@@ -78,6 +78,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBox
+            Name="ΒΛΑΒΗ"
             wpf:HintAssist.Hint="ΒΛΑΒΗ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
@@ -87,6 +88,10 @@
                 <Binding
                     Path="DamageDescription"
                     UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
@@ -261,26 +266,20 @@
                         BasedOn="{StaticResource {x:Type Button}}">
                         <Style.Triggers>
                             <DataTrigger
-                                Binding="{Binding Path=(Validation.HasError), ElementName=ΕΠΩΝΥΜΟ}"
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΣΥΣΚΕΥΗ}"
                                 Value="True">
                                 <Setter
                                     Property="IsEnabled"
                                     Value="False" />
                             </DataTrigger>
                             <DataTrigger
-                                Binding="{Binding Path=(Validation.HasError), ElementName=ΟΝΟΜΑ}"
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΒΛΑΒΗ}"
                                 Value="True">
                                 <Setter
                                     Property="IsEnabled"
                                     Value="False" />
                             </DataTrigger>
-                            <DataTrigger
-                                Binding="{Binding Path=(Validation.HasError), ElementName=ΤΗΛΕΦΩΝΟ}"
-                                Value="True">
-                                <Setter
-                                    Property="IsEnabled"
-                                    Value="False" />
-                            </DataTrigger>
+
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
