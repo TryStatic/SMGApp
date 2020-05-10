@@ -15,7 +15,7 @@ namespace SMGApp.WPF.Dialogs.ServiceDialogs
 
         private void Cb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            cb.IsDropDownOpen = true;
+            Cb.IsDropDownOpen = true;
         }
     }
 }

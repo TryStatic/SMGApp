@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using SMGApp.WPF.ViewModels.Util;
 
 namespace SMGApp.WPF.Dialogs.ServiceDialogs
 {
@@ -28,17 +29,17 @@ namespace SMGApp.WPF.Dialogs.ServiceDialogs
             ComboBoxBoundCustomers = new ObservableCollection<string>(customerNames);
         }
 
-        private string _searchTextText;
-        public string SearchTextText
+        private string _customerName;
+        public string CustomerName
         {
-            get => _searchTextText;
+            get => _customerName;
             set
             {
-                if (_searchTextText == value) return;
-                _searchTextText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchTextText)));
+                if (_customerName == value) return;
+                _customerName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CustomerName)));
 
-                IEnumerable<string> enumerable = AllCustomers.Where(it => it.Contains(SearchTextText));
+                IEnumerable<string> enumerable = AllCustomers.Where(it => it.ToUpperΝοintonation().Contains(CustomerName.ToUpperΝοintonation()));
                 ComboBoxBoundCustomers = new ObservableCollection<string>(enumerable);
             }
         }

@@ -44,10 +44,10 @@
             Grid.Row="1"
             IsEditable="True"
             IsTextSearchEnabled="False"
-            x:Name="cb"
+            x:Name="Cb"
             PreviewTextInput="Cb_OnPreviewTextInput"
             ItemsSource="{Binding ComboBoxBoundCustomers}"
-            Text="{Binding SearchTextText}">
+            Text="{Binding CustomerName}">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />
