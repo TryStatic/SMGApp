@@ -131,7 +131,7 @@ namespace SMGApp.WPF.ViewModels
 
         public async Task LoadServiceItems()
         {
-            ServiceItems = await GetFilteredServiceItems();
+            ServiceItems = (await GetFilteredServiceItems()).OrderByDescending(x => x.ID);
         }
 
         private async Task<IEnumerable<ServiceItem>> GetFilteredServiceItems()
@@ -171,7 +171,7 @@ namespace SMGApp.WPF.ViewModels
 
             if (value == null)
             {
-                ServiceItems = serviceItems;
+                ServiceItems = serviceItems.OrderByDescending(x => x.ID);
                 return;
             }
 

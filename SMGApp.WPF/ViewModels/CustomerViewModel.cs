@@ -264,18 +264,18 @@ namespace SMGApp.WPF.ViewModels
         #endregion
 
 
-        public async Task LoadCustomers() => Customers = await _customerDataService.GetAll();
+        public async Task LoadCustomers() => Customers = (await _customerDataService.GetAll()).OrderByDescending(x => x.ID);
         private async void SearchBoxChanged(string value)
         {
             List<Customer> allCustomers = (await _customerDataService.GetAll()).ToList();
 
             if (int.TryParse(value, out int id))
             {
-                Customers = allCustomers.Where(c => c.ID == id);
+                Customers = allCustomers.Where(c => c.ID == id).OrderByDescending(x => x.ID);
             }
             else
             {
-                Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToUpper().Contains(value.ToUpper()) || c.FirstName.ToUpper().Contains(value.ToUpper())).ToList();
+                Customers = (await _customerDataService.GetAll()).Where(c => c.LastName.ToUpper().Contains(value.ToUpper()) || c.FirstName.ToUpper().Contains(value.ToUpper())).ToList().OrderByDescending(x => x.ID);
             }
         }
     }
