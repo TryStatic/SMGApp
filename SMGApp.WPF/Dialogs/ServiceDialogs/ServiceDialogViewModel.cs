@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -37,15 +37,18 @@ namespace SMGApp.WPF.Dialogs.ServiceDialogs
             get => _customerName;
             set
             {
-                if (_customerName == value || value == null) return;
-                _customerName = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CustomerName)));
-                if (_customerName != null)
+                if (_customerName == value) return;
+
+                if (value == null || string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
-                    IEnumerable<string> enumerable = AllCustomers.Where(it => it.ToUpperΝοintonation().Contains(CustomerName.ToUpperΝοintonation()));
-                    ComboBoxBoundCustomers = new ObservableCollection<string>(enumerable);
+                    ComboBoxBoundCustomers = new ObservableCollection<string>(AllCustomers);
+                    return;
                 }
 
+                _customerName = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CustomerName)));
+                IEnumerable<string> filteredCustomers = AllCustomers.Where(it => it.ToUpperΝοintonation().Contains(CustomerName.ToUpperΝοintonation()));
+                ComboBoxBoundCustomers = new ObservableCollection<string>(filteredCustomers);
             }
         }
         #endregion

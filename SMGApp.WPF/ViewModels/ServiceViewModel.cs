@@ -224,8 +224,8 @@ namespace SMGApp.WPF.ViewModels
                 Customer customer = (await _customerServiceDataService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
                 if (customer == null)
                 {
-                    // show error
-                    eventArgs.Session.Close(false);
+                    MessageBox.Show($"Ο ΠΕΛΑΤΗΣ {model.CustomerName} ΔΕΝ ΒΡΕΘΗΚΕ");
+                    await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
                     return;
                 }
 
@@ -333,8 +333,8 @@ namespace SMGApp.WPF.ViewModels
                     Customer customer = (await _customerServiceDataService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
                     if (customer == null)
                     {
-                        // show error
-                        eventArgs.Session.Close(false);
+                        MessageBox.Show($"Ο ΠΕΛΑΤΗΣ {model.CustomerName} ΔΕΝ ΒΡΕΘΗΚΕ");
+                        await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
                         return;
                     }
                     updatedDetails.Customer = customer;
