@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -189,9 +189,9 @@ namespace SMGApp.WPF.ViewModels
         public ICommand CreateNewServiceItemCommand => new DialogCommand(CreateNewServiceEntryDialog);
         private async void CreateNewServiceEntryDialog(object o)
         {
-            //let's set up a little MVVM, cos that's what the cool kids are doing:
+
             ServiceDialogView view = new ServiceDialogView();
-            ServiceDialogViewModel model = new ServiceDialogViewModel();
+            ServiceDialogViewModel model = new ServiceDialogViewModel((await _customerServiceDataService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
 
             model.OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ SERVICE";
 
@@ -243,7 +243,7 @@ namespace SMGApp.WPF.ViewModels
 
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             ServiceDialogView view = new ServiceDialogView();
-            ServiceDialogViewModel model = new ServiceDialogViewModel();
+            ServiceDialogViewModel model = new ServiceDialogViewModel((await _customerServiceDataService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
 
             model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ SERVICE (ID: {id})";
 
