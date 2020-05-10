@@ -12,7 +12,6 @@ namespace SMGApp.WPF.Commands
 {
     public class UpdateCurrentViewModelCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
 
         private readonly INavigator _navigator;
         private readonly IRootSMGAppViewModelAbstractFactory _viewModelFactory;
@@ -33,6 +32,12 @@ namespace SMGApp.WPF.Commands
             if (!(parameter is ViewType viewType)) return;
 
             _navigator.CurrentViewModel = _viewModelFactory.CreateViewModel(viewType);
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
     }
 }
