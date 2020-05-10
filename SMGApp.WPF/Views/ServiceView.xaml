@@ -77,7 +77,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button
-                    Command="{Binding CreateNewUserCommand}"
+                    Command="{Binding CreateNewServiceItemCommand}"
                     Grid.Column="0"
                     Style="{DynamicResource MaterialDesignRaisedButton}">
                     ΕΙΣΑΓΩΓΗ
@@ -196,7 +196,7 @@
                         <ContextMenu.Items>
                             <MenuItem
                                 Header="ΕΠΕΞΕΡΓΑΣΙΑ"
-                                Command="{Binding DataContext.EditUserCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                Command="{Binding DataContext.EditServiceItem, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                             <MenuItem
                                 Header="ΔΙΑΓΡΑΦΗ"

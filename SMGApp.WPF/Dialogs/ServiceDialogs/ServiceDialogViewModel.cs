@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace SMGApp.WPF.Dialogs.ServiceDialogs
 {
-    public class ServiceViewModel : INotifyPropertyChanged
+    public class ServiceDialogViewModel : INotifyPropertyChanged
     {
         public string OperationName { get; set; }
 

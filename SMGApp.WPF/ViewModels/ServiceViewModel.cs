@@ -184,6 +184,107 @@ namespace SMGApp.WPF.ViewModels
             }
         }
 
+        #region CreateNewServiceItem
+        public ICommand CreateNewServiceItemCommand => new DialogCommand(CreateNewServiceEntryDialog);
+        private async void CreateNewServiceEntryDialog(object o)
+        {
+            //let's set up a little MVVM, cos that's what the cool kids are doing:
+            ServiceDialogView view = new ServiceDialogView();
+            ServiceDialogViewModel model = new ServiceDialogViewModel();
+
+            model.OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ SERVICE";
+
+            view.DataContext = model;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnCreateNewServiceEntryDialog, OnCreateNewServiceEntryDialog);
+
+            //check the result...
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+        private void OnCreateNewServiceEntryDialog(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private async void OnCreateNewServiceEntryDialog(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == false) return;
+
+            //OK, lets cancel the close...
+            eventArgs.Cancel();
+
+            // Get user details
+            if (eventArgs.Session.Content is ServiceDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is ServiceDialogViewModel model)
+            {
+
+                eventArgs.Session.UpdateContent(new ProgressDialog());
+
+                // PERFORM INSERT
+
+
+                await LoadServiceItems();
+            }
+            else
+            {
+                // show error
+            }
+
+            await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
+
+
+        #region EditServiceItem
+        public ICommand EditServiceItem => new DialogCommand(EditServiceEntryDialog);
+        private async void EditServiceEntryDialog(object idObject)
+        {
+            int id = (int) idObject;
+
+            //let's set up a little MVVM, cos that's what the cool kids are doing:
+            ServiceDialogView view = new ServiceDialogView();
+            ServiceDialogViewModel model = new ServiceDialogViewModel();
+
+            model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ SERVICE (ID: {id})";
+
+            view.DataContext = model;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnEditServiceEntryDialog, OnEditServiceEntryDialog);
+
+            //check the result...
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+        private void OnEditServiceEntryDialog(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private async void OnEditServiceEntryDialog(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == false) return;
+
+            //OK, lets cancel the close...
+            eventArgs.Cancel();
+
+            // Get user details
+            if (eventArgs.Session.Content is ServiceDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is ServiceDialogViewModel model)
+            {
+
+                eventArgs.Session.UpdateContent(new ProgressDialog());
+
+                // PERFORM EDIT
+
+
+                await LoadServiceItems();
+            }
+            else
+            {
+                // show error
+            }
+
+            await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
+
         #region DeleteServiceEntry
         public ICommand DeleteServiceEntryCommand => new DialogCommand(DeleteServiceEntryDialog);
         private async void DeleteServiceEntryDialog(object idObject)
@@ -211,12 +312,10 @@ namespace SMGApp.WPF.ViewModels
             object result = await DialogHost.Show(view, "RootDialog", OneDeleteUserDialogOpen, OneDeleteUserDialogClose);
             Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
-
         private void OneDeleteUserDialogOpen(object sender, DialogOpenedEventArgs eventargs)
         {
             
         }
-
         private async void OneDeleteUserDialogClose(object sender, DialogClosingEventArgs eventArgs)
         {
             if ((bool)eventArgs.Parameter == false) return;
@@ -240,7 +339,6 @@ namespace SMGApp.WPF.ViewModels
 
             await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
-
         #endregion
     }
 }
