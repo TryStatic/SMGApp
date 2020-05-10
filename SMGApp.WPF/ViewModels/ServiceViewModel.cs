@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,17 +6,17 @@ using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using SMGApp.Domain.Models;
-using SMGApp.Domain.Services;
+using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
-using SMGApp.WPF.Dialogs.CustomerDialogs;
 using SMGApp.WPF.Dialogs.ServiceDialogs;
 
 namespace SMGApp.WPF.ViewModels
 {
     public class ServiceViewModel : ViewModelBase
     {
-        private readonly IDataService<ServiceItem> _serviceItemsDataService;
+        private readonly ServiceItemsDataService _serviceItemsDataService;
+        private readonly CustomersDataService _customerServiceDataService;
 
         private IEnumerable<ServiceItem> _serviceItems;
         private string _searchBox;
@@ -122,9 +122,10 @@ namespace SMGApp.WPF.ViewModels
         }
 
 
-        public ServiceViewModel(IDataService<ServiceItem> serviceItemsDataService)
+        public ServiceViewModel(ServiceItemsDataService serviceItemsDataService, CustomersDataService customerServiceDataService)
         {
-            this._serviceItemsDataService = serviceItemsDataService;
+            _serviceItemsDataService = serviceItemsDataService;
+            _customerServiceDataService = customerServiceDataService;
             Task.Run(async () => await LoadServiceItems());
         }
 
