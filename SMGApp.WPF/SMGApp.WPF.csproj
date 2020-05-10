@@ -39,6 +39,9 @@
     <Compile Update="Dialogs\ServiceDialogs\DeleteServiceItemDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Dialogs\ServiceDialogs\ServiceDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
