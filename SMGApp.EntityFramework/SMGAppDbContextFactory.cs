@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +10,7 @@ namespace SMGApp.EntityFramework
 {
     public class SMGAppDbContextFactory : IDesignTimeDbContextFactory<SMGAppDbContext>
     {
-        private readonly string _path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Substring(6);
-
+        private readonly string _path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()?.Location);
 
         public SMGAppDbContext CreateDbContext(string[] args = null)
         {
