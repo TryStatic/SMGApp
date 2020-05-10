@@ -46,7 +46,7 @@
             IsTextSearchEnabled="False"
             x:Name="cb"
             PreviewTextInput="Cb_OnPreviewTextInput"
-            ItemsSource="{Binding ItemList}"
+            ItemsSource="{Binding ComboBoxBoundCustomers}"
             Text="{Binding SearchTextText}">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -54,6 +54,7 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
+
         <TextBox
             wpf:HintAssist.Hint="ΣΥΣΚΕΥΗ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
@@ -124,8 +125,9 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+
         <TextBox
-            wpf:HintAssist.Hint="ΚΩΔ. SIM"
+            wpf:HintAssist.Hint="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -138,7 +140,7 @@
             </TextBox.Text>
         </TextBox>
         <TextBox
-            wpf:HintAssist.Hint="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
+            wpf:HintAssist.Hint="PASSWORD ΛΟΓΑΡΙΑΣΜΟΥ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -150,27 +152,15 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox
-            wpf:HintAssist.Hint="PASSWORD ΛΟΓΑΡΙΑΣΜΟΥ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="9">
-            <TextBox.Text>
-                <Binding
-                    Path="Note"
-                    UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+
         <StackPanel
             Margin="0 10 0 10"
             VerticalAlignment="Center"
-            Grid.Row="10"
+            Grid.Row="9"
             Orientation="Horizontal">
 
             <CheckBox
-                Margin="10 0 10 0"
+                Margin="10 0 0 0"
                 Style="{StaticResource MaterialDesignCheckBox}">
                 <Image
                     Source="/Img/charger.png"
@@ -192,6 +182,33 @@
             </CheckBox>
         </StackPanel>
 
+
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="4 10 4 15"
+            Grid.Row="10">
+
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="True"
+                Content="ΠΑΡΑΛΗΦΘΗΚΕ" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="False"
+                Content="ΔΙΟΡΘΩΘΗΚΕ" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="False"
+                Content="ΠΑΡΑΔΟΘΗΚΕ" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="False"
+                Content="ΠΡΟΒΛΗΜΑ" />
+        </StackPanel>
 
         <StackPanel
             Orientation="Horizontal"
