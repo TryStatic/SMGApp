@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SMGApp.Domain.Models;
 
 namespace SMGApp.EntityFramework.Services
@@ -33,9 +34,12 @@ namespace SMGApp.EntityFramework.Services
             return entity;
         }
 
-        public override Task<ServiceItem> Create(ServiceItem entity)
+        public override async Task<ServiceItem> Create(ServiceItem entity)
         {
-            return base.Create(entity);
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            EntityEntry<ServiceItem> createdEntity = context.ServiceItems.Attach(entity);
+            await context.SaveChangesAsync();
+            return createdEntity.Entity;
         }
 
         public override Task<ServiceItem> Update(int id, ServiceItem entity)

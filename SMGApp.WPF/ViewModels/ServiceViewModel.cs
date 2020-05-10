@@ -217,12 +217,32 @@ namespace SMGApp.WPF.ViewModels
             // Get user details
             if (eventArgs.Session.Content is ServiceDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is ServiceDialogViewModel model)
             {
-
                 eventArgs.Session.UpdateContent(new ProgressDialog());
 
-                // PERFORM INSERT
+                ServiceItem newDetails = new ServiceItem();
 
+                Customer customer = (await _customerServiceDataService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
+                if (customer == null)
+                {
+                    // show error
+                    eventArgs.Session.Close(false);
+                    return;
+                }
 
+                newDetails.Customer = customer;
+                newDetails.DeviceDescription = model.Device;
+                newDetails.DamageDescription = model.DamageDescription;
+                newDetails.Notes = model.Notes;
+                newDetails.DevicePassword = model.DevicePassword;
+                newDetails.SimPassword = model.SimCode;
+                newDetails.DeviceAccountUsername = model.AccountUsername;
+                newDetails.DeviceAccountPassword = model.AccountPassword;
+                newDetails.ChargerIncluded = model.ChargerIncluded;
+                newDetails.BagIncluded = model.BagIncluded;
+                newDetails.CaseIncluded = model.CaseIncluded;
+                newDetails.State = model.ServiceState;
+
+                await _serviceItemsDataService.Create(newDetails);
                 await LoadServiceItems();
             }
             else
