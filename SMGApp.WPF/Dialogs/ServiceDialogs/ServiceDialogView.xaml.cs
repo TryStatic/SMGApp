@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SMGApp.WPF.Dialogs.ServiceDialogs
 {
@@ -10,6 +11,11 @@ namespace SMGApp.WPF.Dialogs.ServiceDialogs
         public ServiceDialogView()
         {
             InitializeComponent();
+        }
+
+        private void Cb_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            cb.IsDropDownOpen = true;
         }
     }
 }

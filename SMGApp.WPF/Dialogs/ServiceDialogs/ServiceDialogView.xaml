@@ -25,37 +25,45 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding OperationName}"
-                   HorizontalAlignment="Center"/>
-        <TextBox
-            wpf:HintAssist.Hint="ΕΠΩΝΥΜΟ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
+        <TextBlock Text="{Binding OperationName}" HorizontalAlignment="Center"/>
+
+        <ComboBox
+            Margin="0 20 0 0"
             Grid.Row="1"
-            Name="ΕΠΩΝΥΜΟ">
-            <TextBox.Text>
-                <Binding
-                    Path="LastName"
-                    UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validationRules:NotEmptyValidationRule
-                            ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+            IsEditable="True"
+            IsTextSearchEnabled="False"
+            x:Name="cb"
+            PreviewTextInput="Cb_OnPreviewTextInput"
+            ItemsSource="{Binding ItemList}"
+            Text="{Binding SearchTextText}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
         <TextBox
-            wpf:HintAssist.Hint="ΟΝΟΜΑ"
+            wpf:HintAssist.Hint="ΣΥΣΚΕΥΗ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
             Grid.Row="2"
-            Name="ΟΝΟΜΑ">
+            Name="ΣΥΣΚΕΥΗ">
             <TextBox.Text>
                 <Binding
-                    Path="FirstName"
+                    Path="Device"
                     UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validationRules:NotEmptyValidationRule
@@ -65,40 +73,33 @@
             </TextBox.Text>
         </TextBox>
         <TextBox
-            wpf:HintAssist.Hint="ΔΙΕΥΘΥΝΣΗ"
+            wpf:HintAssist.Hint="ΒΛΑΒΗ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
             Grid.Row="3">
             <TextBox.Text>
                 <Binding
-                    Path="Address"
+                    Path="DamageDescription"
                     UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox
-            wpf:HintAssist.Hint="ΤΗΛΕΦΩΝΟ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="4"
-            Name="ΤΗΛΕΦΩΝΟ">
-            <TextBox.Text>
-                <Binding
-                    Path="PhoneNumber"
-                    UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validationRules:OnlyNumbersValidationRule
-                            ValidatesOnTargetUpdated="True" />
-                        <validationRules:AtLeastTenCharactersValidationRule
-                            ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
         <TextBox
             wpf:HintAssist.Hint="ΣΧΟΛΙΑ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="4">
+            <TextBox.Text>
+                <Binding
+                    Path="Note"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΚΩΔ. ΣΥΣΚΕΥΗΣ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -110,12 +111,92 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΚΩΔ. SIM"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="6">
+            <TextBox.Text>
+                <Binding
+                    Path="Note"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΚΩΔ. SIM"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="7">
+            <TextBox.Text>
+                <Binding
+                    Path="Note"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="8">
+            <TextBox.Text>
+                <Binding
+                    Path="Note"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="PASSWORD ΛΟΓΑΡΙΑΣΜΟΥ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="9">
+            <TextBox.Text>
+                <Binding
+                    Path="Note"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <StackPanel
+            Margin="0 10 0 10"
+            VerticalAlignment="Center"
+            Grid.Row="10"
+            Orientation="Horizontal">
+
+            <CheckBox
+                Margin="10 0 10 0"
+                Style="{StaticResource MaterialDesignCheckBox}">
+                <Image
+                    Source="/Img/charger.png"
+                    Height="30" />
+            </CheckBox>
+            <CheckBox
+                Margin="10 0 10 0"
+                Style="{StaticResource MaterialDesignCheckBox}">
+                <Image
+                    Source="/Img/bag.png"
+                    Height="30" />
+            </CheckBox>
+            <CheckBox
+                Margin="10 0 10 0"
+                Style="{StaticResource MaterialDesignCheckBox}">
+                <Image
+                    Source="/Img/case.png"
+                    Height="30" />
+            </CheckBox>
+        </StackPanel>
+
+
         <StackPanel
             Orientation="Horizontal"
-            Grid.Row="6"
+            Grid.Row="11"
             Margin="0 16 0 0">
-
-
             <Button
                 Content="ΕΙΣΑΓΩΓΗ"
                 IsDefault="True"
