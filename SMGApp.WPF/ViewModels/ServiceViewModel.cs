@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -341,5 +341,10 @@ namespace SMGApp.WPF.ViewModels
             await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
         #endregion
+
+        public ICommand PrintReceiptCommand => new GenericCommand(o =>
+        {
+            // PrintReceiptCommand LOGIC
+        });
     }
 }
