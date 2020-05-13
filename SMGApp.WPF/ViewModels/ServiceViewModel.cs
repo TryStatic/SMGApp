@@ -481,9 +481,9 @@ namespace SMGApp.WPF.ViewModels
             Image image = new Image(imageData).SetAutoScale(true);
             document.Add(image);
 
-            PdfFont liberationSansBold = PdfFontFactory.CreateFont(WPF.Properties.Resources.LiberationSans_Bold, PdfEncodings.IDENTITY_H, true);
+            PdfFont liberationSansBold = PdfFontFactory.CreateFont(Properties.Resources.LiberationSans_Bold, PdfEncodings.IDENTITY_H, true);
 
-            document.Add(new Paragraph("").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)).SetFont(liberationSansBold).SetBottomMargin(0);
+            document.Add(new Paragraph("").SetTextAlignment(TextAlignment.CENTER)).SetFont(liberationSansBold).SetBottomMargin(0);
 
             Text name = new Text("ΚΥΡΙΑΚΟΣ ΣΕΜΕΡΤΖΙΔΗΣ\n").SetFontSize(10.5f);
             Text address = new Text("ΕΘΝΙΚΗΣ ΑΝΤΙΣΤΑΣΗΣ 25\n").SetFontSize(10.5f);
@@ -503,7 +503,7 @@ namespace SMGApp.WPF.ViewModels
             // Line Separator
             document.Add(new LineSeparator(new SolidLine(1f)).SetMarginBottom(0));
 
-            document.Add(new Paragraph("ΠΑΡΑΔΟΣΗ ΣΥΣΚΕΥΗΣ").SetFontSize(11f)).SetFont(liberationSansBold).SetTopMargin(0);
+            document.Add(new Paragraph($"ΠΑΡΑΔΟΣΗ ΣΥΣΚΕΥΗΣ\n{DateTime.Now:dd/MM/yyyy HH:mm}").SetFontSize(11f).SetFixedLeading(11.0f).SetTextAlignment(TextAlignment.CENTER)).SetFont(liberationSansBold);
 
             // Line Separator (Dotted)
             document.Add(new LineSeparator(new DottedLine(1f)).SetMarginBottom(5f));
