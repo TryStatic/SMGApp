@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -8,8 +7,6 @@ using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Threading;
 using Microsoft.Extensions.DependencyInjection;
-using SMGApp.Domain.Models;
-using SMGApp.Domain.Services;
 using SMGApp.EntityFramework;
 using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.States.Navigators;
@@ -34,6 +31,21 @@ namespace SMGApp.WPF
                 Current.Shutdown();
                 return;
             }
+
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\receipts"))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\receipts");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error creating receipts directory.");
+                    Environment.Exit(1);
+                }
+
+            }
+
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("el-GR");
             Thread.CurrentThread.CurrentUICulture = new CultureInfo("el-GR");

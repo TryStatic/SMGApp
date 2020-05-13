@@ -1,15 +1,30 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using iText.IO.Font;
+using iText.IO.Font.Constants;
+using iText.IO.Image;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Kernel.Pdf.Canvas.Draw;
+using iText.Kernel.Pdf.Xobject;
+using iText.Layout;
+using iText.Layout.Element;
 using MaterialDesignThemes.Wpf;
 using SMGApp.Domain.Models;
 using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
 using SMGApp.WPF.Dialogs.ServiceDialogs;
+using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
+using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 namespace SMGApp.WPF.ViewModels
 {
@@ -421,10 +436,124 @@ namespace SMGApp.WPF.ViewModels
             await LoadServiceItems().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
         }
         #endregion
-
-        public ICommand PrintReceiptCommand => new GenericCommand(o =>
+        
+        public ICommand PrintReceiptCommand => new GenericCommand(async o =>
         {
-            // PrintReceiptCommand LOGIC
+            int id = (int) o;
+            ServiceItem serviceEntry = await _serviceItemsDataService.Get(id);
+
+            if (serviceEntry == null)
+            {
+                MessageBox.Show("Error Retreving Service Entry " + id);
+                return;
+            }
+
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\receipts"))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\receipts");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error creating receipts directory.");
+                    //return;
+                }
+
+            }
+
+            string path = AppDomain.CurrentDomain.BaseDirectory + $"\\receipts\\receipt{DateTimeOffset.UtcNow.ToUnixTimeSeconds()}.pdf";
+
+            PdfWriter writer = new PdfWriter(path);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf, new PageSize(8.5f * 72.0f, 11.0f * 72.0f));
+
+            document.SetMargins(
+                topMargin: 0.39370079f * 72.0f,
+                rightMargin: 16.45f * 0.39370079f * 72.0f,
+                bottomMargin: 0.39370079f * 72.0f,
+                leftMargin: 0.5f * 0.39370079f * 72.0f);
+
+
+            //PdfFont font = PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFontFamilies.TIMES, "Identity-H");
+            ImageData imageData = ImageDataFactory.Create(WPF.Properties.Resources.smg_blackwhite);
+            Image image = new Image(imageData).SetAutoScale(true);
+            document.Add(image);
+
+            PdfFont liberationSansBold = PdfFontFactory.CreateFont(WPF.Properties.Resources.LiberationSans_Bold, PdfEncodings.IDENTITY_H, true);
+
+            document.Add(new Paragraph("").SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)).SetFont(liberationSansBold).SetBottomMargin(0);
+
+            Text name = new Text("ΚΥΡΙΑΚΟΣ ΣΕΜΕΡΤΖΙΔΗΣ\n").SetFontSize(10.5f);
+            Text address = new Text("ΕΘΝΙΚΗΣ ΑΝΤΙΣΤΑΣΗΣ 25\n").SetFontSize(10.5f);
+            Text phone = new Text("ΤΗΛ: 2351023223\n").SetFontSize(10.5f);
+            Text afm = new Text("ΑΦΜ: 153051582\n").SetFontSize(10.5f);
+            Text comment = new Text("ΕΜΠΟΡΙΑ & ΕΠΙΣΚΕΥΕΣ Η/Υ\n").SetFontSize(9.5f);
+
+            Paragraph headerParagraph = new Paragraph().SetFixedLeading(9f).SetMarginTop(0);
+            headerParagraph.Add(name);
+            headerParagraph.Add(address);
+            headerParagraph.Add(phone);
+            headerParagraph.Add(afm);
+            headerParagraph.Add(comment);
+
+            document.Add(headerParagraph).SetFont(liberationSansBold);
+
+            // Line Separator
+            document.Add(new LineSeparator(new SolidLine(1f)).SetMarginBottom(0));
+
+            document.Add(new Paragraph("ΠΑΡΑΔΟΣΗ ΣΥΣΚΕΥΗΣ").SetFontSize(11f)).SetFont(liberationSansBold).SetTopMargin(0);
+
+            // Line Separator (Dotted)
+            document.Add(new LineSeparator(new DottedLine(1f)).SetMarginBottom(5f));
+
+
+            Text cName = new Text("ΟΝΟΜΑΤΕΠΩΝΥΜΟ:").SetFontSize(10.0f).SetUnderline();
+            Text cNameFilled = new Text($" {serviceEntry.Customer.CustomerDetails}\n\n").SetFontSize(10.5f);
+
+            Text cDevice = new Text("ΣΥΣΚΕΥΗ:").SetFontSize(10.0f).SetUnderline();
+            Text cDeviceFilled = new Text($" {serviceEntry.DeviceDescription} (ID: {serviceEntry.ID})\n\n").SetFontSize(10.5f);
+
+            Text cDmg = new Text("ΒΛΑΒΗ:").SetFontSize(10.0f).SetUnderline();
+            Text cDmgFilled = new Text($" {serviceEntry.DamageDescription}\n\n").SetFontSize(10.5f);
+
+
+            Text cAccessories = new Text("ΠΑΡΕΛΚΟΜΕΝΑ:\n").SetFontSize(10.0f).SetUnderline();
+            string caseIncluded = serviceEntry.CaseIncluded ? "ΝΑΙ" : "ΟΧΙ";
+            string chargerIncluded = serviceEntry.ChargerIncluded ? "ΝΑΙ" : "ΟΧΙ";
+            string bagIncluded = serviceEntry.BagIncluded ? "ΝΑΙ" : "ΟΧΙ";
+            Text cAccessoriesFilled = new Text($"-ΘΗΚΗ [{caseIncluded}]\n\t-ΦΟΡΤΗΣΤΗΣ [{chargerIncluded}]\n\t-ΤΣΑΝΤΑ [{bagIncluded}]\n\n").SetFontSize(10.5f);
+
+            Text cPrice = new Text("ΚΟΣΤΟΣ:").SetFontSize(10.0f).SetUnderline();
+            Text cPriceFilled = new Text($" {serviceEntry.GetCost}\n\n").SetFontSize(10.5f);
+
+            Paragraph customerParagraph = new Paragraph().SetFixedLeading(11f).SetMarginTop(5f);
+            customerParagraph.Add(cName);
+            customerParagraph.Add(cNameFilled);
+            customerParagraph.Add(cDevice);
+            customerParagraph.Add(cDeviceFilled);
+            customerParagraph.Add(cDmg);
+            customerParagraph.Add(cDmgFilled);
+            customerParagraph.Add(cAccessories);
+            customerParagraph.Add(cAccessoriesFilled);
+            customerParagraph.Add(cPrice);
+            customerParagraph.Add(cPriceFilled);
+            document.Add(customerParagraph).SetFont(liberationSansBold);
+
+            // Line Separator (Dotted)
+            document.Add(new LineSeparator(new DottedLine(1f)).SetMarginBottom(5f));
+            document.Add(new Paragraph("ΕΥΧΑΡΙΣΤΟΥΜΕ ΓΙΑ ΤΗΝ ΠΡΟΤΙΜΗΣΗ ΣΑΣ").SetFixedLeading(11f).SetMarginTop(5f));
+
+
+            document.Close();
+
+            Process p = new Process();
+            ProcessStartInfo pi = new ProcessStartInfo {UseShellExecute = true, FileName = path};
+            p.StartInfo = pi;
+            p.Start();
+
         });
     }
+
+
 }
