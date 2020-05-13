@@ -81,7 +81,8 @@
                 Height="40"
                 Margin="0,0,8,0"
                 ToolTip="ΚΑΡΤΕΛΑ ΑΠΟΘΗΚΗΣ"
-                Content="ΑΠΟΘΗΚΗ" />
+                Content="ΑΠΟΘΗΚΗ" 
+                IsEnabled="false"/>
 
 
             <Button
@@ -93,7 +94,8 @@
                 Height="40"
                 Margin="0,0,8,0"
                 ToolTip="ΕΠΙΛΟΓΕΣ BACKUP"
-                Content="BACKUP" />
+                Content="BACKUP"
+                IsEnabled="false"/>
         </Grid>
     </Grid>
 </UserControl>
