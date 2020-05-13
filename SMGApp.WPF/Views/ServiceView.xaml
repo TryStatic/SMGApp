@@ -170,7 +170,7 @@
 
         <materialDesign:Card
             MinWidth="1600"
-            MaxWidth="1900"
+            MaxWidth="1700"
             materialDesign:ShadowAssist.ShadowDepth="Depth2"
             Padding="10"
             Grid.Row="1"
