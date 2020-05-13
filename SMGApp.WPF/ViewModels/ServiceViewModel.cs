@@ -23,6 +23,7 @@ using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
 using SMGApp.WPF.Dialogs.ServiceDialogs;
+using SMGApp.WPF.ViewModels.Util;
 using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
 
@@ -245,13 +246,13 @@ namespace SMGApp.WPF.ViewModels
                 }
 
                 newDetails.Customer = customer;
-                newDetails.DeviceDescription = model.Device;
-                newDetails.DamageDescription = model.DamageDescription;
-                newDetails.Notes = model.Notes;
-                newDetails.DevicePassword = model.DevicePassword;
-                newDetails.SimPassword = model.SimCode;
-                newDetails.DeviceAccountUsername = model.AccountUsername;
-                newDetails.DeviceAccountPassword = model.AccountPassword;
+                newDetails.DeviceDescription = model.Device.ToUpperΝοintonation();
+                newDetails.DamageDescription = model.DamageDescription.ToUpperΝοintonation();
+                newDetails.Notes = model.Notes.ToUpperΝοintonation();
+                newDetails.DevicePassword = model.DevicePassword.ToUpperΝοintonation();
+                newDetails.SimPassword = model.SimCode.ToUpperΝοintonation();
+                newDetails.DeviceAccountUsername = model.AccountUsername.ToUpperΝοintonation();
+                newDetails.DeviceAccountPassword = model.AccountPassword.ToUpperΝοintonation();
                 newDetails.ChargerIncluded = model.ChargerIncluded;
                 newDetails.BagIncluded = model.BagIncluded;
                 newDetails.CaseIncluded = model.CaseIncluded;
@@ -354,13 +355,13 @@ namespace SMGApp.WPF.ViewModels
                     }
                     updatedDetails.Customer = customer;
                 }
-                updatedDetails.DeviceDescription = model.Device;
-                updatedDetails.DamageDescription = model.DamageDescription;
-                updatedDetails.Notes = model.Notes;
-                updatedDetails.DevicePassword = model.DevicePassword;
-                updatedDetails.SimPassword = model.SimCode;
-                updatedDetails.DeviceAccountUsername = model.AccountUsername;
-                updatedDetails.DeviceAccountPassword = model.AccountPassword;
+                updatedDetails.DeviceDescription = model.Device.ToUpperΝοintonation();
+                updatedDetails.DamageDescription = model.DamageDescription.ToUpperΝοintonation();
+                updatedDetails.Notes = model.Notes.ToUpperΝοintonation();
+                updatedDetails.DevicePassword = model.DevicePassword.ToUpperΝοintonation();
+                updatedDetails.SimPassword = model.SimCode.ToUpperΝοintonation();
+                updatedDetails.DeviceAccountUsername = model.AccountUsername.ToUpperΝοintonation();
+                updatedDetails.DeviceAccountPassword = model.AccountPassword.ToUpperΝοintonation();
                 updatedDetails.ChargerIncluded = model.ChargerIncluded;
                 updatedDetails.BagIncluded = model.BagIncluded;
                 updatedDetails.CaseIncluded = model.CaseIncluded;
