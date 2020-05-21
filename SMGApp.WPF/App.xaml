@@ -19,18 +19,31 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <DataTemplate DataType="{x:Type viewModels:CustomerViewModel}">
+            <DataTemplate 
+                DataType="{x:Type viewModels:CustomerViewModel}">
                 <views:CustomerView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:ServiceViewModel}">
+            
+            <DataTemplate 
+                DataType="{x:Type viewModels:ServiceViewModel}">
                 <views:ServiceView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:InventoryViewModel}">
+            
+            <DataTemplate 
+                DataType="{x:Type viewModels:InventoryViewModel}">
                 <views:InventoryView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModels:BackupViewModel}">
+            
+            <DataTemplate
+                DataType="{x:Type viewModels:BackupViewModel}">
                 <views:BackupView />
             </DataTemplate>
+            
+            <DataTemplate
+                DataType="{x:Type viewModels:GuaranteeViewModel}">
+                <views:GuaranteeView />
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

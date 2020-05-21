@@ -7,7 +7,8 @@ namespace SMGApp.WPF.States.Navigators
         Customer,
         Service,
         Inventory,
-        Backup
+        Backup,
+        Guarantee
     }
 
     public interface INavigator

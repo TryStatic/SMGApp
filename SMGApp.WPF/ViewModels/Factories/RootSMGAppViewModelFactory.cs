@@ -14,17 +14,20 @@ namespace SMGApp.WPF.ViewModels.Factories
         private readonly ISMGAppViewModelFactory<ServiceViewModel> _serviceViewModelFactory;
         private readonly ISMGAppViewModelFactory<InventoryViewModel> _inventoryViewModelFactory;
         private readonly ISMGAppViewModelFactory<BackupViewModel> _backupViewModelFactory;
+        private readonly ISMGAppViewModelFactory<GuaranteeViewModel> _guaranteeViewModelFactory;
 
         public RootSMGAppViewModelFactory(
             ISMGAppViewModelFactory<CustomerViewModel> customerViewModelFactory, 
             ISMGAppViewModelFactory<ServiceViewModel> serviceViewModelFactory, 
-            ISMGAppViewModelFactory<InventoryViewModel> inventoryViewModelFactory, 
-            ISMGAppViewModelFactory<BackupViewModel> backupViewModelFactory)
+            ISMGAppViewModelFactory<InventoryViewModel> inventoryViewModelFactory,
+            ISMGAppViewModelFactory<BackupViewModel> backupViewModelFactory,
+            ISMGAppViewModelFactory<GuaranteeViewModel> guaranteeViewModelFactory)
         {
             _customerViewModelFactory = customerViewModelFactory;
             _serviceViewModelFactory = serviceViewModelFactory;
             _inventoryViewModelFactory = inventoryViewModelFactory;
             _backupViewModelFactory = backupViewModelFactory;
+            _guaranteeViewModelFactory = guaranteeViewModelFactory;
         }
 
         public ViewModelBase CreateViewModel(ViewType viewType)
@@ -40,6 +43,8 @@ namespace SMGApp.WPF.ViewModels.Factories
                     return _inventoryViewModelFactory.CreateViewModel();
                 case ViewType.Backup:
                     return _backupViewModelFactory.CreateViewModel();
+                case ViewType.Guarantee:
+                    return _guaranteeViewModelFactory.CreateViewModel();
                 default:
                     throw new ArgumentException("The View Type does not a ViewModel.", nameof(viewType));
             }
