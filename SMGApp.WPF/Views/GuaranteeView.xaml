@@ -154,7 +154,7 @@
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                             <MenuItem
                                 Header="ΔΙΑΓΡΑΦΗ"
-                                Command="{Binding DataContext.DeleteServiceEntryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                Command="{Binding DataContext.DeleteGuaranteeEntryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                         </ContextMenu.Items>
                     </ContextMenu>

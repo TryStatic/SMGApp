@@ -18,9 +18,11 @@ namespace SMGApp.EntityFramework.Services
             return entities;
         }
 
-        public override Task<Guarantee> Get(int id)
+        public override async Task<Guarantee> Get(int id)
         {
-            return base.Get(id);
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            Guarantee entry = await context.Guarantees.Include(b => b.Customer).FirstOrDefaultAsync(c => c.ID == id);
+            return entry;
         }
 
         public override Task<Guarantee> Create(Guarantee entity)

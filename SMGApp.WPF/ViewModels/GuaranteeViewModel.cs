@@ -1,8 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using MaterialDesignThemes.Wpf;
 using SMGApp.Domain.Models;
 using SMGApp.EntityFramework.Services;
+using SMGApp.WPF.Commands;
+using SMGApp.WPF.Dialogs;
+using SMGApp.WPF.Dialogs.ServiceDialogs;
 
 namespace SMGApp.WPF.ViewModels
 {
@@ -19,10 +25,63 @@ namespace SMGApp.WPF.ViewModels
             Task.Run(async () => await LoadGuaranties());
         }
 
-        private async Task LoadGuaranties()
+
+
+        #region DeleteGuaranteeEntry
+        public ICommand DeleteGuaranteeEntryCommand => new DialogCommand(DeleteGuaranteeEntryDialog);
+        private async void DeleteGuaranteeEntryDialog(object idObject)
         {
-            GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).ToList();
+            int id = (int)idObject;
+
+            Guarantee guarantee = await _guaranteeDataService.Get(id);
+
+            if (guarantee == null)
+            {
+                // Show error
+                return;
+            }
+
+            DeleteServiceItemDialogView view = new DeleteServiceItemDialogView();
+            DeleteServiceItemDialogViewModel viewmodel = new DeleteServiceItemDialogViewModel();
+
+            viewmodel.ProductName = guarantee.ProductDesc;
+            viewmodel.ServiceEntryID = guarantee.ID;
+            viewmodel.RelatedCustomer = guarantee.CustomerDetails;
+
+            view.DataContext = viewmodel;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OneDeleteUserDialogOpen, OneDeleteUserDialogClose);
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
         }
+        private void OneDeleteUserDialogOpen(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private async void OneDeleteUserDialogClose(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == false) return;
+
+            //OK, lets cancel the close...
+            eventArgs.Cancel();
+
+            // Get user details
+            if (eventArgs.Session.Content is DeleteServiceItemDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is DeleteServiceItemDialogViewModel model)
+            {
+                eventArgs.Session.UpdateContent(new ProgressDialog());
+
+                await _guaranteeDataService.Delete(model.ServiceEntryID);
+
+                await LoadGuaranties();
+            }
+            else
+            {
+                // show error
+            }
+
+            await LoadGuaranties().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
 
         #region SearchBox
         private string _searchBox;
@@ -66,6 +125,12 @@ namespace SMGApp.WPF.ViewModels
                 OnPropertyChanged(nameof(GuaranteeEntries));
             }
         }
+
+        private async Task LoadGuaranties()
+        {
+            GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).ToList();
+        }
+
         #endregion
 
 
