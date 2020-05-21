@@ -396,12 +396,13 @@ namespace SMGApp.WPF.ViewModels
                 return;
             }
 
-            DeleteServiceItemDialogView view = new DeleteServiceItemDialogView();
-            DeleteServiceItemDialogViewModel viewmodel = new DeleteServiceItemDialogViewModel();
+            DeleteItemDialogView view = new DeleteItemDialogView();
+            DeleteItemDialogViewModel viewmodel = new DeleteItemDialogViewModel();
 
             viewmodel.ProductName = serviceEntry.DeviceDescription;
             viewmodel.ServiceEntryID = serviceEntry.ID;
             viewmodel.RelatedCustomer = serviceEntry.CustomerDetails;
+            viewmodel.RelatedTab = "SERVICE";
             
             view.DataContext = viewmodel;
 
@@ -421,7 +422,7 @@ namespace SMGApp.WPF.ViewModels
             eventArgs.Cancel();
 
             // Get user details
-            if (eventArgs.Session.Content is DeleteServiceItemDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is DeleteServiceItemDialogViewModel model)
+            if (eventArgs.Session.Content is DeleteItemDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is DeleteItemDialogViewModel model)
             {
                 eventArgs.Session.UpdateContent(new ProgressDialog());
 

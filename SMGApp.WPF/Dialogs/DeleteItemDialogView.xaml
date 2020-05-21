@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="SMGApp.WPF.Dialogs.ServiceDialogs.DeleteServiceItemDialogView"
+    x:Class="SMGApp.WPF.Dialogs.DeleteItemDialogView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -28,10 +28,17 @@
             <StackPanel
                 Margin="3 3 3 3">
                 <TextBlock
-                    Margin="0 10 0 0"
                     TextWrapping="Wrap"
-                    Style="{StaticResource MaterialDesignSubtitle2TextBlock}"
-                    Text="ΔΙΑΓΡΑΦΗ ΕΙΣΑΓΩΓΗΣ SERVICE" />
+                    Style="{StaticResource MaterialDesignBody2TextBlock}"
+                    Margin="20 3 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding
+                            StringFormat="{} ΔΙΑΓΡΑΦΗ ΕΙΣΑΓΩΓΗΣ {0}">
+                            <Binding
+                                Path="RelatedTab" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
                 <TextBlock
                     TextWrapping="Wrap"
                     Style="{StaticResource MaterialDesignBody2TextBlock}"

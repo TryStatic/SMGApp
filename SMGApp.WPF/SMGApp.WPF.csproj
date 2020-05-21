@@ -38,7 +38,7 @@
     <Compile Update="Dialogs\CustomerDialogs\DeleteDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Dialogs\ServiceDialogs\DeleteServiceItemDialogView.xaml.cs">
+    <Compile Update="Dialogs\DeleteItemDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Dialogs\ServiceDialogs\ServiceDialogView.xaml.cs">
@@ -62,7 +62,7 @@
     <Page Update="Dialogs\CustomerDialogs\DeleteDialogView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Dialogs\ServiceDialogs\DeleteServiceItemDialogView.xaml">
+    <Page Update="Dialogs\DeleteItemDialogView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
