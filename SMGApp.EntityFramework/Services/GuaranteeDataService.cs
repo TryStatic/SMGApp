@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SMGApp.Domain.Models;
 
 namespace SMGApp.EntityFramework.Services
@@ -10,9 +11,11 @@ namespace SMGApp.EntityFramework.Services
         {
         }
 
-        public override Task<IEnumerable<Guarantee>> GetAll()
+        public override async Task<IEnumerable<Guarantee>> GetAll()
         {
-            return base.GetAll();
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            IEnumerable<Guarantee> entities = await context.Set<Guarantee>().Include(b => b.Customer).ToListAsync();
+            return entities;
         }
 
         public override Task<Guarantee> Get(int id)
