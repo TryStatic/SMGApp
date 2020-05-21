@@ -10,6 +10,8 @@ namespace SMGApp.Domain.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public GuaranteeType GuaranteeType { get; set; }
+
+        public string CustomerDetails => Customer != null ? $"{Customer.LastName} {Customer.FirstName} (ID: {Customer.ID})" : "";
     }
 
     public enum GuaranteeType
