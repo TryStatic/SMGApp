@@ -76,6 +76,7 @@ namespace SMGApp.WPF
             services.AddSingleton<SMGAppDbContextFactory>();
             services.AddSingleton<CustomersDataService, CustomersDataService>();
             services.AddSingleton<ServiceItemsDataService, ServiceItemsDataService>();
+            services.AddSingleton<GuaranteeDataService, GuaranteeDataService>();
 
             services.AddSingleton<IRootSMGAppViewModelAbstractFactory, RootSMGAppViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<CustomerViewModel>, CustomerViewModelFactory>();
