@@ -195,14 +195,14 @@
                         ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding StartDate, StringFormat=dd-MM-yyyy hh:mm}"
+                        Binding="{Binding StartDate, StringFormat=dd-MM-yyyy}"
                         Header="ΗΝ/ΝΙΑ ΕΝΑΡΞΗΣ"
                         IsReadOnly="true"
                         MinWidth="130"
                         MaxWidth="150"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding EndDate, StringFormat=dd-MM-yyyy hh:mm}"
+                        Binding="{Binding EndDate, StringFormat=dd-MM-yyyy}"
                         Header="ΗΝ/ΝΙΑ ΛΗΞΗΣ"
                         IsReadOnly="true"
                         MinWidth="130"
