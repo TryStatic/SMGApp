@@ -8,6 +8,7 @@ namespace SMGApp.EntityFramework
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<ServiceItem> ServiceItems { get; set; }
+        public DbSet<Guarantee> Guarantees { get; set; }
 
         public SMGAppDbContext(DbContextOptions options) : base(options)
         {
