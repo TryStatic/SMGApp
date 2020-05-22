@@ -1,0 +1,303 @@
+<UserControl
+    x:Class="SMGApp.WPF.Dialogs.GuaranteeDialogs.GuaranteeDialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:dialogs="clr-namespace:SMGApp.WPF.Dialogs"
+    xmlns:validationRules="clr-namespace:SMGApp.WPF.Dialogs.ValidationRules"
+    xmlns:util="clr-namespace:SMGApp.WPF.Util"
+    mc:Ignorable="d"
+    d:DesignHeight="500"
+    d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <util:EnumMatchToBooleanConverter x:Key="enumConverter" />
+    </UserControl.Resources>
+
+    <Grid
+        Margin="16"
+        MinWidth="400">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding OperationName}" HorizontalAlignment="Center"/>
+
+        <ComboBox
+            wpf:HintAssist.Hint="ΑΝΑΖΗΤΗΣΗ"
+            wpf:HintAssist.HintOpacity=".26"
+            Margin="0 20 0 0"
+            Grid.Row="1"
+            IsEditable="True"
+            IsTextSearchEnabled="False"
+            x:Name="Cb"
+            PreviewTextInput="Cb_OnPreviewTextInput"
+            ItemsSource="{Binding ComboBoxBoundCustomers}"
+            Text="{Binding CustomerName}">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
+        <TextBox
+            wpf:HintAssist.Hint="ΣΥΣΚΕΥΗ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="2"
+            Name="ΣΥΣΚΕΥΗ">
+            <TextBox.Text>
+                <Binding
+                    Path="Device"
+                    UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            Name="ΒΛΑΒΗ"
+            wpf:HintAssist.Hint="ΒΛΑΒΗ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="3">
+            <TextBox.Text>
+                <Binding
+                    Path="DamageDescription"
+                    UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΣΧΟΛΙΑ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="4">
+            <TextBox.Text>
+                <Binding
+                    Path="Notes"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΚΩΔ. ΣΥΣΚΕΥΗΣ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="5">
+            <TextBox.Text>
+                <Binding
+                    Path="DevicePassword"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΚΩΔ. SIM"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="6">
+            <TextBox.Text>
+                <Binding
+                    Path="SimCode"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox
+            wpf:HintAssist.Hint="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="7">
+            <TextBox.Text>
+                <Binding
+                    Path="AccountUsername"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox
+            wpf:HintAssist.Hint="PASSWORD ΛΟΓΑΡΙΑΣΜΟΥ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="8">
+            <TextBox.Text>
+                <Binding
+                    Path="AccountPassword"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <StackPanel
+            Margin="0 10 0 10"
+            VerticalAlignment="Center"
+            Grid.Row="9"
+            Orientation="Horizontal">
+
+            <CheckBox
+                Margin="10 0 0 0"
+                IsChecked="{Binding Path=ChargerIncluded, Mode=TwoWay}"
+                Style="{StaticResource MaterialDesignCheckBox}">
+                <Image
+                    Source="/Img/charger.png"
+                    Height="30" />
+            </CheckBox>
+            <CheckBox
+                Margin="10 0 10 0"
+                IsChecked="{Binding Path=BagIncluded, Mode=TwoWay}"
+                Style="{StaticResource MaterialDesignCheckBox}">
+                <Image
+                    Source="/Img/bag.png"
+                    Height="30" />
+            </CheckBox>
+            <CheckBox
+                Margin="10 0 10 0"
+                IsChecked="{Binding Path=CaseIncluded, Mode=TwoWay}"
+                Style="{StaticResource MaterialDesignCheckBox}">
+                <Image
+                    Source="/Img/case.png"
+                    Height="30" />
+            </CheckBox>
+        </StackPanel>
+
+
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="4 10 4 15"
+            Grid.Row="10">
+
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                Content="ΠΑΡΑΛΗΦΘΗΚΕ"
+                GroupName="Arrived"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Arrived}" 
+                />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                Content="ΔΙΟΡΘΩΘΗΚΕ"
+                GroupName="Fixed"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Fixed}" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                Content="ΠΑΡΑΔΟΘΗΚΕ"
+                GroupName="Delivered"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Delivered}" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                Content="ΠΡΟΒΛΗΜΑ"
+                GroupName="Issue"
+                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                                 Converter={StaticResource enumConverter},
+                                 ConverterParameter=Issue}" />
+        </StackPanel>
+
+
+        <TextBox
+            wpf:HintAssist.Hint="ΚΟΣΤΟΣ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="11"
+            Text="{Binding Path=Cost, 
+                        Mode=TwoWay, 
+                        UpdateSourceTrigger=PropertyChanged, 
+                        StringFormat=N2}">
+        </TextBox>
+
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="12"
+            Margin="0 16 0 0">
+            <Button
+                Content="ΕΙΣΑΓΩΓΗ"
+                IsDefault="True"
+                Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+                <Button.Style>
+                    <Style
+                        TargetType="Button"
+                        BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΣΥΣΚΕΥΗ}"
+                                Value="True">
+                                <Setter
+                                    Property="IsEnabled"
+                                    Value="False" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding Path=(Validation.HasError), ElementName=ΒΛΑΒΗ}"
+                                Value="True">
+                                <Setter
+                                    Property="IsEnabled"
+                                    Value="False" />
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+            <Button
+                IsCancel="True"
+                Margin="8 0 0 0"
+                Style="{DynamicResource MaterialDesignFlatButton}"
+                Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>False</system:Boolean>
+                </Button.CommandParameter>
+                ΑΚΥΡΩΣΗ
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
