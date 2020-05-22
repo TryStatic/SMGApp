@@ -119,6 +119,14 @@
                         </TextBox>
                     </Grid>
                 </materialDesign:ColorZone>
+
+                <CheckBox
+                    IsChecked="{Binding ShowExpired, Mode=TwoWay}"
+                    Margin="20 0 10 0"
+                    Grid.Column="2"
+                    Style="{StaticResource MaterialDesignCheckBox}">
+                    ΕΜΦΑΝΙΣΗ ΟΛΩΝ
+                </CheckBox>
             </Grid>
         </materialDesign:Card>
 

@@ -26,6 +26,17 @@ namespace SMGApp.WPF.ViewModels
         }
 
 
+        private bool _showExpired;
+        public bool ShowExpired
+        {
+            get => _showExpired;
+            set
+            {
+                _showExpired = value;
+                this.OnPropertyChanged(nameof(ShowExpired));
+                SearchBoxChanged(SearchBox);
+            }
+        }
 
         #region DeleteGuaranteeEntry
         public ICommand DeleteGuaranteeEntryCommand => new DialogCommand(DeleteGuaranteeEntryDialog);
@@ -106,11 +117,13 @@ namespace SMGApp.WPF.ViewModels
 
             if (int.TryParse(value, out int id))
             {
-                GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.ID == id).ToList();
+                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.ID == id).ToList();
+                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.ID == id && i.EndDate > DateTime.Now).ToList();
             }
             else
             {
-                GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.CustomerDetails.ToUpper().Contains(value.ToUpper())).OrderByDescending(r => r.ID).ToList();
+                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.CustomerDetails.ToUpper().Contains(value.ToUpper())).OrderByDescending(r => r.ID).ToList();
+                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.CustomerDetails.ToUpper().Contains(value.ToUpper()) && c.EndDate > DateTime.Now).OrderByDescending(r => r.ID).ToList();
             }
         }
         #endregion
@@ -126,12 +139,11 @@ namespace SMGApp.WPF.ViewModels
                 OnPropertyChanged(nameof(GuaranteeEntries));
             }
         }
-
         private async Task LoadGuaranties()
         {
-            GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).ToList();
+            if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).ToList();
+            else GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(it => it.EndDate > DateTime.Now).ToList();
         }
-
         #endregion
 
 
