@@ -30,10 +30,10 @@
                 <TextBlock
                     TextWrapping="Wrap"
                     Style="{StaticResource MaterialDesignBody2TextBlock}"
-                    Margin="20 3 0 0">
+                    Margin="0 3 0 0">
                     <TextBlock.Text>
                         <MultiBinding
-                            StringFormat="{} ΔΙΑΓΡΑΦΗ ΕΙΣΑΓΩΓΗΣ {0}">
+                            StringFormat="{}ΔΙΑΓΡΑΦΗ ΕΙΣΑΓΩΓΗΣ {0}">
                             <Binding
                                 Path="RelatedTab" />
                         </MultiBinding>
@@ -45,7 +45,7 @@
                     Margin="20 3 0 0">
                     <TextBlock.Text>
                         <MultiBinding
-                            StringFormat="{}{0} (ServiceID:{1})">
+                            StringFormat="{}{0} (ID:{1})">
                             <Binding
                                 Path="ProductName" />
                             <Binding
