@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using SMGApp.Domain.Models;
 using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
+using SMGApp.WPF.Dialogs.GuaranteeDialogs;
 using SMGApp.WPF.Dialogs.ServiceDialogs;
+using SMGApp.WPF.ViewModels.Util;
 
 namespace SMGApp.WPF.ViewModels
 {
@@ -37,6 +40,143 @@ namespace SMGApp.WPF.ViewModels
                 SearchBoxChanged(SearchBox);
             }
         }
+
+
+        #region CreateNewGuaranteeItem
+        public ICommand CreateNewGuaranteeItemCommand => new DialogCommand(CreateNewServiceEntryDialog);
+        private async void CreateNewServiceEntryDialog(object o)
+        {
+
+            GuaranteeDialogView view = new GuaranteeDialogView();
+            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
+
+            model.OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ GUARANTEE";
+
+            view.DataContext = model;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnCreateNewServiceEntryDialog, OnCreateNewServiceEntryDialog);
+
+            //check the result...
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+        private void OnCreateNewServiceEntryDialog(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private async void OnCreateNewServiceEntryDialog(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == false) return;
+
+            //OK, lets cancel the close...
+            eventArgs.Cancel();
+
+            // Get user details
+            if (eventArgs.Session.Content is GuaranteeDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is GuaranteeDialogViewModel model)
+            {
+                eventArgs.Session.UpdateContent(new ProgressDialog());
+
+                Guarantee newDetails = new Guarantee();
+
+                Customer customer = (await _customerService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
+
+                newDetails.Customer = customer;
+                // TODO: Get new Details from Model and set them to Guarantee
+
+                await _guaranteeDataService.Create(newDetails);
+                await LoadGuaranties();
+            }
+            else
+            {
+                // show error
+            }
+
+            await LoadGuaranties().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
+
+        #region EditGuaranteeEntry
+        public ICommand EditGuaranteeItem => new DialogCommand(EditServiceEntryDialog);
+        private async void EditServiceEntryDialog(object idObject)
+        {
+            int id = (int)idObject;
+
+            Guarantee guaranteeEntry = await (_guaranteeDataService.Get(id));
+            if (guaranteeEntry == null)
+            {
+                // Show Error
+                return;
+            }
+
+            //let's set up a little MVVM, cos that's what the cool kids are doing:
+            GuaranteeDialogView view = new GuaranteeDialogView();
+            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _guaranteeDataService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
+
+            model.UpdateID = id;
+
+            model.CustomerBeforeEdit = guaranteeEntry.Customer;
+            model.CustomerName = guaranteeEntry.CustomerDetails;
+            // TODO: Set new details to model
+
+            model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ GUARANTEE (ID: {id})";
+
+            view.DataContext = model;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnEditServiceEntryDialog, OnEditServiceEntryDialog);
+
+            //check the result...
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+        private void OnEditServiceEntryDialog(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private async void OnEditServiceEntryDialog(object sender, DialogClosingEventArgs eventArgs)
+        {
+            if ((bool)eventArgs.Parameter == false) return;
+
+            //OK, lets cancel the close...
+            eventArgs.Cancel();
+
+            // Get user details
+            if (eventArgs.Session.Content is GuaranteeDialogView deleteServiceItemDialogView && deleteServiceItemDialogView.DataContext is GuaranteeDialogViewModel model)
+            {
+
+                eventArgs.Session.UpdateContent(new ProgressDialog());
+
+                Guarantee updatedDetails = new Guarantee();
+
+                if (model.CustomerBeforeEdit.CustomerDetails == model.CustomerName)
+                {
+                    updatedDetails.Customer = model.CustomerBeforeEdit;
+                }
+                else
+                {
+                    Customer customer = (await _customerService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
+                    if (customer == null)
+                    {
+                        MessageBox.Show($"Ο ΠΕΛΑΤΗΣ {model.CustomerName} ΔΕΝ ΒΡΕΘΗΚΕ");
+                        await LoadGuaranties().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+                        return;
+                    }
+                    updatedDetails.Customer = customer;
+                }
+                // TODO: UPDATE DETAILS
+
+                await _guaranteeDataService.Update(model.UpdateID, updatedDetails);
+
+                await LoadGuaranties();
+            }
+            else
+            {
+                // show error
+            }
+
+            await LoadGuaranties().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
+
 
         #region DeleteGuaranteeEntry
         public ICommand DeleteGuaranteeEntryCommand => new DialogCommand(DeleteGuaranteeEntryDialog);
@@ -145,7 +285,5 @@ namespace SMGApp.WPF.ViewModels
             else GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(it => it.EndDate > DateTime.Now).ToList();
         }
         #endregion
-
-
     }
 }
