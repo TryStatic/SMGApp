@@ -12,8 +12,10 @@ namespace SMGApp.WPF.Dialogs.GuaranteeDialogs
     {
         // Operation Name
         public string OperationName { get; set; }
-        public int UpdateID { get; set; }
+        public int UpdateID { get; set; } = -1;
         public Customer CustomerBeforeEdit { get; set; }
+
+        public bool EnableState => UpdateID == -1;
 
         #region ComboBoxCustomers
         private ObservableCollection<string> _comboBoxBoundCustomers = new ObservableCollection<string>();

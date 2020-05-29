@@ -137,6 +137,7 @@
             Grid.Row="5">
 
             <RadioButton
+                IsEnabled="{Binding EnableState}"
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
                 Content="ΚΙΝΤΗΤΟ"
@@ -145,6 +146,7 @@
                                  Converter={StaticResource enumConverter},
                                  ConverterParameter=Cellphone}" />
             <RadioButton
+                IsEnabled="{Binding EnableState}"
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
                 Content="DESKTOP"
@@ -153,6 +155,7 @@
                                  Converter={StaticResource enumConverter},
                                  ConverterParameter=Desktop}" />
             <RadioButton
+                IsEnabled="{Binding EnableState}"
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
                 Content="LAPTOP"
@@ -161,6 +164,7 @@
                                  Converter={StaticResource enumConverter},
                                  ConverterParameter=Laptop}" />
             <RadioButton
+                IsEnabled="{Binding EnableState}"
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
                 Content="ΑΛΛΟ"

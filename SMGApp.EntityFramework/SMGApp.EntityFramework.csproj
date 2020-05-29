@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20200414221253_DefaultDateTimeNowForCreated.Designer.cs" />
     <Compile Remove="Migrations\20200414221410_DefaultDateTimeNowForCreated.cs" />
     <Compile Remove="Migrations\20200414221410_DefaultDateTimeNowForCreated.Designer.cs" />
+    <Compile Remove="Migrations\20200529082308_GuaranteeeVirtualIDs.cs" />
+    <Compile Remove="Migrations\20200529082308_GuaranteeeVirtualIDs.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

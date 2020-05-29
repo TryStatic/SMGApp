@@ -97,6 +97,8 @@ namespace SMGApp.WPF.ViewModels
                 newDetails.EndDate = model.EndDate;
                 newDetails.GuaranteeType = model.GuaranteeType;
 
+                newDetails.VirtualID = await _guaranteeDataService.GetVirtualID(newDetails.GuaranteeType);
+
                 await _guaranteeDataService.Create(newDetails);
                 await LoadGuaranties();
             }
@@ -178,7 +180,6 @@ namespace SMGApp.WPF.ViewModels
                 updatedDetails.ProductNotes = model.Notes;
                 updatedDetails.StartDate = model.StartDate;
                 updatedDetails.EndDate = model.EndDate;
-                updatedDetails.GuaranteeType = model.GuaranteeType;
 
                 await _guaranteeDataService.Update(model.UpdateID, updatedDetails);
 
@@ -273,8 +274,8 @@ namespace SMGApp.WPF.ViewModels
 
             if (int.TryParse(value, out int id))
             {
-                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.ID == id).ToList();
-                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.ID == id && i.EndDate > DateTime.Now).ToList();
+                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.VirtualID == id).ToList();
+                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.VirtualID == id && i.EndDate > DateTime.Now).ToList();
             }
             else
             {

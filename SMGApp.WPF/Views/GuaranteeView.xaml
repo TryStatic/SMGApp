@@ -178,7 +178,7 @@
                 </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <materialDesign:DataGridTextColumn
-                        Binding="{Binding ID}"
+                        Binding="{Binding VirtualID}"
                         Header="ID"
                         MinWidth="55"
                         MaxWidth="70"

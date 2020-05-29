@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -47,6 +49,16 @@ namespace SMGApp.EntityFramework.Services
         public override Task<bool> Delete(int id)
         {
             return base.Delete(id);
+        }
+
+        public async Task<int> GetVirtualID(GuaranteeType newDetailsGuaranteeType)
+        {
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+
+            if (await context.Guarantees.CountAsync(it => it.GuaranteeType == newDetailsGuaranteeType) == 0) return 0;
+
+            int maxID = await context.Guarantees.Where(it => it.GuaranteeType == newDetailsGuaranteeType).MaxAsync(it => it.VirtualID);
+            return maxID + 1;
         }
     }
 }

@@ -5,6 +5,7 @@ namespace SMGApp.Domain.Models
 {
     public class Guarantee : DomainObject
     {
+        public int VirtualID { get; set; }
         public Customer Customer { get; set; }
         public string ProductDesc { get; set; }
         public string ProductNotes { get; set; }
