@@ -278,8 +278,8 @@ namespace SMGApp.WPF.ViewModels
             }
             else
             {
-                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.CustomerDetails.ToUpper().Contains(value.ToUpper())).OrderByDescending(r => r.ID).ToList();
-                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.CustomerDetails.ToUpper().Contains(value.ToUpper()) && c.EndDate > DateTime.Now).OrderByDescending(r => r.ID).ToList();
+                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.ProductDesc.ToUpper().Contains(value.ToUpper())).OrderByDescending(r => r.ID).ToList();
+                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.ProductDesc.ToUpper().Contains(value.ToUpper()) && c.EndDate > DateTime.Now).OrderByDescending(r => r.ID).ToList();
             }
         }
         #endregion
