@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SMGApp.Domain.Models;
 
 namespace SMGApp.EntityFramework.Services
@@ -25,14 +26,22 @@ namespace SMGApp.EntityFramework.Services
             return entry;
         }
 
-        public override Task<Guarantee> Create(Guarantee entity)
+        public override async Task<Guarantee> Create(Guarantee entity)
         {
-            return base.Create(entity);
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            EntityEntry<Guarantee> createdEntity = context.Guarantees.Attach(entity);
+            await context.SaveChangesAsync();
+            return createdEntity.Entity;
         }
 
-        public override Task<Guarantee> Update(int id, Guarantee entity)
+        public override async Task<Guarantee> Update(int id, Guarantee entity)
         {
-            return base.Update(id, entity);
+            await using SMGAppDbContext context = ContextFactory.CreateDbContext();
+            entity.ID = id;
+            context.Guarantees.Update(entity);
+            context.Entry(entity).Reference(e => e.Customer).IsModified = true;
+            await context.SaveChangesAsync();
+            return entity;
         }
 
         public override Task<bool> Delete(int id)

@@ -14,7 +14,6 @@ namespace SMGApp.WPF.Dialogs.GuaranteeDialogs
         public string OperationName { get; set; }
         public int UpdateID { get; set; }
         public Customer CustomerBeforeEdit { get; set; }
-        public DateTime UpdateDateAdded { get; set; }
 
         #region ComboBoxCustomers
         private ObservableCollection<string> _comboBoxBoundCustomers = new ObservableCollection<string>();

@@ -53,7 +53,7 @@
             x:Name="Cb"
             PreviewTextInput="Cb_OnPreviewTextInput"
             ItemsSource="{Binding ComboBoxBoundCustomers}"
-            Text="{Binding CustomerName}">
+            Text="{Binding CustomerName, Mode=TwoWay}">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />

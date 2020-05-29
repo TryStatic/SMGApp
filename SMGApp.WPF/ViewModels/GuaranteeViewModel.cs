@@ -48,7 +48,9 @@ namespace SMGApp.WPF.ViewModels
         {
 
             GuaranteeDialogView view = new GuaranteeDialogView();
-            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
+            List<string> list = (await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList();
+            list.Insert(0, "KENO");
+            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel(list);
 
             model.OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ GUARANTEE";
             model.StartDate = DateTime.Now;
@@ -82,8 +84,18 @@ namespace SMGApp.WPF.ViewModels
 
                 Customer customer = (await _customerService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
 
+                if (model.EndDate <= model.StartDate)
+                {
+                    MessageBox.Show("Invalid Dates");
+                    return;
+                }
+
                 newDetails.Customer = customer;
-                // TODO: Get new Details from Model and set them to Guarantee
+                newDetails.ProductDesc = model.Product;
+                newDetails.ProductNotes = model.Notes;
+                newDetails.StartDate = model.StartDate;
+                newDetails.EndDate = model.EndDate;
+                newDetails.GuaranteeType = model.GuaranteeType;
 
                 await _guaranteeDataService.Create(newDetails);
                 await LoadGuaranties();
@@ -108,13 +120,20 @@ namespace SMGApp.WPF.ViewModels
 
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             GuaranteeDialogView view = new GuaranteeDialogView();
-            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
+            List<string> list = (await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList();
+            list.Insert(0, "KENO");
+            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel(list);
 
             model.UpdateID = id;
 
-            model.CustomerBeforeEdit = guaranteeEntry?.Customer;
-            model.CustomerName = guaranteeEntry?.CustomerDetails;
-            // TODO: Set new details to model
+            model.CustomerBeforeEdit = guaranteeEntry.Customer;
+            model.CustomerName = guaranteeEntry.CustomerDetails;
+
+            model.Product = guaranteeEntry.ProductDesc;
+            model.Notes = guaranteeEntry.ProductNotes;
+            model.StartDate = guaranteeEntry.StartDate;
+            model.EndDate = guaranteeEntry.EndDate;
+            model.GuaranteeType = guaranteeEntry.GuaranteeType;
 
             model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ GUARANTEE (ID: {id})";
 
@@ -145,7 +164,7 @@ namespace SMGApp.WPF.ViewModels
 
                 Guarantee updatedDetails = new Guarantee();
 
-                if (model.CustomerBeforeEdit.CustomerDetails == model.CustomerName)
+                if (model.CustomerBeforeEdit?.CustomerDetails == model.CustomerName)
                 {
                     updatedDetails.Customer = model.CustomerBeforeEdit;
                 }
@@ -154,7 +173,12 @@ namespace SMGApp.WPF.ViewModels
                     Customer customer = (await _customerService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
                     updatedDetails.Customer = customer;
                 }
-                // TODO: UPDATE DETAILS
+
+                updatedDetails.ProductDesc = model.Product;
+                updatedDetails.ProductNotes = model.Notes;
+                updatedDetails.StartDate = model.StartDate;
+                updatedDetails.EndDate = model.EndDate;
+                updatedDetails.GuaranteeType = model.GuaranteeType;
 
                 await _guaranteeDataService.Update(model.UpdateID, updatedDetails);
 
