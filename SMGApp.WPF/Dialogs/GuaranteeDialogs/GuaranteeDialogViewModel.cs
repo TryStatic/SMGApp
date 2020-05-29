@@ -53,30 +53,16 @@ namespace SMGApp.WPF.Dialogs.GuaranteeDialogs
         }
         #endregion
 
-        private string _device;
-        private string _damageDescription;
+        private string _product;
+        private GuaranteeType _guaranteeType;
+        private DateTime _startDate;
+        private DateTime _endDate;
         private string _notes;
-        private string _devicePassword;
-        private string _simCode;
-        private string _accountUsername;
-        private string _accountPassword;
-        private bool _chargerIncluded;
-        private bool _bagIncluded;
-        private bool _caseIncluded;
-        private ServiceState _serviceState;
-        private double _cost;
 
-        public string Device
+        public string Product
         {
-            get => _device;
-            set => this.MutateVerbose(ref _device, value, RaisePropertyChanged());
-        }
-
-        public string DamageDescription
-        {
-            get => _damageDescription;
-            set => this.MutateVerbose(ref _damageDescription, value, RaisePropertyChanged());
-
+            get => _product;
+            set => this.MutateVerbose(ref _product, value, RaisePropertyChanged());
         }
 
         public string Notes
@@ -85,64 +71,26 @@ namespace SMGApp.WPF.Dialogs.GuaranteeDialogs
             set => this.MutateVerbose(ref _notes, value, RaisePropertyChanged());
         }
 
-        public string DevicePassword
+        public DateTime StartDate
         {
-            get => _devicePassword;
-            set => this.MutateVerbose(ref _devicePassword, value, RaisePropertyChanged());
+            get => _startDate;
+            set => this.MutateVerbose(ref _startDate, value, RaisePropertyChanged());
 
         }
 
-        public string SimCode
+        public DateTime EndDate
         {
-            get => _simCode;
-            set => this.MutateVerbose(ref _simCode, value, RaisePropertyChanged());
-        }
-
-        public string AccountUsername
-        {
-            get => _accountUsername;
-            set => this.MutateVerbose(ref _accountUsername, value, RaisePropertyChanged());
+            get => _endDate;
+            set => this.MutateVerbose(ref _endDate, value, RaisePropertyChanged());
 
         }
 
-        public string AccountPassword
+        public GuaranteeType GuaranteeType
         {
-            get => _accountPassword;
-            set => this.MutateVerbose(ref _accountPassword, value, RaisePropertyChanged());
+            get => _guaranteeType;
+            set => this.MutateVerbose(ref _guaranteeType, value, RaisePropertyChanged());
         }
 
-        public bool ChargerIncluded
-        {
-            get => _chargerIncluded;
-            set => this.MutateVerbose(ref _chargerIncluded, value, RaisePropertyChanged());
-
-        }
-
-        public bool BagIncluded
-        {
-            get => _bagIncluded;
-            set => this.MutateVerbose(ref _bagIncluded, value, RaisePropertyChanged());
-
-        }
-
-        public bool CaseIncluded
-        {
-            get => _caseIncluded;
-            set => this.MutateVerbose(ref _caseIncluded, value, RaisePropertyChanged());
-
-        }
-
-        public ServiceState ServiceState
-        {
-            get => _serviceState;
-            set => this.MutateVerbose(ref _serviceState, value, RaisePropertyChanged());
-        }
-
-        public double Cost
-        {
-            get => _cost;
-            set => this.MutateVerbose(ref _cost, value, RaisePropertyChanged());
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private Action<PropertyChangedEventArgs> RaisePropertyChanged() => args => PropertyChanged?.Invoke(this, args);

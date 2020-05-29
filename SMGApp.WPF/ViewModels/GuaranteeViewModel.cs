@@ -51,6 +51,8 @@ namespace SMGApp.WPF.ViewModels
             GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
 
             model.OperationName = "ΕΙΣΑΓΩΓΗ ΝΕΟΥ GUARANTEE";
+            model.StartDate = DateTime.Now;
+            model.EndDate = DateTime.Now;
 
             view.DataContext = model;
 
@@ -102,20 +104,16 @@ namespace SMGApp.WPF.ViewModels
             int id = (int)idObject;
 
             Guarantee guaranteeEntry = await (_guaranteeDataService.Get(id));
-            if (guaranteeEntry == null)
-            {
-                // Show Error
-                return;
-            }
+
 
             //let's set up a little MVVM, cos that's what the cool kids are doing:
             GuaranteeDialogView view = new GuaranteeDialogView();
-            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _guaranteeDataService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
+            GuaranteeDialogViewModel model = new GuaranteeDialogViewModel((await _customerService.GetAll()).ToList().Select(item => item.CustomerDetails).ToList());
 
             model.UpdateID = id;
 
-            model.CustomerBeforeEdit = guaranteeEntry.Customer;
-            model.CustomerName = guaranteeEntry.CustomerDetails;
+            model.CustomerBeforeEdit = guaranteeEntry?.Customer;
+            model.CustomerName = guaranteeEntry?.CustomerDetails;
             // TODO: Set new details to model
 
             model.OperationName = $"ΕΠΕΞΕΡΓΑΣΙΑ ΕΙΣΑΓΩΓΗΣ GUARANTEE (ID: {id})";
@@ -154,12 +152,6 @@ namespace SMGApp.WPF.ViewModels
                 else
                 {
                     Customer customer = (await _customerService.GetAll()).FirstOrDefault(c => c.CustomerDetails == model.CustomerName);
-                    if (customer == null)
-                    {
-                        MessageBox.Show($"Ο ΠΕΛΑΤΗΣ {model.CustomerName} ΔΕΝ ΒΡΕΘΗΚΕ");
-                        await LoadGuaranties().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
-                        return;
-                    }
                     updatedDetails.Customer = customer;
                 }
                 // TODO: UPDATE DETAILS

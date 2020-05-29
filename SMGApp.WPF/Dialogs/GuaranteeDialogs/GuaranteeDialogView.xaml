@@ -62,7 +62,7 @@
         </ComboBox>
 
         <TextBox
-            wpf:HintAssist.Hint="ΣΥΣΚΕΥΗ"
+            wpf:HintAssist.Hint="ΠΡΟΪΟΝ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
@@ -70,7 +70,7 @@
             Name="ΣΥΣΚΕΥΗ">
             <TextBox.Text>
                 <Binding
-                    Path="Device"
+                    Path="Product"
                     UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validationRules:NotEmptyValidationRule
@@ -79,30 +79,15 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox
-            Name="ΒΛΑΒΗ"
-            wpf:HintAssist.Hint="ΒΛΑΒΗ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="3">
-            <TextBox.Text>
-                <Binding
-                    Path="DamageDescription"
-                    UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validationRules:NotEmptyValidationRule
-                            ValidatesOnTargetUpdated="True" />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
+
+
         <TextBox
             wpf:HintAssist.Hint="ΣΧΟΛΙΑ"
             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
             Margin="0 6 0 0"
             FontSize="18"
-            Grid.Row="4">
+            Grid.Row="3"
+            Name="ΣΧΟΛΙΑ">
             <TextBox.Text>
                 <Binding
                     Path="Notes"
@@ -110,150 +95,85 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox
-            wpf:HintAssist.Hint="ΚΩΔ. ΣΥΣΚΕΥΗΣ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="5">
-            <TextBox.Text>
-                <Binding
-                    Path="DevicePassword"
-                    UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox
-            wpf:HintAssist.Hint="ΚΩΔ. SIM"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="6">
-            <TextBox.Text>
-                <Binding
-                    Path="SimCode"
-                    UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
-        <TextBox
-            wpf:HintAssist.Hint="USERNAME ΛΟΓΑΡΙΑΣΜΟΥ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="7">
-            <TextBox.Text>
-                <Binding
-                    Path="AccountUsername"
-                    UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-
-        <TextBox
-            wpf:HintAssist.Hint="PASSWORD ΛΟΓΑΡΙΑΣΜΟΥ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="8">
-            <TextBox.Text>
-                <Binding
-                    Path="AccountPassword"
-                    UpdateSourceTrigger="PropertyChanged">
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
 
         <StackPanel
-            Margin="0 10 0 10"
-            VerticalAlignment="Center"
-            Grid.Row="9"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Margin="0 15 0 15"
+            Grid.Row="4">
 
-            <CheckBox
-                Margin="10 0 0 0"
-                IsChecked="{Binding Path=ChargerIncluded, Mode=TwoWay}"
-                Style="{StaticResource MaterialDesignCheckBox}">
-                <Image
-                    Source="/Img/charger.png"
-                    Height="30" />
-            </CheckBox>
-            <CheckBox
-                Margin="10 0 10 0"
-                IsChecked="{Binding Path=BagIncluded, Mode=TwoWay}"
-                Style="{StaticResource MaterialDesignCheckBox}">
-                <Image
-                    Source="/Img/bag.png"
-                    Height="30" />
-            </CheckBox>
-            <CheckBox
-                Margin="10 0 10 0"
-                IsChecked="{Binding Path=CaseIncluded, Mode=TwoWay}"
-                Style="{StaticResource MaterialDesignCheckBox}">
-                <Image
-                    Source="/Img/case.png"
-                    Height="30" />
-            </CheckBox>
+            <DatePicker
+                x:Name="StartDate"
+                Width="150"
+                Height="50"
+                wpf:HintAssist.Hint="ΑΡΧΗ"
+                Style="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                <DatePicker.SelectedDate>
+                    <Binding
+                        Path="StartDate"
+                        UpdateSourceTrigger="PropertyChanged">
+                    </Binding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
+
+            <DatePicker
+                Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
+                x:Name="EndDate"
+                wpf:HintAssist.Hint="ΤΕΛΟΣ"
+                Width="150"
+                Height="50"
+                Margin="10 0 0 0">
+                <DatePicker.SelectedDate>
+                    <Binding
+                        Path="EndDate"
+                        UpdateSourceTrigger="PropertyChanged">
+                    </Binding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
         </StackPanel>
-
 
         <StackPanel
             Orientation="Horizontal"
             Margin="4 10 4 15"
-            Grid.Row="10">
+            Grid.Row="5">
 
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                Content="ΠΑΡΑΛΗΦΘΗΚΕ"
+                Content="ΚΙΝΤΗΤΟ"
                 GroupName="Arrived"
-                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                IsChecked="{Binding Path=GuaranteeType, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
-                                 ConverterParameter=Arrived}" 
-                />
+                                 ConverterParameter=Cellphone}" />
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                Content="ΔΙΟΡΘΩΘΗΚΕ"
+                Content="DESKTOP"
                 GroupName="Fixed"
-                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                IsChecked="{Binding Path=GuaranteeType, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
-                                 ConverterParameter=Fixed}" />
+                                 ConverterParameter=Desktop}" />
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                Content="ΠΑΡΑΔΟΘΗΚΕ"
+                Content="LAPTOP"
                 GroupName="Delivered"
-                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                IsChecked="{Binding Path=GuaranteeType, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
-                                 ConverterParameter=Delivered}" />
+                                 ConverterParameter=Laptop}" />
             <RadioButton
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                Content="ΠΡΟΒΛΗΜΑ"
+                Content="ΑΛΛΟ"
                 GroupName="Issue"
-                IsChecked="{Binding Path=ServiceState, Mode=TwoWay, 
+                IsChecked="{Binding Path=GuaranteeType, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
-                                 ConverterParameter=Issue}" />
+                                 ConverterParameter=Other}" />
         </StackPanel>
 
 
-        <TextBox
-            wpf:HintAssist.Hint="ΚΟΣΤΟΣ"
-            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
-            Margin="0 6 0 0"
-            FontSize="18"
-            Grid.Row="11"
-            Text="{Binding Path=Cost, 
-                        Mode=TwoWay, 
-                        UpdateSourceTrigger=PropertyChanged, 
-                        StringFormat=N2}">
-        </TextBox>
-
         <StackPanel
             Orientation="Horizontal"
-            Grid.Row="12"
+            Grid.Row="6"
             Margin="0 16 0 0">
             <Button
                 Content="ΕΙΣΑΓΩΓΗ"
@@ -281,7 +201,6 @@
                                     Property="IsEnabled"
                                     Value="False" />
                             </DataTrigger>
-
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
