@@ -7,6 +7,7 @@ namespace SMGApp.Domain.Models
     {
         public Customer Customer { get; set; }
         public string ProductDesc { get; set; }
+        public string ProductNotes { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public GuaranteeType GuaranteeType { get; set; }
