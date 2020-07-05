@@ -25,6 +25,9 @@ namespace SMGApp.WPF.ViewModels
             _customerService = customerService;
             _guaranteeDataService = guaranteeDataService;
 
+            ShowExpired = App.CheckBoxesStates.GuaranteeHide;
+
+
             Task.Run(async () => await LoadGuaranties());
         }
 
@@ -38,6 +41,7 @@ namespace SMGApp.WPF.ViewModels
                 _showExpired = value;
                 this.OnPropertyChanged(nameof(ShowExpired));
                 SearchBoxChanged(SearchBox);
+                App.CheckBoxesStates.GuaranteeHide = value;
             }
         }
 

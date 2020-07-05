@@ -70,6 +70,7 @@ namespace SMGApp.WPF.ViewModels
                 _arrivedCheckbox = value;
                 this.OnPropertyChanged(nameof(ArrivedCheckbox));
                 SearchBoxChanged(SearchBox);
+                App.CheckBoxesStates.ServiceArrived = value;
             }
         }
 
@@ -81,6 +82,7 @@ namespace SMGApp.WPF.ViewModels
                 _fixedCheckbox = value;
                 this.OnPropertyChanged(nameof(FixedCheckbox));
                 SearchBoxChanged(SearchBox);
+                App.CheckBoxesStates.ServiceFixed = value;
             }
         }
 
@@ -92,6 +94,8 @@ namespace SMGApp.WPF.ViewModels
                 _deliveredCheckbox = value;
                 this.OnPropertyChanged(nameof(DeliveredCheckbox));
                 SearchBoxChanged(SearchBox);
+                App.CheckBoxesStates.ServiceDelivered = value;
+
             }
         }
 
@@ -103,6 +107,7 @@ namespace SMGApp.WPF.ViewModels
                 _issueCheckbox = value;
                 this.OnPropertyChanged(nameof(IssueCheckbox));
                 SearchBoxChanged(SearchBox);
+                App.CheckBoxesStates.ServiceIssue = value;
             }
         }
 
@@ -134,6 +139,7 @@ namespace SMGApp.WPF.ViewModels
                 HideDateColumns = value ? Visibility.Hidden : Visibility.Visible;
                 _hideDateColumnsBool = value;
                 this.OnPropertyChanged(nameof(HideDateColumnsBool));
+                App.CheckBoxesStates.ServiceHide = value;
             }
         }
 
@@ -142,6 +148,13 @@ namespace SMGApp.WPF.ViewModels
         {
             _serviceItemsDataService = serviceItemsDataService;
             _customerServiceDataService = customerServiceDataService;
+
+            ArrivedCheckbox = App.CheckBoxesStates.ServiceArrived;
+            FixedCheckbox = App.CheckBoxesStates.ServiceFixed;
+            DeliveredCheckbox = App.CheckBoxesStates.ServiceDelivered;
+            IssueCheckbox = App.CheckBoxesStates.ServiceIssue;
+            HideDateColumnsBool = App.CheckBoxesStates.ServiceHide;
+
             Task.Run(async () => await LoadServiceItems());
         }
 

@@ -20,6 +20,8 @@ namespace SMGApp.WPF
     /// </summary>
     public partial class App : Application
     {
+        public static CheckBoxStates CheckBoxesStates = new CheckBoxStates();
+
         protected override async void OnStartup(StartupEventArgs e)
         {
             string procName = Process.GetCurrentProcess().ProcessName;
@@ -104,6 +106,16 @@ namespace SMGApp.WPF
             }
             MessageBox.Show("An unhandled exception just occurred: " + e.Exception.Message, "Exception", MessageBoxButton.OK, MessageBoxImage.Warning);
             e.Handled = true;
+        }
+
+        public class CheckBoxStates
+        {
+            public bool ServiceArrived { get; set; } = true;
+            public bool ServiceFixed { get; set; } = true;
+            public bool ServiceDelivered { get; set; } = true;
+            public bool ServiceIssue { get; set; } = true;
+            public bool ServiceHide { get; set; } = true;
+            public bool GuaranteeHide { get; set; } = true;
         }
     }
 }
