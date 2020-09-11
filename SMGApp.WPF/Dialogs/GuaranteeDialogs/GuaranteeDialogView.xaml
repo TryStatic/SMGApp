@@ -156,7 +156,7 @@
                 IsEnabled="{Binding EnableState}"
                 Style="{StaticResource MaterialDesignTabRadioButton}"
                 Margin="4"
-                Content="ΚΙΝΤΗΤΟ"
+                Content="ΚΙΝΗΤΟ"
                 GroupName="Arrived"
                 IsChecked="{Binding Path=GuaranteeType, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
