@@ -96,6 +96,7 @@ namespace SMGApp.WPF.ViewModels
 
                 newDetails.Customer = customer;
                 newDetails.ProductDesc = model.Product;
+                newDetails.ProductIMEI = model.IMEI;
                 newDetails.ProductNotes = model.Notes;
                 newDetails.StartDate = model.StartDate;
                 newDetails.EndDate = model.EndDate;
@@ -136,6 +137,7 @@ namespace SMGApp.WPF.ViewModels
             model.CustomerName = guaranteeEntry.CustomerDetails;
 
             model.Product = guaranteeEntry.ProductDesc;
+            model.IMEI = guaranteeEntry.ProductIMEI;
             model.Notes = guaranteeEntry.ProductNotes;
             model.StartDate = guaranteeEntry.StartDate;
             model.EndDate = guaranteeEntry.EndDate;
@@ -182,6 +184,7 @@ namespace SMGApp.WPF.ViewModels
 
                 updatedDetails.ProductDesc = model.Product;
                 updatedDetails.ProductNotes = model.Notes;
+                updatedDetails.ProductIMEI = model.IMEI;
                 updatedDetails.StartDate = model.StartDate;
                 updatedDetails.EndDate = model.EndDate;
 
@@ -278,13 +281,44 @@ namespace SMGApp.WPF.ViewModels
 
             if (int.TryParse(value, out int id))
             {
-                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.VirtualID == id).ToList();
-                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).OrderByDescending(r => r.ID).Where(i => i.VirtualID == id && i.EndDate > DateTime.Now).ToList();
+                if (ShowExpired)
+                {
+                    GuaranteeEntries = 
+                        (await _guaranteeDataService.GetAll())
+                        .OrderByDescending(r => r.ID)
+                        .Where(i => i.VirtualID == id)
+                        .ToList();
+                }
+                else
+                {
+                    GuaranteeEntries = 
+                        (await _guaranteeDataService.GetAll())
+                        .OrderByDescending(r => r.ID)
+                        .Where(i => i.VirtualID == id && i.EndDate > DateTime.Now)
+                        .ToList();
+                }
             }
             else
             {
-                if(ShowExpired) GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.ProductDesc.ToUpper().Contains(value.ToUpper())).OrderByDescending(r => r.ID).ToList();
-                else GuaranteeEntries = (await _guaranteeDataService.GetAll()).Where(c => c.ProductDesc.ToUpper().Contains(value.ToUpper()) && c.EndDate > DateTime.Now).OrderByDescending(r => r.ID).ToList();
+                if (ShowExpired)
+                {
+                    GuaranteeEntries = 
+                        (await _guaranteeDataService.GetAll())
+                        .Where(c => 
+                            c.ProductDesc.ToUpper().Contains(value.ToUpper()) ||
+                            c.ProductIMEI.ToUpper().Contains(value.ToUpper()))
+                        .OrderByDescending(r => r.ID)
+                        .ToList();
+                }
+                else
+                {
+                    GuaranteeEntries = 
+                        (await _guaranteeDataService.GetAll())
+                        .Where(c => c.ProductDesc.ToUpper()
+                            .Contains(value.ToUpper()) && c.EndDate > DateTime.Now)
+                        .OrderByDescending(r => r.ID)
+                        .ToList();
+                }
             }
         }
         #endregion

@@ -59,6 +59,8 @@ namespace SMGApp.WPF.Dialogs.GuaranteeDialogs
         private DateTime _startDate;
         private DateTime _endDate;
         private string _notes;
+        // ReSharper disable once InconsistentNaming
+        private string _IMEI;
 
         public string Product
         {
@@ -70,6 +72,12 @@ namespace SMGApp.WPF.Dialogs.GuaranteeDialogs
         {
             get => _notes;
             set => this.MutateVerbose(ref _notes, value, RaisePropertyChanged());
+        }
+
+        public string IMEI
+        {
+            get => _IMEI;
+            set => this.MutateVerbose(ref _IMEI, value, RaisePropertyChanged());
         }
 
         public DateTime StartDate

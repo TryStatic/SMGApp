@@ -203,6 +203,15 @@
                         ElementStyle="{StaticResource WrapText}"
                         EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
                     <materialDesign:DataGridTextColumn
+                        Binding="{Binding ProductIMEI}"
+                        Header="IMEI"
+                        MinWidth="90"
+                        Width="100"
+                        MaxWidth="250"
+                        MaxLength="255"
+                        ElementStyle="{StaticResource WrapText}"
+                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                    <materialDesign:DataGridTextColumn
                         Binding="{Binding ProductNotes}"
                         Header="ΣΧΟΛΙΑ"
                         MinWidth="90"

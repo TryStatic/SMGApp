@@ -8,6 +8,7 @@ namespace SMGApp.Domain.Models
         public int VirtualID { get; set; }
         public Customer Customer { get; set; }
         public string ProductDesc { get; set; }
+        public string ProductIMEI { get; set; }
         public string ProductNotes { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
