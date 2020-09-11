@@ -286,15 +286,21 @@ namespace SMGApp.WPF.ViewModels
                     GuaranteeEntries = 
                         (await _guaranteeDataService.GetAll())
                         .OrderByDescending(r => r.ID)
-                        .Where(i => i.VirtualID == id)
+                        .Where
+                        (
+                            i => i.VirtualID == id || i.ProductIMEI != null && i.ProductIMEI.ToUpper().Contains(value.ToUpper())
+                        )
                         .ToList();
                 }
                 else
                 {
-                    GuaranteeEntries = 
+                    GuaranteeEntries =
                         (await _guaranteeDataService.GetAll())
                         .OrderByDescending(r => r.ID)
-                        .Where(i => i.VirtualID == id && i.EndDate > DateTime.Now)
+                        .Where
+                        (
+                            i => i.EndDate > DateTime.Now && i.VirtualID == id || i.ProductIMEI != null && i.ProductIMEI.ToUpper().Contains(value.ToUpper())
+                        )
                         .ToList();
                 }
             }
@@ -306,16 +312,22 @@ namespace SMGApp.WPF.ViewModels
                         (await _guaranteeDataService.GetAll())
                         .Where(c => 
                             c.ProductDesc.ToUpper().Contains(value.ToUpper()) ||
-                            c.ProductIMEI.ToUpper().Contains(value.ToUpper()))
+                            c.ProductIMEI != null && c.ProductIMEI.ToUpper().Contains(value.ToUpper()) ||
+                            c.CustomerDetails != null && c.CustomerDetails.ToUpper().Contains(value.ToUpper())
+                        )
                         .OrderByDescending(r => r.ID)
                         .ToList();
                 }
                 else
                 {
-                    GuaranteeEntries = 
+                    GuaranteeEntries =
                         (await _guaranteeDataService.GetAll())
-                        .Where(c => c.ProductDesc.ToUpper()
-                            .Contains(value.ToUpper()) && c.EndDate > DateTime.Now)
+                        .Where(c =>
+                            c.EndDate > DateTime.Now &&
+                            c.ProductDesc.ToUpper().Contains(value.ToUpper()) ||
+                            c.ProductIMEI != null && c.ProductIMEI.ToUpper().Contains(value.ToUpper()) ||
+                            c.CustomerDetails != null && c.CustomerDetails.ToUpper().Contains(value.ToUpper())
+                        )
                         .OrderByDescending(r => r.ID)
                         .ToList();
                 }
