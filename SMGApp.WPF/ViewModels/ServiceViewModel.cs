@@ -6,15 +6,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using iText.IO.Font;
-using iText.IO.Font.Constants;
 using iText.IO.Image;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
-using iText.Kernel.Pdf.Xobject;
 using iText.Layout;
 using iText.Layout.Element;
 using MaterialDesignThemes.Wpf;
@@ -24,7 +21,6 @@ using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
 using SMGApp.WPF.Dialogs.ServiceDialogs;
 using SMGApp.WPF.ViewModels.Util;
-using HorizontalAlignment = iText.Layout.Properties.HorizontalAlignment;
 using TextAlignment = iText.Layout.Properties.TextAlignment;
 
 namespace SMGApp.WPF.ViewModels

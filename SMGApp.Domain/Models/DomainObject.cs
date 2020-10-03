@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SMGApp.Domain.Models
+﻿namespace SMGApp.Domain.Models
 {
     public class DomainObject
     {

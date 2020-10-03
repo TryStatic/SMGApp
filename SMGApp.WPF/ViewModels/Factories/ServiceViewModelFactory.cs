@@ -1,6 +1,4 @@
-﻿using SMGApp.Domain.Models;
-using SMGApp.Domain.Services;
-using SMGApp.EntityFramework.Services;
+﻿using SMGApp.EntityFramework.Services;
 
 namespace SMGApp.WPF.ViewModels.Factories
 {

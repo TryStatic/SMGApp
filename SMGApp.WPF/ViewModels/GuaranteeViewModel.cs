@@ -10,8 +10,6 @@ using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Dialogs;
 using SMGApp.WPF.Dialogs.GuaranteeDialogs;
-using SMGApp.WPF.Dialogs.ServiceDialogs;
-using SMGApp.WPF.ViewModels.Util;
 
 namespace SMGApp.WPF.ViewModels
 {

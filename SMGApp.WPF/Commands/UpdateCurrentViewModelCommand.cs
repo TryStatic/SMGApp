@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
-using SMGApp.Domain.Models;
-using SMGApp.EntityFramework;
-using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.States.Navigators;
-using SMGApp.WPF.ViewModels;
 using SMGApp.WPF.ViewModels.Factories;
 
 namespace SMGApp.WPF.Commands

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using SMGApp.WPF.Commands;
 using SMGApp.WPF.Models;
 using SMGApp.WPF.ViewModels;

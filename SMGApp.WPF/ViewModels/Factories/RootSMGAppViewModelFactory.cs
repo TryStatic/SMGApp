@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SMGApp.Domain.Models;
-using SMGApp.EntityFramework;
-using SMGApp.EntityFramework.Services;
 using SMGApp.WPF.States.Navigators;
 
 namespace SMGApp.WPF.ViewModels.Factories
