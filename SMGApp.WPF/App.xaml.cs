@@ -86,6 +86,7 @@ namespace SMGApp.WPF
             services.AddSingleton<ISMGAppViewModelFactory<InventoryViewModel>, InventoryViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<BackupViewModel>, BackupViewModelFactory>();
             services.AddSingleton<ISMGAppViewModelFactory<GuaranteeViewModel>, GuaranteeViewModelFactory>();
+            services.AddSingleton<ISMGAppViewModelFactory<InvoiceViewModel>, InvoiceViewModelFactory>();
 
             services.AddScoped<INavigator, Navigator>();
 

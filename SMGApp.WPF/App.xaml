@@ -44,6 +44,11 @@
                 <views:GuaranteeView />
             </DataTemplate>
 
+            <DataTemplate
+                DataType="{x:Type viewModels:InvoiceViewModel}">
+                <views:InvoiceView />
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

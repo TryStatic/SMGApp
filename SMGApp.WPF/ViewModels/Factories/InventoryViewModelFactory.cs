@@ -7,4 +7,12 @@
             return new InventoryViewModel();
         }
     }
+
+    public class InvoiceViewModelFactory : ISMGAppViewModelFactory<InvoiceViewModel>
+    {
+        public InvoiceViewModel CreateViewModel()
+        {
+            return new InvoiceViewModel();
+        }
+    }
 }

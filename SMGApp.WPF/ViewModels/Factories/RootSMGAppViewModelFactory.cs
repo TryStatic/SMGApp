@@ -15,19 +15,22 @@ namespace SMGApp.WPF.ViewModels.Factories
         private readonly ISMGAppViewModelFactory<InventoryViewModel> _inventoryViewModelFactory;
         private readonly ISMGAppViewModelFactory<BackupViewModel> _backupViewModelFactory;
         private readonly ISMGAppViewModelFactory<GuaranteeViewModel> _guaranteeViewModelFactory;
+        private readonly ISMGAppViewModelFactory<InvoiceViewModel> _invoiceViewModelFactory;
 
         public RootSMGAppViewModelFactory(
             ISMGAppViewModelFactory<CustomerViewModel> customerViewModelFactory, 
             ISMGAppViewModelFactory<ServiceViewModel> serviceViewModelFactory, 
             ISMGAppViewModelFactory<InventoryViewModel> inventoryViewModelFactory,
             ISMGAppViewModelFactory<BackupViewModel> backupViewModelFactory,
-            ISMGAppViewModelFactory<GuaranteeViewModel> guaranteeViewModelFactory)
+            ISMGAppViewModelFactory<GuaranteeViewModel> guaranteeViewModelFactory, 
+            ISMGAppViewModelFactory<InvoiceViewModel> invoiceViewModelFactory)
         {
             _customerViewModelFactory = customerViewModelFactory;
             _serviceViewModelFactory = serviceViewModelFactory;
             _inventoryViewModelFactory = inventoryViewModelFactory;
             _backupViewModelFactory = backupViewModelFactory;
             _guaranteeViewModelFactory = guaranteeViewModelFactory;
+            _invoiceViewModelFactory = invoiceViewModelFactory;
         }
 
         public ViewModelBase CreateViewModel(ViewType viewType)
@@ -45,6 +48,8 @@ namespace SMGApp.WPF.ViewModels.Factories
                     return _backupViewModelFactory.CreateViewModel();
                 case ViewType.Guarantee:
                     return _guaranteeViewModelFactory.CreateViewModel();
+                case ViewType.Invoice:
+                    return _invoiceViewModelFactory.CreateViewModel();
                 default:
                     throw new ArgumentException("The View Type does not a ViewModel.", nameof(viewType));
             }

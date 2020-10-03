@@ -112,7 +112,20 @@
                 Margin="0,0,8,0"
                 ToolTip="ΕΠΙΛΟΓΕΣ BACKUP"
                 Content="BACKUP"
-                IsEnabled="false"/>
+                IsEnabled="false" />
+
+
+            <Button
+                Grid.Column="4"
+                Command="{Binding UpdateCurrentViewModelCommand}"
+                CommandParameter="{x:Static nav:ViewType.Invoice}"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Width="110"
+                Height="40"
+                Margin="0,0,8,0"
+                ToolTip="ΚΑΡΤΕΛΑ ΤΙΜΟΛΟΓΙΩΝ"
+                Content="ΤΙΜΟΛΟΓΙΑ"
+                IsEnabled="True" />
         </Grid>
     </Grid>
 </UserControl>
