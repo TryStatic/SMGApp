@@ -116,7 +116,7 @@
 
 
             <Button
-                Grid.Column="4"
+                Grid.Column="5"
                 Command="{Binding UpdateCurrentViewModelCommand}"
                 CommandParameter="{x:Static nav:ViewType.Invoice}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
