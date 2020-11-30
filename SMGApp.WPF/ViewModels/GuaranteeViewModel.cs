@@ -31,6 +31,7 @@ namespace SMGApp.WPF.ViewModels
 
 
         private bool _showExpired;
+
         public bool ShowExpired
         {
             get => _showExpired;
@@ -254,6 +255,39 @@ namespace SMGApp.WPF.ViewModels
             }
 
             await LoadGuaranties().ContinueWith((t, _) => eventArgs.Session.Close(false), null, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+        #endregion
+
+        #region ShowCustomerDetails
+        public ICommand CustomerDetailsCommand => new DialogCommand(ShowCustomerDetailsDialog);
+        private async void ShowCustomerDetailsDialog(object idObject)
+        {
+            int id = (int)idObject;
+
+            Guarantee guarantee = await _guaranteeDataService.Get(id);
+
+            if (guarantee?.Customer == null)
+            {
+                MessageBox.Show("Η ΕΙΣΑΓΩΓΗ ΤΟΥ ΣΥΓΚΕΚΡΙΜΕΝΟΥ SERVICE ΔΕΝ ΑΝΤΙΣΤΟΙΧΕΙ ΣΕ ΠΕΛΑΤΗ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);   
+                return;
+            }
+
+            ShowCustomerDialogView view = new ShowCustomerDialogView();
+            ShowCustomerDialogViewModel viewModel = new ShowCustomerDialogViewModel(guarantee.Customer);
+
+            view.DataContext = viewModel;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnShowCustomerDetailsDialogOpen, OnShowCustomerDetailsDialogClose);
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+        private void OnShowCustomerDetailsDialogOpen(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private void OnShowCustomerDetailsDialogClose(object sender, DialogClosingEventArgs eventArgs)
+        {
+
         }
         #endregion
 

@@ -564,6 +564,39 @@ namespace SMGApp.WPF.ViewModels
             p.Start();
 
         });
+
+        #region ShowCustomerDetails
+        public ICommand CustomerDetailsCommand => new DialogCommand(ShowCustomerDetailsDialog);
+        private async void ShowCustomerDetailsDialog(object idObject)
+        {
+            int id = (int)idObject;
+
+            ServiceItem serviceItem = await _serviceItemsDataService.Get(id);
+
+            if (serviceItem?.Customer == null)
+            {
+                MessageBox.Show("Η ΕΙΣΑΓΩΓΗ ΤΟΥ ΣΥΓΚΕΚΡΙΜΕΝΟΥ SERVICE ΔΕΝ ΑΝΤΙΣΤΟΙΧΕΙ ΣΕ ΠΕΛΑΤΗ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+                return;
+            }
+
+            ShowCustomerDialogView view = new ShowCustomerDialogView();
+            ShowCustomerDialogViewModel viewModel = new ShowCustomerDialogViewModel(serviceItem.Customer);
+
+            view.DataContext = viewModel;
+
+            //show the dialog
+            object result = await DialogHost.Show(view, "RootDialog", OnShowCustomerDetailsDialogOpen, OnShowCustomerDetailsDialogClose);
+            Console.WriteLine("Dialog was closed, the CommandParameter used to close it was: " + (result ?? "NULL"));
+        }
+        private void OnShowCustomerDetailsDialogOpen(object sender, DialogOpenedEventArgs eventargs)
+        {
+
+        }
+        private void OnShowCustomerDetailsDialogClose(object sender, DialogClosingEventArgs eventArgs)
+        {
+
+        }
+        #endregion
     }
 
 

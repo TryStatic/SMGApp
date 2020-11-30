@@ -164,6 +164,10 @@
                                 Header="ΔΙΑΓΡΑΦΗ"
                                 Command="{Binding DataContext.DeleteGuaranteeEntryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
+                            <MenuItem
+                                Header="ΣΤΟΙΧΕΙΑ ΠΕΛΑΤΗ"
+                                Command="{Binding DataContext.CustomerDetailsCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
+                                CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                         </ContextMenu.Items>
                     </ContextMenu>
                 </DataGrid.Resources>

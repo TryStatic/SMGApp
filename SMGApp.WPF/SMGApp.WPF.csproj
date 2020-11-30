@@ -44,6 +44,9 @@
     <Compile Update="Dialogs\GuaranteeDialogs\GuaranteeDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Dialogs\ShowCustomerDialogView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Dialogs\ServiceDialogs\ServiceDialogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -69,6 +72,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Dialogs\GuaranteeDialogs\GuaranteeDialogView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Dialogs\ShowCustomerDialogView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

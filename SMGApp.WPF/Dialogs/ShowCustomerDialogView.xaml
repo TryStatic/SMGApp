@@ -1,0 +1,134 @@
+﻿<UserControl
+    x:Class="SMGApp.WPF.Dialogs.ShowCustomerDialogView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:dialogs="clr-namespace:SMGApp.WPF.Dialogs"
+    xmlns:validationRules="clr-namespace:SMGApp.WPF.Dialogs.ValidationRules"
+    mc:Ignorable="d"
+    d:DesignHeight="500"
+    d:DesignWidth="400">
+
+
+    <Grid
+        Margin="16"
+        MinWidth="400">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding OperationName}"
+                   HorizontalAlignment="Center"/>
+        <TextBox
+            wpf:HintAssist.Hint="ΕΠΩΝΥΜΟ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="1"
+            Name="ΕΠΩΝΥΜΟ"
+            IsReadOnly="True">
+            <TextBox.Text>
+                <Binding
+                    Path="LastName"
+                    UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΟΝΟΜΑ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="2"
+            Name="ΟΝΟΜΑ"
+            IsReadOnly="True">
+            <TextBox.Text>
+                <Binding
+                    Path="FirstName"
+                    UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:NotEmptyValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΔΙΕΥΘΥΝΣΗ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="3"
+            IsReadOnly="True">
+            <TextBox.Text>
+                <Binding
+                    Path="Address"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΤΗΛΕΦΩΝΟ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="4"
+            Name="ΤΗΛΕΦΩΝΟ"
+            IsReadOnly="True">
+            <TextBox.Text>
+                <Binding
+                    Path="PhoneNumber"
+                    UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validationRules:OnlyNumbersValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                        <validationRules:AtLeastTenCharactersValidationRule
+                            ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox
+            wpf:HintAssist.Hint="ΣΧΟΛΙΑ"
+            Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+            Margin="0 6 0 0"
+            FontSize="18"
+            Grid.Row="5"
+            IsReadOnly="True">
+            <TextBox.Text>
+                <Binding
+                    Path="Note"
+                    UpdateSourceTrigger="PropertyChanged">
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="6"
+            Margin="0 16 0 0">
+
+
+            <Button
+                Content="OK"
+                IsDefault="True"
+                Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
