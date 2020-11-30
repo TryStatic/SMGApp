@@ -125,7 +125,7 @@
                 Margin="0,0,8,0"
                 ToolTip="ΚΑΡΤΕΛΑ ΤΙΜΟΛΟΓΙΩΝ"
                 Content="ΤΙΜΟΛΟΓΙΑ"
-                IsEnabled="True" />
+                IsEnabled="False" />
         </Grid>
     </Grid>
 </UserControl>
