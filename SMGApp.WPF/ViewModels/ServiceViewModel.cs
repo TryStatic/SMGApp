@@ -554,6 +554,7 @@ namespace SMGApp.WPF.ViewModels
             // Line Separator (Dotted)
             document.Add(new LineSeparator(new DottedLine(1f)).SetMarginBottom(5f));
             document.Add(new Paragraph("ΕΥΧΑΡΙΣΤΟΥΜΕ ΓΙΑ ΤΗΝ ΠΡΟΤΙΜΗΣΗ ΣΑΣ").SetFixedLeading(11f).SetMarginTop(5f));
+            document.Add(new Paragraph("ΤΟ ΠΑΡΟΝ ΔΕΝ ΑΠΟΤΕΛΕΙ ΦΟΡΟΛΟΓΙΚΗ ΑΠΟΔΕΙΞΗ").SetFixedLeading(11f).SetMarginTop(5f));
 
 
             document.Close();
