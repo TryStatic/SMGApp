@@ -21,7 +21,8 @@
     </UserControl.Resources>
 
     <Grid
-        Margin="10">
+        Margin="10"
+        >
 
         <Grid.RowDefinitions>
             <RowDefinition
@@ -178,7 +179,8 @@
             <DataGrid
                 SelectionMode="Single"
                 VerticalScrollBarVisibility="Auto"
-                MaxHeight="450"
+                MaxHeight="700"
+                Width="1750"
                 Margin="0 8 0 0"
                 ItemsSource="{Binding ServiceItems}"
                 CanUserSortColumns="True"

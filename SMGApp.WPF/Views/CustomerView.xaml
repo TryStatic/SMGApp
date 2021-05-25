@@ -113,7 +113,8 @@
             <DataGrid
                 SelectionMode="Single"
                 VerticalScrollBarVisibility="Auto"
-                MaxHeight="450"
+                MaxHeight="700"
+                Width="1750"
                 Margin="0 8 0 0"
                 ItemsSource="{Binding Customers}"
                 CanUserSortColumns="True"
