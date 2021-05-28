@@ -205,7 +205,7 @@
                                 Command="{Binding DataContext.DeleteServiceEntryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                             <MenuItem
-                                Header="ΑΠΟΔΕΙΞΗ"
+                                Header="ΔΕΛΤΙΟ ΠΑΡΑΛΑΒΗΣ"
                                 Command="{Binding DataContext.PrintReceiptCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=DataGrid}}"
                                 CommandParameter="{Binding DataContext.ID, RelativeSource={RelativeSource Mode=Self}}" />
                             <MenuItem
